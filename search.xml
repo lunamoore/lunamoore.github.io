@@ -9,7 +9,7 @@
 <a id="more"></a>
 
 <h2 id="浏览器代理"><a href="#浏览器代理" class="headerlink" title="浏览器代理"></a>浏览器代理</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a><strong>准备工作</strong></h3><blockquote>
-<p>有可用的SSR账号，可以选择网上免费分享的账号，或者自己搭建在VPS上搭建。</p>
+<p>有可用的SSR账号，可以选择网上免费分享的账号，或者自己在VPS上搭建。</p>
 <p>虚拟机网卡模式为桥接</p>
 </blockquote>
 <h3 id="下载SSR脚本并安装"><a href="#下载SSR脚本并安装" class="headerlink" title="下载SSR脚本并安装"></a><strong>下载SSR脚本并安装</strong></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://lunamoore.github.io/ssr</span><br><span class="line">mv ssr /usr/<span class="built_in">local</span>/bin</span><br><span class="line">chmod 766 /usr/<span class="built_in">local</span>/bin/ssr</span><br><span class="line">ssr install</span><br><span class="line">ssr config</span><br></pre></td></tr></table></figure>
