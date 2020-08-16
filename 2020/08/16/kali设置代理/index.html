@@ -25,25 +25,25 @@
 
   <meta name="description" content="由于经常需要在vm中使用kali，并且要大量下载国外资源，所以没有一个滋润的代理是不能忍受的！你要佛系当我没说。。。下面来解决一下这个问题 浏览器代理准备工作 有可用的SSR账号，可以选择网上免费分享的账号，或者自己搭建在VPS上搭建。 虚拟机网卡模式为桥接  下载SSR脚本并安装12345wget https:&#x2F;&#x2F;lunamoore.github.io&#x2F;ssrmv ssr &#x2F;usr&#x2F;local&#x2F;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kali配置酸酸乳">
-<meta property="og:url" content="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E4%BB%A3%E7%90%86/index.html">
+<meta property="og:title" content="kali设置代理">
+<meta property="og:url" content="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/index.html">
 <meta property="og:site_name" content="记录成为更好的自己">
 <meta property="og:description" content="由于经常需要在vm中使用kali，并且要大量下载国外资源，所以没有一个滋润的代理是不能忍受的！你要佛系当我没说。。。下面来解决一下这个问题 浏览器代理准备工作 有可用的SSR账号，可以选择网上免费分享的账号，或者自己搭建在VPS上搭建。 虚拟机网卡模式为桥接  下载SSR脚本并安装12345wget https:&#x2F;&#x2F;lunamoore.github.io&#x2F;ssrmv ssr &#x2F;usr&#x2F;local&#x2F;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E4%BB%A3%E7%90%86/Users/Lluna/AppData/Roaming/Typora/typora-user-images/image-20200814192051948.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E4%BB%A3%E7%90%86/Users/Lluna/AppData/Roaming/Typora/typora-user-images/image-20200814193445301.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E4%BB%A3%E7%90%86/Users/Lluna/AppData/Roaming/Typora/typora-user-images/image-20200814195018483.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E4%BB%A3%E7%90%86/Users/Lluna/AppData/Roaming/Typora/typora-user-images/image-20200814195221075.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E4%BB%A3%E7%90%86/Users/Lluna/AppData/Roaming/Typora/typora-user-images/image-20200815140327118.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E4%BB%A3%E7%90%86/Users/Lluna/AppData/Roaming/Typora/typora-user-images/image-20200815140200323.png">
-<meta property="article:published_time" content="2020-08-16T04:39:36.319Z">
-<meta property="article:modified_time" content="2020-08-16T04:47:05.261Z">
+<meta property="og:image" content="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200814192051948.png">
+<meta property="og:image" content="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200814193445301.png">
+<meta property="og:image" content="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200814195018483.png">
+<meta property="og:image" content="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200814195221075.png">
+<meta property="og:image" content="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200815140327118.png">
+<meta property="og:image" content="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200815140200323.png">
+<meta property="article:published_time" content="2020-08-16T05:13:04.000Z">
+<meta property="article:modified_time" content="2020-08-16T05:33:44.732Z">
 <meta property="article:author" content="Lluna">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E4%BB%A3%E7%90%86/Users/Lluna/AppData/Roaming/Typora/typora-user-images/image-20200814192051948.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200814192051948.png">
 
 
-<link rel="canonical" href="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E4%BB%A3%E7%90%86/">
+<link rel="canonical" href="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/">
 
 
 <script class="page-configurations">
@@ -56,7 +56,7 @@
   };
 </script>
 
-  <title>kali配置酸酸乳 | 记录成为更好的自己</title>
+  <title>kali设置代理 | 记录成为更好的自己</title>
   
 
 
@@ -290,7 +290,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E4%BB%A3%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/01.jpg">
@@ -306,7 +306,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          kali配置酸酸乳
+          kali设置代理
         </h1>
 
         <div class="post-meta">
@@ -317,7 +317,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-08-16 12:39:36 / 修改时间：12:47:05" itemprop="dateCreated datePublished" datetime="2020-08-16T12:39:36+08:00">2020-08-16</time>
+              <time title="创建时间：2020-08-16 13:13:04 / 修改时间：13:33:44" itemprop="dateCreated datePublished" datetime="2020-08-16T13:13:04+08:00">2020-08-16</time>
             </span>
 
           
@@ -351,7 +351,8 @@
 <li>在应用商店找到插件 <code>Proxy SwitchyOmega</code>，添加至Chrome</li>
 <li>点击 图标 &gt;&gt; 选项 &gt;&gt; (左边)新建情景模式 ,选第一项 <code>代理服务器</code></li>
 </ul>
-<p><img src="/2020/08/16/kali%E8%AE%BE%E4%BB%A3%E7%90%86/Users\Lluna\AppData\Roaming\Typora\typora-user-images\image-20200814192051948.png" alt="image-20200814192051948"></p>
+<img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200814192051948.png" class>
+
 <h3 id="设置开机启动"><a href="#设置开机启动" class="headerlink" title="设置开机启动"></a><strong>设置开机启动</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/init.d</span><br><span class="line">touch ssr</span><br><span class="line">chmod +x ssr</span><br><span class="line">vim ssr</span><br></pre></td></tr></table></figure>
 
 <p>其中ssr的内容为</p>
@@ -366,15 +367,19 @@
 <p>开机手动开启或关闭</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssr start</span><br><span class="line">ssr stop</span><br><span class="line">ssr uninstall  //卸载</span><br></pre></td></tr></table></figure>
 
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a><strong>测试</strong></h3><p><img src="/2020/08/16/kali%E8%AE%BE%E4%BB%A3%E7%90%86/Users\Lluna\AppData\Roaming\Typora\typora-user-images\image-20200814193445301.png" alt="image-20200814193445301"></p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a><strong>测试</strong></h3><img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200814193445301.png" class>
+
+
 <h2 id="终端命令行代理"><a href="#终端命令行代理" class="headerlink" title="终端命令行代理"></a>终端命令行代理</h2><h3 id="使用proxychains"><a href="#使用proxychains" class="headerlink" title="使用proxychains"></a>使用proxychains</h3><p><strong>demo_one</strong>.**<code>proxychains</code>**终端命令行代理神器，科学上网，内网穿透渗透必备</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/proxychains.conf</span><br></pre></td></tr></table></figure>
 
 <p>编辑配置文件，某尾修改自己的socks5本地代理地址很端口。</p>
-<p><img src="/2020/08/16/kali%E8%AE%BE%E4%BB%A3%E7%90%86/Users\Lluna\AppData\Roaming\Typora\typora-user-images\image-20200814195018483.png" alt="image-20200814195018483"></p>
+<img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200814195018483.png" class>
+
 <h3 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains curl https://www.google.com</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2020/08/16/kali%E8%AE%BE%E4%BB%A3%E7%90%86/Users\Lluna\AppData\Roaming\Typora\typora-user-images\image-20200814195221075.png" alt="image-20200814195221075"></p>
+<img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200814195221075.png" class>
+
 <h3 id="使用privoxy"><a href="#使用privoxy" class="headerlink" title="使用privoxy"></a>使用privoxy</h3><p>使用Privoxy实现，此方法只有临时生效</p>
 <p>首先安装privoxy</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install -y privoxy</span><br></pre></td></tr></table></figure>
@@ -395,12 +400,12 @@
 <p>查看出口配置</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/2020/08/16/kali%E8%AE%BE%E4%BB%A3%E7%90%86/Users\Lluna\AppData\Roaming\Typora\typora-user-images\image-20200815140327118.png" alt="image-20200815140327118"></p>
+<img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200815140327118.png" class>
+
 <h3 id="测试-2"><a href="#测试-2" class="headerlink" title="测试"></a>测试</h3><p>出现网页源码则为成功</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -sL facebook.com</span><br><span class="line">curl -sL www.baidu.com</span><br><span class="line">curl -sL www.google.com</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2020/08/16/kali%E8%AE%BE%E4%BB%A3%E7%90%86/Users\Lluna\AppData\Roaming\Typora\typora-user-images\image-20200815140200323.png" alt="image-20200815140200323"></p>
-
+<img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200815140200323.png" class>
     </div>
 
     
