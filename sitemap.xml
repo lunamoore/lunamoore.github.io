@@ -2,28 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/about/index.html</loc>
+    <loc>https://lunamoore.github.io/about/index.html</loc>
     
     <lastmod>2020-08-17</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/</loc>
+    <loc>https://lunamoore.github.io/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/</loc>
     
     <lastmod>2020-08-17</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/index.html</loc>
+    <loc>https://lunamoore.github.io/tags/index.html</loc>
     
     <lastmod>2020-08-16</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/categories/index.html</loc>
+    <loc>https://lunamoore.github.io/categories/index.html</loc>
     
     <lastmod>2020-08-16</lastmod>
     
@@ -31,7 +31,7 @@
   
 
   <url>
-    <loc>http://yoursite.com/</loc>
+    <loc>https://lunamoore.github.io/</loc>
     <lastmod>2020-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -39,7 +39,7 @@
 
   
   <url>
-    <loc>http://yoursite.com/tags/linux/</loc>
+    <loc>https://lunamoore.github.io/tags/linux/</loc>
     <lastmod>2020-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -48,7 +48,7 @@
 
   
   <url>
-    <loc>http://yoursite.com/categories/kali/</loc>
+    <loc>https://lunamoore.github.io/categories/kali/</loc>
     <lastmod>2020-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
