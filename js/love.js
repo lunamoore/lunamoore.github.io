@@ -2,7 +2,7 @@
     
     var T_color = "";//字体颜色,你不设置就是随机颜色,
     
-    var T_size = [20,40];//文字大小区间,不建议太大
+    var T_size = [30,50];//文字大小区间,不建议太大
     
     var T_font_weight = "bold";//字体粗斜度-->normal,bold,900
     
@@ -12,7 +12,7 @@
     
     var a_index = 0;
     $("html").click(function(e){
-        var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正" ,"法治", "爱国", "敬业", "诚信", "友善");
+        var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正" ,"法治", "爱国", "敬业", "诚信", "友善" , "社会主义接班人");
         var $i = $("<span/>").text(a[a_index]);
         a_index = (a_index + 1) % a.length;
         var x = e.pageX,y = e.pageY;
