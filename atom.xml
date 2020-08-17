@@ -3,11 +3,11 @@
   <title>记录成为更好的自己</title>
   
   <subtitle>对酒当歌，人生几何？</subtitle>
-  <link href="https://lunamoore.github.io/atom.xml" rel="self"/>
+  <link href="http://lunamoore.github.io/atom.xml" rel="self"/>
   
-  <link href="https://lunamoore.github.io/"/>
+  <link href="http://lunamoore.github.io/"/>
   <updated>2020-08-17T00:51:22.892Z</updated>
-  <id>https://lunamoore.github.io/</id>
+  <id>http://lunamoore.github.io/</id>
   
   <author>
     <name>Lluna</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>kali设置酸酸乳</title>
-    <link href="https://lunamoore.github.io/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/"/>
-    <id>https://lunamoore.github.io/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/</id>
+    <link href="http://lunamoore.github.io/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/"/>
+    <id>http://lunamoore.github.io/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/</id>
     <published>2020-08-16T05:13:04.000Z</published>
     <updated>2020-08-17T00:51:22.892Z</updated>
     
@@ -32,10 +32,10 @@
     
     
     
-    <category term="kali" scheme="https://lunamoore.github.io/categories/kali/"/>
+    <category term="kali" scheme="http://lunamoore.github.io/categories/kali/"/>
     
     
-    <category term="linux" scheme="https://lunamoore.github.io/tags/linux/"/>
+    <category term="linux" scheme="http://lunamoore.github.io/tags/linux/"/>
     
   </entry>
   
