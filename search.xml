@@ -56,15 +56,15 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install -y privoxy</span><br></pre></td></tr></table></figure>
 
 <p>本次使用全局模式。全局模式，将所有http/https请求走代理服务。</p>
-<blockquote>
 <p>1.添加本地ssr服务到配置文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt;<span class="built_in">echo</span> <span class="string">&#x27;forward-socks5 / 127.0.0.1:1080 .&#x27;</span> &gt;&gt; /etc/privoxy/config</span><br></pre></td></tr></table></figure>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;forward-socks5 / 127.0.0.1:1080 .&#x27;</span> &gt;&gt; /etc/privoxy/config</span><br></pre></td></tr></table></figure>
 
 <p>2.Privoxy 默认监听端口是是8118，每次使用都需要添加如下命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt;<span class="built_in">export</span> http_proxy=http://127.0.0.1:8118</span><br><span class="line">&gt;<span class="built_in">export</span> https_proxy=http://127.0.0.1:8118</span><br><span class="line">&gt;<span class="built_in">export</span> no_proxy=localhost</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:8118</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:8118</span><br><span class="line"><span class="built_in">export</span> no_proxy=localhost</span><br></pre></td></tr></table></figure>
 
 <p>3.启动服务</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt;systemctl start privoxy.service</span><br><span class="line">&gt;systemctl <span class="built_in">enable</span> privoxy.service</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl start privoxy.service</span><br><span class="line">systemctl <span class="built_in">enable</span> privoxy.service</span><br></pre></td></tr></table></figure>
 
 <p>no_proxy是不经过privoxy代理的地址<br>只能填写具体的ip、域名后缀，多个条目之间使用’,’逗号隔开<br>比如: export no_proxy=”localhost, 192.168.1.1, ip.cn, chinaz.com”<br>访问 localhost、192.168.1.1、ip.cn、*.ip.cn、chinaz.com、*.chinaz.com 将不使用代理</p>
 </blockquote>
@@ -78,7 +78,8 @@
 
 <img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200815140200323.png" class>
 
-<p><a href="https://www.google.com/">Google</a></p>
+
+
 ]]></content>
       <categories>
         <category>kali</category>
