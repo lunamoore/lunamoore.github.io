@@ -137,7 +137,7 @@
     <title>MSF的简单操作</title>
     <url>/2020/08/18/MSF%E7%9A%84%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<h1 id="0x01-写在前面"><a href="#0x01-写在前面" class="headerlink" title="0x01.写在前面"></a>0x01.写在前面</h1><blockquote>
-<p><strong>Metasploit项目</strong>是一个旨在提供安全漏洞信息计算机安全项目，可以协助安全工&gt;程师进行渗透测试及入侵检测系统]签名开发。metspolit框架共有四个版本（Metasploit &gt;Framework Edition，Metasploit Community Edition，Metasploit Express，Metasploit &gt;Pro），MSF为其中的开源免费版本，其他为收费版本，但功能也更加强大。最新的MSF为MSF5.0，5.0提供了新的数据服务，引入了新的免杀功能，支持多种语言。</p>
+<p><strong>Metasploit项目</strong>是一个旨在提供安全漏洞信息计算机安全项目，可以协助安全工程师进行渗透测试及入侵检测系统]签名开发。metspolit框架共有四个版本（Metasploit Framework Edition，Metasploit Community Edition，Metasploit Express，Metasploit Pro），MSF为其中的开源免费版本，其他为收费版本，但功能也更加强大。最新的MSF为MSF5.0，5.0提供了新的数据服务，引入了新的免杀功能，支持多种语言。</p>
 </blockquote>
 <p><strong>免责声明：本文只为学习记录，任何人非法使用产生的任何后果，作者概不负责！！！</strong></p>
 <a id="more"></a>
