@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lunamoore.github.io/2020/08/18/veil-evasion%E5%AE%89%E8%A3%85/</loc>
+    
+    <lastmod>2020-08-18</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lunamoore.github.io/about/index.html</loc>
     
     <lastmod>2020-08-17</lastmod>
@@ -54,6 +61,13 @@
   
   <url>
     <loc>https://lunamoore.github.io/tags/linux/</loc>
+    <lastmod>2020-08-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lunamoore.github.io/tags/linux-security-tools/</loc>
     <lastmod>2020-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

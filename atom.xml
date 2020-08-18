@@ -6,7 +6,7 @@
   <link href="https://lunamoore.github.io/atom.xml" rel="self"/>
   
   <link href="https://lunamoore.github.io/"/>
-  <updated>2020-08-17T00:51:22.892Z</updated>
+  <updated>2020-08-18T07:22:12.340Z</updated>
   <id>https://lunamoore.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Veil-Evasion安装</title>
+    <link href="https://lunamoore.github.io/2020/08/18/veil-evasion%E5%AE%89%E8%A3%85/"/>
+    <id>https://lunamoore.github.io/2020/08/18/veil-evasion%E5%AE%89%E8%A3%85/</id>
+    <published>2020-08-18T06:54:46.000Z</published>
+    <updated>2020-08-18T07:22:12.340Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Veil-Evasion简介"><a href="#Veil-Evasion简介" class="headerlink" title="Veil-Evasion简介"></a><span class="exturl" data-url="aHR0cHM6Ly93d3cudmVpbC1mcmFtZXdvcmsuY29tLw==">Veil-Evasion<i class="fa fa-external-link-alt"></i></span>简介</h2><blockquote><p>Veil-Evasion是一种免杀工具，用于生成绕过常见AV的metasploit payload。</p><p>Veil-Evasion被原生设计在kali上，,但kali2020已经需要独立安装。其实存在python环境的系统上应该都能运行。你可以用命令行轻松调用Veil-Evasion，按菜单选项生成payload。在创建payload的时候，Veil-Evasion会询问你是否想把<strong>payload文件用Pyinstaller或者Py2Exe转为可执行文件。</strong></p></blockquote><p><strong>免责声明：本文只为学习记录，任何人非法使用产生的任何后果，作者概不负责！！！</strong></p><a id="more"></a><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="首先更新系统，本次系统为2020-3"><a href="#首先更新系统，本次系统为2020-3" class="headerlink" title="首先更新系统，本次系统为2020.3"></a>首先更新系统，本次系统为2020.3</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get update        //更新所有软件包的列表</span><br><span class="line">apt-get upgrade        //更新所有软件</span><br></pre></td></tr></table></figure><h3 id="查看系统详情"><a href="#查看系统详情" class="headerlink" title="查看系统详情"></a>查看系统详情</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@JIYE:~<span class="comment"># lsb_release -a</span></span><br><span class="line">No LSB modules are available.</span><br><span class="line">Distributor ID: Kali</span><br><span class="line">Description:    Kali GNU/Linux Rolling</span><br><span class="line">Release:        2020.3</span><br><span class="line">Codename:       kali-rolling</span><br><span class="line">root@JIYE:~<span class="comment"># </span></span><br></pre></td></tr></table></figure><h3 id="配置clone加速，需要配置代理。"><a href="#配置clone加速，需要配置代理。" class="headerlink" title="配置clone加速，需要配置代理。"></a>配置clone加速，需要配置代理。</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy <span class="string">&#x27;socks5://127.0.0.1:1080&#x27;</span> </span><br><span class="line">git config --global https.proxy <span class="string">&#x27;socks5://127.0.0.1:1080&#x27;</span></span><br></pre></td></tr></table></figure><h3 id="安装veil"><a href="#安装veil" class="headerlink" title="安装veil"></a>安装veil</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install veil-evasion</span><br><span class="line">veil</span><br></pre></td></tr></table></figure><p><code>由于需要运行windows下的程序，所以需要安装windows系统下的程序</code></p><p><strong><code>默认安装即可</code></strong></p><img src="/2020/08/18/veil-evasion%E5%AE%89%E8%A3%85/image-20200814203354313.png" class><img src="/2020/08/18/veil-evasion%E5%AE%89%E8%A3%85/image-20200814203452010.png" class><p><strong><code>其他安装略</code></strong></p><h3 id="安装可能会出现错误（我的错误如下），执行以下操作"><a href="#安装可能会出现错误（我的错误如下），执行以下操作" class="headerlink" title="安装可能会出现错误（我的错误如下），执行以下操作"></a><strong>安装可能会出现错误（我的错误如下），执行以下操作</strong></h3><blockquote><p><strong>错误如下，按提示执行命令即可</strong></p><p>[I] If you have any errors running Veil, run: <strong>‘./Veil.py –setup’</strong> and select the nuke the wine folder option</p><p>[I] Done!</p><p>[!] ERROR #2-3: Can’t find the WINE profile for AuotIT v3 (/var/lib/veil/wine//drive_c/Program Files/AutoIt3/Aut2Exe/Aut2exe.exe).   Run:<strong>/usr/share/veil/config/setup.sh –force –silent</strong></p><p>root@JIYE:~# Could not find Wine Gecko. HTML rendering will be disabled.<br>004a:err:mshtml:create_document_object Failed to init Gecko, returning CLASS_E_CLASSNOTAVAILABLE</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/share/veil/ &amp;&amp;./Veil.py --<span class="built_in">set</span> up</span><br><span class="line">/usr/share/veil/config/setup.sh --force --silent</span><br></pre></td></tr></table></figure><h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><img src="/2020/08/18/veil-evasion%E5%AE%89%E8%A3%85/image-20200815151937202.png" class><h2 id="日后再写使用方式。。。佛系佛系"><a href="#日后再写使用方式。。。佛系佛系" class="headerlink" title="日后再写使用方式。。。佛系佛系"></a>日后再写使用方式。。。佛系佛系</h2>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;Veil-Evasion简介&quot;&gt;&lt;a href=&quot;#Veil-Evasion简介&quot; class=&quot;headerlink&quot; title=&quot;Veil-Evasion简介&quot;&gt;&lt;/a&gt;&lt;span class=&quot;exturl&quot; data-url=&quot;aHR0cHM6Ly93d3cudmVpbC1mcmFtZXdvcmsuY29tLw==&quot;&gt;Veil-Evasion&lt;i class=&quot;fa fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/span&gt;简介&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Veil-Evasion是一种免杀工具，用于生成绕过常见AV的metasploit payload。&lt;/p&gt;
+&lt;p&gt;Veil-Evasion被原生设计在kali上，,但kali2020已经需要独立安装。其实存在python环境的系统上应该都能运行。你可以用命令行轻松调用Veil-Evasion，按菜单选项生成payload。在创建payload的时候，Veil-Evasion会询问你是否想把&lt;strong&gt;payload文件用Pyinstaller或者Py2Exe转为可执行文件。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;免责声明：本文只为学习记录，任何人非法使用产生的任何后果，作者概不负责！！！&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="kali" scheme="https://lunamoore.github.io/categories/kali/"/>
+    
+    
+    <category term="linux,security tools" scheme="https://lunamoore.github.io/tags/linux-security-tools/"/>
+    
+  </entry>
   
   <entry>
     <title>kali设置酸酸乳</title>
