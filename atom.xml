@@ -6,7 +6,7 @@
   <link href="https://lunamoore.github.io/atom.xml" rel="self"/>
   
   <link href="https://lunamoore.github.io/"/>
-  <updated>2020-08-18T10:27:30.144Z</updated>
+  <updated>2020-08-19T08:45:59.410Z</updated>
   <id>https://lunamoore.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HackTheBox注册</title>
+    <link href="https://lunamoore.github.io/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/"/>
+    <id>https://lunamoore.github.io/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/</id>
+    <published>2020-08-19T08:36:43.000Z</published>
+    <updated>2020-08-19T08:45:59.410Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="0x00-前言-什么是Hack-The-Box"><a href="#0x00-前言-什么是Hack-The-Box" class="headerlink" title="0x00.前言~什么是Hack The Box"></a>0x00.前言~什么是Hack The Box</h2><blockquote><p>它基本上是一个在线平台，用于测试和增强您的渗透测试和网络安全技能。它包含一些不断更新的挑战。其中一些模拟了现实世界的场景，而另一些则更倾向于CTF的挑战风格。如果您对网络安全或信息安全感兴趣，则应尝试此站点。OK让我们开始吧！！！</p></blockquote><a id="more"></a><h2 id="0x01-首先，访问Hack-the-Box网站，并阅读其常见问题解答和一些其他有用的东西。"><a href="#0x01-首先，访问Hack-the-Box网站，并阅读其常见问题解答和一些其他有用的东西。" class="headerlink" title="0x01.首先，访问Hack the Box网站，并阅读其常见问题解答和一些其他有用的东西。"></a>0x01.首先，访问<span class="exturl" data-url="aHR0cHM6Ly93d3cuaGFja3RoZWJveC5ldS8=">Hack the Box网站，<i class="fa fa-external-link-alt"></i></span>并阅读其常见问题解答和一些其他有用的东西。</h2><h2 id="0x02-系统将提示您转到https-www-hackthebox-eu-邀请加入HTB。"><a href="#0x02-系统将提示您转到https-www-hackthebox-eu-邀请加入HTB。" class="headerlink" title="0x02.系统将提示您转到https://www.hackthebox.eu/邀请加入HTB。"></a>0x02.系统将提示您转到<span class="exturl" data-url="aHR0cHM6Ly93d3cuaGFja3RoZWJveC5ldS9pbnZpdGU=">https://www.hackthebox.eu/<i class="fa fa-external-link-alt"></i></span>邀请加入HTB。</h2><h2 id="0x03-当您转到该页面时，将看到一个文本框，让你输入邀请码。"><a href="#0x03-当您转到该页面时，将看到一个文本框，让你输入邀请码。" class="headerlink" title="0x03.当您转到该页面时，将看到一个文本框，让你输入邀请码。"></a>0x03.当您转到该页面时，将看到一个文本框，让你输入<em>邀请码</em>。</h2><h3 id="01-根据提示打开控制台"><a href="#01-根据提示打开控制台" class="headerlink" title="01.根据提示打开控制台"></a>01.根据提示打开控制台</h3><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155151668.png" class><h3 id="02-根据提示继续"><a href="#02-根据提示继续" class="headerlink" title="02.根据提示继续"></a>02.根据提示继续</h3><p><code>挑战第一步，此页面加载一个有趣的javascript文件。看看你能不能找到它：</code></p><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155456002.png" class><h3 id="03-发现邀请接口的js文件"><a href="#03-发现邀请接口的js文件" class="headerlink" title="03.发现邀请接口的js文件"></a>03.发现邀请接口的js文件</h3><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155754688.png" class><h3 id="04-右键打开，发现制造邀请码函数"><a href="#04-右键打开，发现制造邀请码函数" class="headerlink" title="04.右键打开，发现制造邀请码函数"></a>04.右键打开，发现制造邀请码函数</h3><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155903977.png" class><h3 id="05-在控制台调用"><a href="#05-在控制台调用" class="headerlink" title="05.在控制台调用"></a>05.在控制台调用</h3><p><code>可以看到200状态码，可以看到data为加密为ROT13(有时也为base64)</code></p><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819160416212.png" class><h3 id="06-解密"><a href="#06-解密" class="headerlink" title="06.解密"></a>06.解密</h3><p><code>发现要发送POST请求</code></p><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819160919218.png" class><h3 id="07-发送POST请求"><a href="#07-发送POST请求" class="headerlink" title="07.发送POST请求"></a>07.发送POST请求</h3><p><code>得到以=结尾的数据，猜测为base64</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SlpYQkMtRkVBWUktWkhWQ1AtRkhTU0gtS0xEVFQ=</span><br></pre></td></tr></table></figure><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819161940343.png" class><h3 id="08-解码"><a href="#08-解码" class="headerlink" title="08.解码"></a>08.解码</h3><p><code>得到邀请码</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JZXBC-FEAYI-ZHVCP-FHSSH-KLDTT</span><br></pre></td></tr></table></figure><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819162456042.png" class><h3 id="09-之后就可以愉快的玩耍了"><a href="#09-之后就可以愉快的玩耍了" class="headerlink" title="09.之后就可以愉快的玩耍了"></a>09.之后就可以愉快的玩耍了</h3><p><code>根据提示进行连接即可</code></p><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819163450257.png" class><p><code>下图为连接成功状态</code></p><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819163543912.png" class>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;0x00-前言-什么是Hack-The-Box&quot;&gt;&lt;a href=&quot;#0x00-前言-什么是Hack-The-Box&quot; class=&quot;headerlink&quot; title=&quot;0x00.前言~什么是Hack The Box&quot;&gt;&lt;/a&gt;0x00.前言~什么是Hack The Box&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;它基本上是一个在线平台，用于测试和增强您的渗透测试和网络安全技能。它包含一些不断更新的挑战。其中一些模拟了现实世界的场景，而另一些则更倾向于CTF的挑战风格。如果您对网络安全或信息安全感兴趣，则应尝试此站点。OK让我们开始吧！！！&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="HackTheBox" scheme="https://lunamoore.github.io/categories/HackTheBox/"/>
+    
+    
+    <category term="靶机" scheme="https://lunamoore.github.io/tags/%E9%9D%B6%E6%9C%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>MSF的简单操作</title>
