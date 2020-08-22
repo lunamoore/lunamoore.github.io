@@ -95,6 +95,13 @@
 
   
   <url>
+    <loc>https://lunamoore.github.io/tags/%E9%9D%B6%E6%9C%BA/</loc>
+    <lastmod>2020-08-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://lunamoore.github.io/tags/linux/</loc>
     <lastmod>2020-08-22</lastmod>
     <changefreq>daily</changefreq>
@@ -108,24 +115,17 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://lunamoore.github.io/tags/%E9%9D%B6%E6%9C%BA/</loc>
-    <lastmod>2020-08-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   
   <url>
-    <loc>https://lunamoore.github.io/categories/kali/</loc>
+    <loc>https://lunamoore.github.io/categories/HackTheBox/</loc>
     <lastmod>2020-08-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://lunamoore.github.io/categories/HackTheBox/</loc>
+    <loc>https://lunamoore.github.io/categories/kali/</loc>
     <lastmod>2020-08-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
