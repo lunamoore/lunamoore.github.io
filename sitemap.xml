@@ -2,6 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lunamoore.github.io/2020/08/21/DC-1/</loc>
+    
+    <lastmod>2020-09-02</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lunamoore.github.io/2020/08/21/DC-2/</loc>
+    
+    <lastmod>2020-09-02</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lunamoore.github.io/2020/08/22/DC-3/</loc>
+    
+    <lastmod>2020-09-02</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lunamoore.github.io/2020/08/23/DC-4/</loc>
+    
+    <lastmod>2020-09-02</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lunamoore.github.io/2020/08/24/DC-5/</loc>
+    
+    <lastmod>2020-09-02</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lunamoore.github.io/2020/08/27/DC-6/</loc>
+    
+    <lastmod>2020-09-02</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lunamoore.github.io/2020/08/28/DC-7/</loc>
+    
+    <lastmod>2020-09-02</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lunamoore.github.io/2020/08/31/DC-8/</loc>
+    
+    <lastmod>2020-09-02</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lunamoore.github.io/2020/09/02/DC-9/</loc>
     
     <lastmod>2020-09-02</lastmod>
@@ -33,62 +89,6 @@
     <loc>https://lunamoore.github.io/2020/08/31/HTB-remote/</loc>
     
     <lastmod>2020-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lunamoore.github.io/2020/08/31/DC-8/</loc>
-    
-    <lastmod>2020-08-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lunamoore.github.io/2020/08/28/DC-7/</loc>
-    
-    <lastmod>2020-08-28</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lunamoore.github.io/2020/08/27/DC-6/</loc>
-    
-    <lastmod>2020-08-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lunamoore.github.io/2020/08/24/DC-5/</loc>
-    
-    <lastmod>2020-08-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lunamoore.github.io/2020/08/21/DC-1/</loc>
-    
-    <lastmod>2020-08-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lunamoore.github.io/2020/08/21/DC-2/</loc>
-    
-    <lastmod>2020-08-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lunamoore.github.io/2020/08/22/DC-3/</loc>
-    
-    <lastmod>2020-08-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lunamoore.github.io/2020/08/23/DC-4/</loc>
-    
-    <lastmod>2020-08-24</lastmod>
     
   </url>
   
@@ -181,6 +181,13 @@
   </url>
   
   <url>
+    <loc>https://lunamoore.github.io/categories/vulnhub/DC/</loc>
+    <lastmod>2020-09-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://lunamoore.github.io/categories/HackTheBox/</loc>
     <lastmod>2020-09-02</lastmod>
     <changefreq>daily</changefreq>
@@ -189,13 +196,6 @@
   
   <url>
     <loc>https://lunamoore.github.io/categories/kali/</loc>
-    <lastmod>2020-09-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://lunamoore.github.io/categories/vulnhub/DC/</loc>
     <lastmod>2020-09-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
