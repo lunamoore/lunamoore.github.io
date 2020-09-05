@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://lunamoore.github.io/2020/09/05/HTB-admirer/</loc>
+    <lastmod>2020-09-05</lastmod>
+  </url>
+  <url>
+    <loc>https://lunamoore.github.io/2020/09/01/HTB-buff/</loc>
+    <lastmod>2020-09-05</lastmod>
+  </url>
+  <url>
+    <loc>https://lunamoore.github.io/2020/08/31/HTB-remote/</loc>
+    <lastmod>2020-09-05</lastmod>
+  </url>
+  <url>
     <loc>https://lunamoore.github.io/2020/08/21/DC-1/</loc>
     <lastmod>2020-09-02</lastmod>
   </url>
@@ -35,14 +47,6 @@
   <url>
     <loc>https://lunamoore.github.io/2020/09/02/DC-9/</loc>
     <lastmod>2020-09-02</lastmod>
-  </url>
-  <url>
-    <loc>https://lunamoore.github.io/2020/09/01/HTB-buff/</loc>
-    <lastmod>2020-09-02</lastmod>
-  </url>
-  <url>
-    <loc>https://lunamoore.github.io/2020/08/31/HTB-remote/</loc>
-    <lastmod>2020-08-31</lastmod>
   </url>
   <url>
     <loc>https://lunamoore.github.io/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/</loc>
