@@ -284,13 +284,6 @@
 
   
   <url>
-    <loc>https://lunamoore.github.io/tags/linux/</loc>
-    <lastmod>2021-05-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://lunamoore.github.io/tags/CVE/</loc>
     <lastmod>2021-05-03</lastmod>
     <changefreq>daily</changefreq>
@@ -306,6 +299,13 @@
   
   <url>
     <loc>https://lunamoore.github.io/tags/Strust2/</loc>
+    <lastmod>2021-05-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lunamoore.github.io/tags/linux/</loc>
     <lastmod>2021-05-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -335,14 +335,14 @@
 
   
   <url>
-    <loc>https://lunamoore.github.io/categories/Linux%E6%9C%8D%E5%8A%A1/</loc>
+    <loc>https://lunamoore.github.io/categories/CVE/</loc>
     <lastmod>2021-05-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://lunamoore.github.io/categories/CVE/</loc>
+    <loc>https://lunamoore.github.io/categories/Linux%E6%9C%8D%E5%8A%A1/</loc>
     <lastmod>2021-05-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -356,14 +356,14 @@
   </url>
   
   <url>
-    <loc>https://lunamoore.github.io/categories/HackTheBox/</loc>
+    <loc>https://lunamoore.github.io/categories/CVE/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</loc>
     <lastmod>2021-05-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://lunamoore.github.io/categories/CVE/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</loc>
+    <loc>https://lunamoore.github.io/categories/HackTheBox/</loc>
     <lastmod>2021-05-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -377,21 +377,7 @@
   </url>
   
   <url>
-    <loc>https://lunamoore.github.io/categories/CVE/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Strust2/</loc>
-    <lastmod>2021-05-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://lunamoore.github.io/categories/Sqli-labs/</loc>
-    <lastmod>2021-05-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://lunamoore.github.io/categories/kali/</loc>
     <lastmod>2021-05-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -406,6 +392,20 @@
   
   <url>
     <loc>https://lunamoore.github.io/categories/Web%E9%9D%B6%E5%9C%BA/</loc>
+    <lastmod>2021-05-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lunamoore.github.io/categories/CVE/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Strust2/</loc>
+    <lastmod>2021-05-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lunamoore.github.io/categories/kali/</loc>
     <lastmod>2021-05-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
