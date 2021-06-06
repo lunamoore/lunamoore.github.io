@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lunamoore.github.io/2021/06/06/CVE-2020-1957/</loc>
+    
+    <lastmod>2021-06-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lunamoore.github.io/2021/06/06/CVE-2016-4437/</loc>
     
     <lastmod>2021-06-06</lastmod>
@@ -363,14 +370,14 @@
   </url>
   
   <url>
-    <loc>https://lunamoore.github.io/categories/vulnhub/</loc>
+    <loc>https://lunamoore.github.io/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE/</loc>
     <lastmod>2021-06-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://lunamoore.github.io/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE/</loc>
+    <loc>https://lunamoore.github.io/categories/vulnhub/</loc>
     <lastmod>2021-06-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -391,7 +398,21 @@
   </url>
   
   <url>
+    <loc>https://lunamoore.github.io/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE/Shiro/</loc>
+    <lastmod>2021-06-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://lunamoore.github.io/categories/vulnhub/DC/</loc>
+    <lastmod>2021-06-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lunamoore.github.io/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE/Strust2/</loc>
     <lastmod>2021-06-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -405,21 +426,7 @@
   </url>
   
   <url>
-    <loc>https://lunamoore.github.io/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE/Shiro/</loc>
-    <lastmod>2021-06-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://lunamoore.github.io/categories/Tryhackme/</loc>
-    <lastmod>2021-06-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://lunamoore.github.io/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE/Strust2/</loc>
     <lastmod>2021-06-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
