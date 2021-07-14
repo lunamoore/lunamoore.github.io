@@ -442,7 +442,8 @@
   <entry>
     <title>HTB-[cap]</title>
     <url>/2021/07/14/HTB-cap/</url>
-    <content><![CDATA[<h2 id="0x00-简述"><a href="#0x00-简述" class="headerlink" title="0x00.简述"></a>0x00.简述</h2><p><img src="/2021/07/14/HTB-cap/xm\hexo\source_posts\HTB-cap\image-20210714122750156.png" alt="image-20210714122750156"></p>
+    <content><![CDATA[<h2 id="0x00-简述"><a href="#0x00-简述" class="headerlink" title="0x00.简述"></a>0x00.简述</h2><img src="/2021/07/14/HTB-cap/image-20210714122750156.png" class>
+
 <a id="more"></a>
 
 <h2 id="0x01-信息收集"><a href="#0x01-信息收集" class="headerlink" title="0x01.信息收集"></a>0x01.信息收集</h2><p><code>可以看到开放了21、21、80端口</code></p>
@@ -452,20 +453,25 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">┌──(root💀kali)-[~/htb/cap]</span><br><span class="line">└─# ftp anonymous@10.10.10.245                                                                                                                             1 ⚙</span><br><span class="line">ftp: anonymous@10.10.10.245: Name or service not known</span><br><span class="line"><span class="meta">ftp&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="0x03-访问80端口"><a href="#0x03-访问80端口" class="headerlink" title="0x03.访问80端口"></a>0x03.访问80端口</h2><p><code>手动爬虫发现这是一个网络设备管理面板</code></p>
-<p><img src="/2021/07/14/HTB-cap/xm\hexo\source_posts\HTB-cap\image-20210714131548126.png" alt="image-20210714131548126"></p>
+<img src="/2021/07/14/HTB-cap/image-20210714131548126.png" class>
+
 <p><code>多次点击发现url也会发生变化，且可以下载数据包</code></p>
-<p><img src="/2021/07/14/HTB-cap/xm\hexo\source_posts\HTB-cap\image-20210714131719943.png" alt="image-20210714131719943"></p>
-<p><img src="/2021/07/14/HTB-cap/xm\hexo\source_posts\HTB-cap\image-20210714131753971.png" alt="image-20210714131753971"></p>
+<img src="/2021/07/14/HTB-cap/image-20210714131753971.png" class>
+
+<img src="/2021/07/14/HTB-cap/image-20210714131753971.png" class>
+
 <p><code>扫描data目录，访问发现一共有6个有效链接，分别是0、1、2、3、4、5，全部下载</code></p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">──(root💀kali)-[~/htb/cap]</span><br><span class="line">└─# dirb http://10.10.10.245/data/                                                                                                                         1 ⚙</span><br><span class="line">-----------------</span><br><span class="line">DIRB v2.22    </span><br><span class="line">By The Dark Raver</span><br><span class="line">-----------------</span><br><span class="line">START_TIME: Wed Jul 14 01:10:25 2021</span><br><span class="line">URL_BASE: http://10.10.10.245/data/</span><br><span class="line">WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt</span><br><span class="line">-----------------</span><br><span class="line">GENERATED WORDS: 4612                                                          </span><br><span class="line">---- Scanning URL: http://10.10.10.245/data/ ----</span><br><span class="line">+ http://10.10.10.245/data/0 (CODE:200|SIZE:17147)</span><br><span class="line">+ http://10.10.10.245/data/00 (CODE:200|SIZE:17147) </span><br><span class="line">+ http://10.10.10.245/data/01 (CODE:200|SIZE:17144) </span><br><span class="line">+ http://10.10.10.245/data/02 (CODE:200|SIZE:17144)</span><br><span class="line">+ http://10.10.10.245/data/03 (CODE:200|SIZE:17144)                                                   </span><br><span class="line">+ http://10.10.10.245/data/04 (CODE:200|SIZE:17144)                                                     </span><br><span class="line">+ http://10.10.10.245/data/05 (CODE:200|SIZE:17147)                                                   </span><br><span class="line">+ http://10.10.10.245/data/1 (CODE:200|SIZE:17144)                                                      </span><br><span class="line">+ http://10.10.10.245/data/2 (CODE:200|SIZE:17144)                                                       </span><br><span class="line">+ http://10.10.10.245/data/3 (CODE:200|SIZE:17144)                                                       </span><br><span class="line">+ http://10.10.10.245/data/4 (CODE:200|SIZE:17144)                                                       + http://10.10.10.245/data/5 (CODE:200|SIZE:17147)</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2021/07/14/HTB-cap/xm\hexo\source_posts\HTB-cap\image-20210714132457089.png" alt="image-20210714132457089"></p>
+<img src="/2021/07/14/HTB-cap/image-20210714132457089.png" class>
+
 <h2 id="0x04-数据包分析"><a href="#0x04-数据包分析" class="headerlink" title="0x04.数据包分析"></a>0x04.数据包分析</h2><p><code>6个数据包中只有0.pcap包含有用信息，得到用户与密码</code></p>
 <blockquote>
 <p>user:nathan</p>
 <p>pass:Buck3tH4TF0RM3!</p>
 </blockquote>
-<p><img src="/2021/07/14/HTB-cap/xm\hexo\source_posts\HTB-cap\image-20210714140327176.png" alt="image-20210714140327176"></p>
+<img src="/2021/07/14/HTB-cap/image-20210714140327176.png" class>
+
 <p><code>登入得到flag</code></p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">┌──(root💀kali)-[~]</span><br><span class="line">└─# ssh nathan@10.10.10.245                                                                                                                                1 ⚙</span><br><span class="line">nathan@10.10.10.245&#x27;s password: </span><br><span class="line">Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-73-generic x86_64)</span><br><span class="line"></span><br><span class="line"> * Documentation:  https://help.ubuntu.com</span><br><span class="line"> * Management:     https://landscape.canonical.com</span><br><span class="line"> * Support:        https://ubuntu.com/advantage</span><br><span class="line"></span><br><span class="line">  System information as of Wed Jul 14 06:11:21 UTC 2021</span><br><span class="line"></span><br><span class="line">  System load:           0.04</span><br><span class="line">  Usage of /:            35.0% of 8.73GB</span><br><span class="line">  Memory usage:          21%</span><br><span class="line">  Swap usage:            0%</span><br><span class="line">  Processes:             228</span><br><span class="line">  Users logged in:       0</span><br><span class="line">  IPv4 address for eth0: 10.10.10.245</span><br><span class="line">  IPv6 address for eth0: dead:beef::250:56ff:feb9:dda9</span><br><span class="line"></span><br><span class="line">  =&gt; There are 4 zombie processes.</span><br><span class="line"></span><br><span class="line"> * Super-optimized for small spaces - read how we shrank the memory</span><br><span class="line">   footprint of MicroK8s to make it the smallest full K8s around.</span><br><span class="line"></span><br><span class="line">   https://ubuntu.com/blog/microk8s-memory-optimisation</span><br><span class="line"></span><br><span class="line">The list of available updates is more than a week old.</span><br><span class="line">To check for new updates run: sudo apt update</span><br><span class="line">Failed to connect to https://changelogs.ubuntu.com/meta-release-lts. Check your Internet connection or proxy settings</span><br><span class="line"></span><br><span class="line">nathan@cap:~$ ls</span><br><span class="line">user.txt</span><br><span class="line">nathan@cap:~$ cat user.txt </span><br><span class="line">*************************</span><br><span class="line">nathan@cap:~$</span><br></pre></td></tr></table></figure>
 
