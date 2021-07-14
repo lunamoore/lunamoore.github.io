@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://lunamoore.github.io/2021/07/14/HTB-cap/</loc>
+    <lastmod>2021-07-14</lastmod>
+  </url>
+  <url>
     <loc>https://lunamoore.github.io/2021/06/06/CVE-2020-1957/</loc>
     <lastmod>2021-06-06</lastmod>
   </url>
