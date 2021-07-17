@@ -3677,6 +3677,8 @@
 
 <h3 id="03-tcp-udp-网络连接状态"><a href="#03-tcp-udp-网络连接状态" class="headerlink" title="03.tcp/udp 网络连接状态"></a>03.tcp/udp 网络连接状态</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">netstat -nao</span><br></pre></td></tr></table></figure>
 
+<a id="more"></a>
+
 <h3 id="04-主机名"><a href="#04-主机名" class="headerlink" title="04.主机名"></a>04.主机名</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hostname</span><br></pre></td></tr></table></figure>
 
 <h3 id="05-当前操作系统版本"><a href="#05-当前操作系统版本" class="headerlink" title="05.当前操作系统版本"></a>05.当前操作系统版本</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ver</span><br><span class="line">systeminfo | findstr /B /C:&quot;OS name&quot; /C:&quot;OS Version&quot;    #英文版</span><br><span class="line">systeminfo | findstr /B /C:&quot;OS 名称&quot; /C:&quot;OS 版本&quot;    #中文版</span><br><span class="line">wmic OS GET Caption,CSDVersion,OSArchitecture,Version    #更详细</span><br></pre></td></tr></table></figure>
