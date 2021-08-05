@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://lunamoore.github.io/2021/08/05/HTB-love/</loc>
+    <lastmod>2021-08-05</lastmod>
+  </url>
+  <url>
     <loc>https://lunamoore.github.io/2021/07/29/HTB-knife/</loc>
     <lastmod>2021-07-29</lastmod>
   </url>
